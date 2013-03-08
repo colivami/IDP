@@ -2,5 +2,14 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="jars/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="jars/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="jars/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="jars/hibernate3.jar"/>
+	<classpathentry kind="lib" path="jars/hsqldb.jar"/>
+	<classpathentry kind="lib" path="jars/javassist-3.9.0.GA.jar"/>
+	<classpathentry kind="lib" path="jars/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="jars/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="lib" path="jars/slf4j-simple-1.5.8-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
