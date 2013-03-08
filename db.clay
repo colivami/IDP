@@ -9,16 +9,16 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7ff5" mandatory="true" name="ID">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7ff8" mandatory="false" name="Calle">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7ff8" mandatory="false" name="Calle">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7ff4" mandatory="false" name="MaxRecibosPendientes">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7ff3" mandatory="false" name="Estado">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7ff3" mandatory="false" name="Estado">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7e2b" mandatory="true" name="NumFactura">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7e2b" mandatory="true" name="NumFactura">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 </column-list>
@@ -34,7 +34,7 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fec" mandatory="false" name="ID">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fea" mandatory="false" name="FechaFactura">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fea" mandatory="false" name="FechaFactura">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 </column-list>
@@ -52,7 +52,7 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fe1" mandatory="true" name="ID">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fe5" mandatory="false" name="FechaCalculo">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fe5" mandatory="false" name="FechaCalculo">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fe2" mandatory="false" name="ImporteNota">
@@ -68,13 +68,13 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fdc" mandatory="true" name="ID">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fdb" mandatory="false" name="Escalera">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fdb" mandatory="false" name="Escalera">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fda" mandatory="false" name="Piso">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fda" mandatory="false" name="Piso">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fd9" mandatory="false" name="Puerta">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fd9" mandatory="false" name="Puerta">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fd8" mandatory="false" name="Porcentaje">
@@ -90,10 +90,10 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fd3" mandatory="true" name="ID">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fd2" mandatory="false" name="Entidad">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fd2" mandatory="false" name="Entidad">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fd1" mandatory="false" name="NumeroCuenta">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fd1" mandatory="false" name="NumeroCuenta">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 </column-list>
@@ -106,25 +106,25 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fcc" mandatory="true" name="ID">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fcb" mandatory="false" name="NIF">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fcb" mandatory="false" name="NIF">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fca" mandatory="false" name="Nombre">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fca" mandatory="false" name="Nombre">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fc9" mandatory="false" name="Direccion">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fc9" mandatory="false" name="Direccion">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fc8" mandatory="false" name="Poblacion">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fc8" mandatory="false" name="Poblacion">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fc7" mandatory="false" name="Telefono">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fc7" mandatory="false" name="Telefono">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fc6" mandatory="false" name="Observaciones">
+<column auto-increment="false" column-size="100" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fc6" mandatory="false" name="Observaciones">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fc5" mandatory="false" name="FechaAlta">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fc5" mandatory="false" name="FechaAlta">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 </column-list>
@@ -137,7 +137,7 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fbf" mandatory="true" name="ID">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fc0" mandatory="false" name="FechaPago">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fc0" mandatory="false" name="FechaPago">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fbe" mandatory="false" name="Importe">
@@ -156,7 +156,7 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fb8" mandatory="false" name="ImporteLinea">
 <data-type name="FLOAT" selected-variant-pattern="FLOAT"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fb7" mandatory="false" name="Observacion">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fb7" mandatory="false" name="Observacion">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 </column-list>
@@ -169,10 +169,10 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fb2" mandatory="true" name="ID">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fb1" mandatory="false" name="ClaveConcepto">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fb1" mandatory="false" name="ClaveConcepto">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fb0" mandatory="false" name="Descripcion">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fb0" mandatory="false" name="Descripcion">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 </column-list>
@@ -185,7 +185,7 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fab" mandatory="true" name="ID">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7faa" mandatory="false" name="Fecha">
+<column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7faa" mandatory="false" name="Fecha">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
 </column-list>
