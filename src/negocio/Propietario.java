@@ -1,4 +1,6 @@
 
+package negocio;
+
 public class Propietario {
 	private int ID;
 	private String NIF;

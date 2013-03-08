@@ -1,3 +1,5 @@
+package negocio;
+
 public class Comunidad { 
 	
 	

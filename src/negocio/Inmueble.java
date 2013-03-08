@@ -1,3 +1,4 @@
+package negocio;
 
 public class Inmueble {
 	private int ID;

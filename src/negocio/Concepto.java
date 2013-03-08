@@ -1,3 +1,4 @@
+package negocio;
 
 public class Concepto {
 	private int ID;

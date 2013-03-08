@@ -1,4 +1,6 @@
 
+package negocio;
+
 public class DatosBancarios {
 	private int ID;
 	private String Entidad;
