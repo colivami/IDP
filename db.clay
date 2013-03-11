@@ -21,10 +21,24 @@
 <column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7e2b" mandatory="true" name="NumFactura">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="188e9e4d:13d59c1605a:-7f27" mandatory="true" name="ID_Inmueble">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="188e9e4d:13d59c1605a:-7eb4" mandatory="true" name="ID_Presidente">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="188e9e4d:13d59c1605a:-7e92" mandatory="true" name="ID">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
 </column-list>
 <primary-key id="15d5300:13d4984dcc5:-7ffe" name="PK_COMUNIDAD">
 <primary-key-column name="ID_Comunidad"/>
 </primary-key>
+<foreign-key-list>
+<foreign-key id="188e9e4d:13d59c1605a:-7e94" name="FK_Comunidad_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_PROPIETARIO" referenced-table="Propietario" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="ID_Presidente" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
 </table>
 <table id="15d5300:13d4984dcc5:-7ff0" name="Factura">
 <column-list>
@@ -118,10 +132,18 @@
 <column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fd1" mandatory="false" name="NumeroCuenta">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="188e9e4d:13d59c1605a:-7f71" mandatory="true" name="ID_Inmueble">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
 </column-list>
 <primary-key id="15d5300:13d4984dcc5:-7fd6" name="PK_DATOSBANCARIOS">
 <primary-key-column name="ID"/>
 </primary-key>
+<foreign-key-list>
+<foreign-key id="188e9e4d:13d59c1605a:-7f73" name="FK_DatosBancarios_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_INMUEBLE" referenced-table="Inmueble" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1..*" target-relationship-type="">
+<foreign-key-column column-name="ID_Inmueble" referenced-key-column-name="ID_Inmueble"/>
+</foreign-key>
+</foreign-key-list>
 </table>
 <table id="15d5300:13d4984dcc5:-7fd0" name="Propietario">
 <column-list>
@@ -149,10 +171,18 @@
 <column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fc5" mandatory="false" name="FechaAlta">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="188e9e4d:13d59c1605a:-7fb4" mandatory="true" name="ID_Inmueble">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
 </column-list>
 <primary-key id="15d5300:13d4984dcc5:-7fcf" name="PK_PROPIETARIO">
 <primary-key-column name="ID"/>
 </primary-key>
+<foreign-key-list>
+<foreign-key id="188e9e4d:13d59c1605a:-7fb6" name="FK_Propietario_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_INMUEBLE" referenced-table="Inmueble" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1..*" target-relationship-type="">
+<foreign-key-column column-name="ID_Inmueble" referenced-key-column-name="ID_Inmueble"/>
+</foreign-key>
+</foreign-key-list>
 </table>
 <table id="15d5300:13d4984dcc5:-7fc4" name="ReciboInmueble">
 <column-list>
@@ -165,10 +195,24 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fbe" mandatory="false" name="Importe">
 <data-type name="FLOAT" selected-variant-pattern="FLOAT"/>
 </column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="188e9e4d:13d59c1605a:-7df6" mandatory="false" name="ID_Inmueble">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="188e9e4d:13d59c1605a:-7df5" mandatory="false" name="ID_NotaInformativa">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
 </column-list>
 <primary-key id="15d5300:13d4984dcc5:-7fc3" name="PK_RECIBOINMUEBLE">
 <primary-key-column name="ID_ReciboInmueble"/>
 </primary-key>
+<foreign-key-list>
+<foreign-key id="188e9e4d:13d59c1605a:-7dd7" name="FK_ReciboInmueble_1" on-delete="CASCADE" on-update="UNSPECIFIED" referenced-key="PK_NOTAINFORMATIVA" referenced-table="NotaInformativa" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="1..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="ID_NotaInformativa" referenced-key-column-name="ID_NotaInformativa"/>
+</foreign-key>
+<foreign-key id="188e9e4d:13d59c1605a:-7d9a" name="FK_ReciboInmueble_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_INMUEBLE" referenced-table="Inmueble" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="ID_Inmueble" referenced-key-column-name="ID_Inmueble"/>
+</foreign-key>
+</foreign-key-list>
 </table>
 <table id="15d5300:13d4984dcc5:-7fbd" name="LineaFactura">
 <column-list>
@@ -229,10 +273,18 @@
 <column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7faa" mandatory="false" name="Fecha">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="188e9e4d:13d59c1605a:-7e5e" mandatory="false" name="ID_ReciboInmueble">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
 </column-list>
 <primary-key id="15d5300:13d4984dcc5:-7fae" name="PK_CARTA">
 <primary-key-column name="ID"/>
 </primary-key>
+<foreign-key-list>
+<foreign-key id="188e9e4d:13d59c1605a:-7e21" name="FK_Carta_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_RECIBOINMUEBLE" referenced-table="ReciboInmueble" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..1" source-relationship-type="" target-entity-role="" target-multiplicity="0..*" target-relationship-type="">
+<foreign-key-column column-name="ID_ReciboInmueble" referenced-key-column-name="ID_ReciboInmueble"/>
+</foreign-key>
+</foreign-key-list>
 </table>
 </table-list>
 </schema>
@@ -242,12 +294,15 @@
 <table-figure refid="15d5300:13d4984dcc5:-7fff" x="18" y="84"/>
 <table-figure refid="15d5300:13d4984dcc5:-7ff0" x="43" y="458"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fe9" x="263" y="314"/>
-<table-figure refid="15d5300:13d4984dcc5:-7fe0" x="381" y="86"/>
+<table-figure refid="15d5300:13d4984dcc5:-7fe0" x="384" y="78"/>
+<fk-figure refid="7caf7316:13d4ac63e4b:-7fdc">
+<target-terminal x="144" y="16"/>
+</fk-figure>
 <table-figure refid="15d5300:13d4984dcc5:-7fd7" x="665" y="5"/>
-<table-figure refid="15d5300:13d4984dcc5:-7fd0" x="802" y="102"/>
+<table-figure refid="15d5300:13d4984dcc5:-7fd0" x="794" y="172"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fc4" x="508" y="312"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fbd" x="416" y="492"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fb6" x="829" y="496"/>
-<table-figure refid="15d5300:13d4984dcc5:-7faf" x="800" y="331"/>
+<table-figure refid="15d5300:13d4984dcc5:-7faf" x="831" y="363"/>
 </diagram>
 </clay-model>
