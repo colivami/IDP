@@ -1,4 +1,5 @@
 package interfazGrafica;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.*;
@@ -18,11 +19,26 @@ import javax.swing.*;
 */
 public class mainGUI extends javax.swing.JFrame {
 
+	{
+		//Set Look & Feel
+		try {
+			javax.swing.UIManager.setLookAndFeel("com.jgoodies.looks.plastic.Plastic3DLookAndFeel");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
 	private JMenuItem helpMenuItem;
 	private JMenu jMenu5;
-	private JButton jB_GestionPropietarios;
-	private JButton jB_GestionInmuebles;
-	private JButton jB_GestionComunidades;
+	private JButton jBAltaComunidad;
+	private JButton jBModificarPropietario;
+	private JButton jBBajaPropietario;
+	private JInternalFrame jF_Inmuebles;
+	private JInternalFrame jF_Comunidades;
+	private JButton jBAltaPropietario;
+	private JInternalFrame jF_Propietarios;
+	private JTabbedPane jTabbedPane1;
 	private JMenuItem deleteMenuItem;
 	private JSeparator jSeparator1;
 	private JMenuItem pasteMenuItem;
@@ -34,6 +50,11 @@ public class mainGUI extends javax.swing.JFrame {
 	private JMenuItem closeFileMenuItem;
 	private JMenuItem saveAsMenuItem;
 	private JMenuItem saveMenuItem;
+	private JButton jBAltaInmueble;
+	private JButton jBBajaInmueble;
+	private JButton jBModificarInmueble;
+	private JButton jBModificarComunidad;
+	private JButton jBBajaComunidad;
 	private JMenuItem openFileMenuItem;
 	private JMenuItem newFileMenuItem;
 	private JMenu jMenu3;
@@ -59,37 +80,107 @@ public class mainGUI extends javax.swing.JFrame {
 	
 	private void initGUI() {
 		try {
-			GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
+			BorderLayout thisLayout = new BorderLayout();
 			getContentPane().setLayout(thisLayout);
 			{
-				jB_GestionComunidades = new JButton();
-				jB_GestionComunidades.setText("Gestion de Comunidades");
+				jTabbedPane1 = new JTabbedPane();
+				getContentPane().add(jTabbedPane1, BorderLayout.CENTER);
+				{
+					jF_Propietarios = new JInternalFrame();
+					GroupLayout jF_PropietariosLayout = new GroupLayout((JComponent)jF_Propietarios.getContentPane());
+					jF_Propietarios.getContentPane().setLayout(jF_PropietariosLayout);
+					jTabbedPane1.addTab("Propietarios", null, jF_Propietarios, null);
+					{
+						jBAltaPropietario = new JButton();
+						jBAltaPropietario.setText("Dar de Alta");
+					}
+					{
+						jBBajaPropietario = new JButton();
+						jBBajaPropietario.setText("Dar de Baja");
+					}
+					{
+						jBModificarPropietario = new JButton();
+						jBModificarPropietario.setText("Modificar");
+					}
+					jF_PropietariosLayout.setHorizontalGroup(jF_PropietariosLayout.createSequentialGroup()
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(jF_PropietariosLayout.createParallelGroup()
+						    .addComponent(jBAltaPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jBBajaPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jBModificarPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)));
+					jF_PropietariosLayout.setVerticalGroup(jF_PropietariosLayout.createSequentialGroup()
+						.addComponent(jBAltaPropietario, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(jBBajaPropietario, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(jBModificarPropietario, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(34, Short.MAX_VALUE));
+				}
+				{
+					jF_Inmuebles = new JInternalFrame();
+					GroupLayout jF_InmueblesLayout = new GroupLayout((JComponent)jF_Inmuebles.getContentPane());
+					jF_Inmuebles.getContentPane().setLayout(jF_InmueblesLayout);
+					jTabbedPane1.addTab("Inmuebles", null, jF_Inmuebles, null);
+					jF_Inmuebles.setVisible(true);
+					{
+						jBModificarInmueble = new JButton();
+						jBModificarInmueble.setText("Modificar");
+					}
+					{
+						jBBajaInmueble = new JButton();
+						jBBajaInmueble.setText("Dar de Baja");
+					}
+					{
+						jBAltaInmueble = new JButton();
+						jBAltaInmueble.setText("Dar de Alta");
+					}
+					jF_InmueblesLayout.setHorizontalGroup(jF_InmueblesLayout.createSequentialGroup()
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(jF_InmueblesLayout.createParallelGroup()
+						    .addComponent(jBBajaInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jBAltaInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jBModificarInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)));
+					jF_InmueblesLayout.setVerticalGroup(jF_InmueblesLayout.createSequentialGroup()
+						.addComponent(jBAltaInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, GroupLayout.PREFERRED_SIZE)
+						.addComponent(jBBajaInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(jBModificarInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(34, Short.MAX_VALUE));
+				}
+				{
+					jF_Comunidades = new JInternalFrame();
+					jTabbedPane1.addTab("Comunidades", null, jF_Comunidades, null);
+					GroupLayout jF_ComunidadesLayout = new GroupLayout((JComponent)jF_Comunidades.getContentPane());
+					jF_Comunidades.getContentPane().setLayout(jF_ComunidadesLayout);
+					jF_Comunidades.setVisible(true);
+					{
+						jBAltaComunidad = new JButton();
+						jBAltaComunidad.setText("Dar de Alta");
+					}
+					{
+						jBBajaComunidad = new JButton();
+						jBBajaComunidad.setText("Dar de Baja");
+					}
+					{
+						jBModificarComunidad = new JButton();
+						jBModificarComunidad.setText("Modificar");
+					}
+					jF_ComunidadesLayout.setHorizontalGroup(jF_ComunidadesLayout.createSequentialGroup()
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(jF_ComunidadesLayout.createParallelGroup()
+						    .addComponent(jBModificarComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jBBajaComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jBAltaComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)));
+					jF_ComunidadesLayout.setVerticalGroup(jF_ComunidadesLayout.createSequentialGroup()
+						.addComponent(jBAltaComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(jBBajaComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(jBModificarComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(34, Short.MAX_VALUE));
+				}
 			}
-			{
-				jB_GestionInmuebles = new JButton();
-				jB_GestionInmuebles.setText("Gestion de Inmuebles");
-			}
-			{
-				jB_GestionPropietarios = new JButton();
-				jB_GestionPropietarios.setText("Gestion de Propietarios");
-			}
-						thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(jB_GestionComunidades, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(jB_GestionInmuebles, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-							.addComponent(jB_GestionPropietarios, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap(157, Short.MAX_VALUE));
-						thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-							.addContainerGap(42, 42)
-							.addGroup(thisLayout.createParallelGroup()
-							    .addGroup(thisLayout.createSequentialGroup()
-							        .addComponent(jB_GestionComunidades, GroupLayout.PREFERRED_SIZE, 303, GroupLayout.PREFERRED_SIZE)
-							        .addGap(0, 0, Short.MAX_VALUE))
-							    .addComponent(jB_GestionInmuebles, GroupLayout.Alignment.LEADING, 0, 303, Short.MAX_VALUE)
-							    .addComponent(jB_GestionPropietarios, GroupLayout.Alignment.LEADING, 0, 303, Short.MAX_VALUE))
-							.addContainerGap(45, 45));
 			setSize(400, 300);
 			{
 				jMenuBar1 = new JMenuBar();
