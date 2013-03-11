@@ -4,6 +4,26 @@ SET AUTOCOMMIT FALSE
 /*C2*/SET SCHEMA PUBLIC
 CONNECT USER SA
 SET AUTOCOMMIT FALSE
-SET AUTOCOMMIT TRUE
+/*C1*/CREATE TABLE Inmueble (\u000a       ID_Inmueble INTEGER NOT NULL\u000a     , Escalera VARCHAR(30)\u000a     , Piso VARCHAR(30)\u000a     , Puerta VARCHAR(30)\u000a     , Porcentaje FLOAT\u000a     , PRIMARY KEY (ID_Inmueble)\u000a)
+CREATE TABLE Comunidad (\u000a       ID_Comunidad INTEGER NOT NULL\u000a     , Calle VARCHAR(30)\u000a     , MaxRecibosPendientes INTEGER\u000a     , Estado VARCHAR(30)\u000a     , NumFactura VARCHAR(30) NOT NULL\u000a     , ID_Inmueble INTEGER NOT NULL\u000a     , ID_Inmueble_Presidente INTEGER NOT NULL\u000a     , PRIMARY KEY (ID_Comunidad)\u000a     , CONSTRAINT FK_Comunidad_1 FOREIGN KEY (ID_Inmueble)\u000a                  REFERENCES Inmueble (ID_Inmueble) ON DELETE CASCADE\u000a     , CONSTRAINT FK_Comunidad_2 FOREIGN KEY (ID_Inmueble_Presidente)\u000a                  REFERENCES Inmueble (ID_Inmueble)\u000a)
+CREATE TABLE Factura (\u000a       NumFactura INTEGER NOT NULL IDENTITY PRIMARY KEY\u000a     , ID_Comunidad INTEGER NOT NULL\u000a     , FechaFactura VARCHAR(30)\u000a     , CONSTRAINT FK_Factura_1 FOREIGN KEY (ID_Comunidad)\u000a                  REFERENCES Comunidad (ID_Comunidad)\u000a)
+CREATE TABLE NotaInformativa (\u000a       ID_NotaInformativa INTEGER NOT NULL IDENTITY PRIMARY KEY\u000a     , FechaCalculo VARCHAR(30)\u000a     , ImporteNota FLOAT\u000a     , Num_Factura INTEGER NOT NULL\u000a     , NumFactura INTEGER NOT NULL\u000a     , CONSTRAINT FK_NotaInformativa_1 FOREIGN KEY (Num_Factura)\u000a                  REFERENCES Factura (NumFactura)\u000a)
+CREATE TABLE ReciboInmueble (\u000a       ID_ReciboInmueble INTEGER NOT NULL IDENTITY PRIMARY KEY\u000a     , FechaPago VARCHAR(30)\u000a     , Importe FLOAT\u000a     , ID_Inmueble INTEGER\u000a     , ID_NotaInformativa INTEGER\u000a     , CONSTRAINT FK_ReciboInmueble_1 FOREIGN KEY (ID_NotaInformativa)\u000a                  REFERENCES NotaInformativa (ID_NotaInformativa) ON DELETE CASCADE\u000a     , CONSTRAINT FK_ReciboInmueble_2 FOREIGN KEY (ID_Inmueble)\u000a                  REFERENCES Inmueble (ID_Inmueble)\u000a)
+CREATE TABLE LineaFactura (\u000a       ID_LineaFactura INTEGER NOT NULL IDENTITY PRIMARY KEY\u000a     , ImporteLinea FLOAT\u000a     , Observacion VARCHAR(30)\u000a     , ID_Factura INTEGER NOT NULL\u000a     , NumFactura INTEGER NOT NULL\u000a     , CONSTRAINT FK_LineaFactura_1 FOREIGN KEY (NumFactura)\u000a                  REFERENCES Factura (NumFactura) ON DELETE CASCADE\u000a)
+CREATE TABLE Propietario (\u000a       ID INTEGER NOT NULL\u000a     , NIF VARCHAR(30)\u000a     , Nombre VARCHAR(30)\u000a     , Direccion VARCHAR(30)\u000a     , Poblacion VARCHAR(30)\u000a     , Telefono VARCHAR(30)\u000a     , Observaciones VARCHAR(100)\u000a     , FechaAlta VARCHAR(30)\u000a     , ID_Inmueble INTEGER NOT NULL\u000a     , PRIMARY KEY (ID)\u000a     , CONSTRAINT FK_Propietario_1 FOREIGN KEY (ID_Inmueble)\u000a                  REFERENCES Inmueble (ID_Inmueble)\u000a)
+CREATE TABLE Concepto (\u000a       ID_Concepto INTEGER NOT NULL IDENTITY PRIMARY KEY\u000a     , ClaveConcepto VARCHAR(30)\u000a     , Descripcion VARCHAR(30)\u000a     , ID_LineaFactura INTEGER NOT NULL\u000a     , CONSTRAINT FK_Concepto_1 FOREIGN KEY (ID_LineaFactura)\u000a                  REFERENCES LineaFactura (ID_LineaFactura)\u000a)
+CREATE TABLE Carta (\u000a       ID INTEGER NOT NULL\u000a     , Fecha VARCHAR(30)\u000a     , ID_ReciboInmueble INTEGER\u000a     , PRIMARY KEY (ID)\u000a     , CONSTRAINT FK_Carta_1 FOREIGN KEY (ID_ReciboInmueble)\u000a                  REFERENCES ReciboInmueble (ID_ReciboInmueble)\u000a)
+CREATE TABLE DatosBancarios (\u000a       ID INTEGER NOT NULL\u000a     , Entidad VARCHAR(30)\u000a     , NumeroCuenta VARCHAR(30)\u000a     , ID_Inmueble INTEGER NOT NULL\u000a     , PRIMARY KEY (ID)\u000a     , CONSTRAINT FK_DatosBancarios_1 FOREIGN KEY (ID_Inmueble)\u000a                  REFERENCES Inmueble (ID_Inmueble)\u000a)
+/*C3*/SET SCHEMA PUBLIC
+CONNECT USER SA
+SET AUTOCOMMIT FALSE
+DISCONNECT
 /*C1*/DISCONNECT
 /*C2*/DISCONNECT
+/*C4*/SET SCHEMA PUBLIC
+CONNECT USER SA
+SET AUTOCOMMIT FALSE
+/*C5*/SET SCHEMA PUBLIC
+CONNECT USER SA
+SET AUTOCOMMIT FALSE
+SET AUTOCOMMIT TRUE
