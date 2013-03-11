@@ -32,7 +32,10 @@
 <primary-key-column name="ID_Comunidad"/>
 </primary-key>
 <foreign-key-list>
-<foreign-key id="35d259c0:13d5a32be58:-7f37" name="Relacion_Presidencial" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_INMUEBLE" referenced-table="Inmueble" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="1" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key id="e06ddbc:13d5a449764:-7fb2" name="FK_Comunidad_1" on-delete="CASCADE" on-update="UNSPECIFIED" referenced-key="PK_INMUEBLE" referenced-table="Inmueble" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="1" source-relationship-type="" target-entity-role="" target-multiplicity="1..*" target-relationship-type="">
+<foreign-key-column column-name="ID_Inmueble" referenced-key-column-name="ID_Inmueble"/>
+</foreign-key>
+<foreign-key id="e06ddbc:13d5a449764:-7f7a" name="FK_Comunidad_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_INMUEBLE" referenced-table="Inmueble" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="1" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
 <foreign-key-column column-name="ID_Inmueble_Presidente" referenced-key-column-name="ID_Inmueble"/>
 </foreign-key>
 </foreign-key-list>
@@ -102,18 +105,10 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fd8" mandatory="false" name="Porcentaje">
 <data-type name="FLOAT" selected-variant-pattern="FLOAT"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="7caf7316:13d4ac63e4b:-7f96" mandatory="true" name="ID_Comunidad">
-<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
-</column>
 </column-list>
 <primary-key id="15d5300:13d4984dcc5:-7fdf" name="PK_INMUEBLE">
 <primary-key-column name="ID_Inmueble"/>
 </primary-key>
-<foreign-key-list>
-<foreign-key id="7caf7316:13d4ac63e4b:-7fdc" name="FK_Inmueble_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_COMUNIDAD" referenced-table="Comunidad" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="1..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
-<foreign-key-column column-name="ID_Comunidad" referenced-key-column-name="ID_Comunidad"/>
-</foreign-key>
-</foreign-key-list>
 </table>
 <table id="15d5300:13d4984dcc5:-7fd7" name="DatosBancarios">
 <column-list>
@@ -285,16 +280,10 @@
 </schema-list>
 </database-model>
 <diagram>
-<table-figure refid="15d5300:13d4984dcc5:-7fff" x="37" y="62"/>
-<fk-figure refid="35d259c0:13d5a32be58:-7f37">
-<source-terminal x="129" y="40"/>
-</fk-figure>
+<table-figure refid="15d5300:13d4984dcc5:-7fff" x="31" y="68"/>
 <table-figure refid="15d5300:13d4984dcc5:-7ff0" x="43" y="458"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fe9" x="263" y="314"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fe0" x="384" y="78"/>
-<fk-figure refid="7caf7316:13d4ac63e4b:-7fdc">
-<target-terminal x="144" y="16"/>
-</fk-figure>
 <table-figure refid="15d5300:13d4984dcc5:-7fd7" x="665" y="5"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fd0" x="794" y="172"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fc4" x="508" y="312"/>
