@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-mar-2013 12:25:27 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="negocio.NotaInformativa" table="NOTAINFORMATIVA">
+        <id name="ID" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="FechaCalculo" type="java.lang.String">
+            <column name="FECHACALCULO" />
+        </property>
+        <property name="ImporteNota" type="float">
+            <column name="IMPORTENOTA" />
+        </property>
+    </class>
+</hibernate-mapping>
