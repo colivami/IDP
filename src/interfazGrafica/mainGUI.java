@@ -3,7 +3,8 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.*;
-
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -50,6 +51,9 @@ public class mainGUI extends javax.swing.JFrame {
 	private JMenuItem closeFileMenuItem;
 	private JMenuItem saveAsMenuItem;
 	private JMenuItem saveMenuItem;
+	private JTable jT_Comunidades;
+	private JTable jT_Inmuebles;
+	private JTable jT_Propietarios;
 	private JButton jBAltaInmueble;
 	private JButton jBBajaInmueble;
 	private JButton jBModificarInmueble;
@@ -102,29 +106,52 @@ public class mainGUI extends javax.swing.JFrame {
 						jBModificarPropietario = new JButton();
 						jBModificarPropietario.setText("Modificar");
 					}
+					{
+						TableModel jT_PropietariosModel = 
+								new DefaultTableModel(
+										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+										new String[] { "Column 1", "Column 2" });
+						jT_Propietarios = new JTable();
+						jT_Propietarios.setModel(jT_PropietariosModel);
+					}
 					jF_PropietariosLayout.setHorizontalGroup(jF_PropietariosLayout.createSequentialGroup()
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(jT_Propietarios, 0, 643, Short.MAX_VALUE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						.addGroup(jF_PropietariosLayout.createParallelGroup()
-						    .addComponent(jBAltaPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jBModificarPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
 						    .addComponent(jBBajaPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jBModificarPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)));
-					jF_PropietariosLayout.setVerticalGroup(jF_PropietariosLayout.createSequentialGroup()
-						.addComponent(jBAltaPropietario, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jBBajaPropietario, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jBModificarPropietario, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(34, Short.MAX_VALUE));
+						    .addComponent(jBAltaPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap());
+					jF_PropietariosLayout.setVerticalGroup(jF_PropietariosLayout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
+						    .addComponent(jT_Propietarios, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
+						    .addContainerGap(310, Short.MAX_VALUE))
+						.addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
+						    .addGap(12)
+						    .addComponent(jBAltaPropietario, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						    .addComponent(jBBajaPropietario, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						    .addComponent(jBModificarPropietario, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						    .addContainerGap(310, Short.MAX_VALUE)));
 				}
 				{
 					jF_Inmuebles = new JInternalFrame();
+					jTabbedPane1.addTab("Inmuebles", null, jF_Inmuebles, null);
 					GroupLayout jF_InmueblesLayout = new GroupLayout((JComponent)jF_Inmuebles.getContentPane());
 					jF_Inmuebles.getContentPane().setLayout(jF_InmueblesLayout);
-					jTabbedPane1.addTab("Inmuebles", null, jF_Inmuebles, null);
 					jF_Inmuebles.setVisible(true);
 					{
 						jBModificarInmueble = new JButton();
 						jBModificarInmueble.setText("Modificar");
+					}
+					{
+						TableModel jT_InmueblesModel = 
+								new DefaultTableModel(
+										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+										new String[] { "Column 1", "Column 2" });
+						jT_Inmuebles = new JTable();
+						jT_Inmuebles.setModel(jT_InmueblesModel);
 					}
 					{
 						jBBajaInmueble = new JButton();
@@ -135,18 +162,25 @@ public class mainGUI extends javax.swing.JFrame {
 						jBAltaInmueble.setText("Dar de Alta");
 					}
 					jF_InmueblesLayout.setHorizontalGroup(jF_InmueblesLayout.createSequentialGroup()
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(jT_Inmuebles, 0, 643, Short.MAX_VALUE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						.addGroup(jF_InmueblesLayout.createParallelGroup()
 						    .addComponent(jBBajaInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
 						    .addComponent(jBAltaInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jBModificarInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)));
-					jF_InmueblesLayout.setVerticalGroup(jF_InmueblesLayout.createSequentialGroup()
-						.addComponent(jBAltaInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 0, GroupLayout.PREFERRED_SIZE)
-						.addComponent(jBBajaInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jBModificarInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(34, Short.MAX_VALUE));
+						    .addComponent(jBModificarInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap());
+					jF_InmueblesLayout.setVerticalGroup(jF_InmueblesLayout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.LEADING, jF_InmueblesLayout.createSequentialGroup()
+						    .addComponent(jT_Inmuebles, 0, 184, Short.MAX_VALUE)
+						    .addContainerGap(310, 310))
+						.addGroup(GroupLayout.Alignment.LEADING, jF_InmueblesLayout.createSequentialGroup()
+						    .addGap(12)
+						    .addComponent(jBAltaInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						    .addComponent(jBBajaInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						    .addComponent(jBModificarInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						    .addContainerGap(310, Short.MAX_VALUE)));
 				}
 				{
 					jF_Comunidades = new JInternalFrame();
@@ -159,6 +193,14 @@ public class mainGUI extends javax.swing.JFrame {
 						jBAltaComunidad.setText("Dar de Alta");
 					}
 					{
+						TableModel jT_ComunidadesModel = 
+								new DefaultTableModel(
+										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+										new String[] { "Column 1", "Column 2" });
+						jT_Comunidades = new JTable();
+						jT_Comunidades.setModel(jT_ComunidadesModel);
+					}
+					{
 						jBBajaComunidad = new JButton();
 						jBBajaComunidad.setText("Dar de Baja");
 					}
@@ -167,21 +209,28 @@ public class mainGUI extends javax.swing.JFrame {
 						jBModificarComunidad.setText("Modificar");
 					}
 					jF_ComunidadesLayout.setHorizontalGroup(jF_ComunidadesLayout.createSequentialGroup()
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(jT_Comunidades, 0, 643, Short.MAX_VALUE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						.addGroup(jF_ComunidadesLayout.createParallelGroup()
-						    .addComponent(jBModificarComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
 						    .addComponent(jBBajaComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jBAltaComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)));
-					jF_ComunidadesLayout.setVerticalGroup(jF_ComunidadesLayout.createSequentialGroup()
-						.addComponent(jBAltaComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jBBajaComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jBModificarComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(34, Short.MAX_VALUE));
+						    .addComponent(jBModificarComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jBAltaComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap());
+					jF_ComunidadesLayout.setVerticalGroup(jF_ComunidadesLayout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.LEADING, jF_ComunidadesLayout.createSequentialGroup()
+						    .addComponent(jT_Comunidades, 0, 184, Short.MAX_VALUE)
+						    .addContainerGap(310, 310))
+						.addGroup(GroupLayout.Alignment.LEADING, jF_ComunidadesLayout.createSequentialGroup()
+						    .addGap(12)
+						    .addComponent(jBAltaComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						    .addComponent(jBBajaComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						    .addComponent(jBModificarComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						    .addContainerGap(310, Short.MAX_VALUE)));
 				}
 			}
-			setSize(400, 300);
+			this.setSize(800, 600);
 			{
 				jMenuBar1 = new JMenuBar();
 				setJMenuBar(jMenuBar1);
