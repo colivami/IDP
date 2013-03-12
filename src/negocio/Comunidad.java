@@ -2,7 +2,6 @@ package negocio;
 
 public class Comunidad { 
 	
-	
 	private int ID;
 	private int MaxRecibosPendientes;
 	private String Calle;
