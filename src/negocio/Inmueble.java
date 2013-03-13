@@ -2,19 +2,21 @@ package negocio;
 
 public class Inmueble {
 	
-	private int ID;
+	private int ID_Inmueble;
 	private String Escalera;
 	private String Piso;
 	private String Puerta;
-	private String Float;
+	private Float Porcentaje;
 	
 	
-	public int getID() {
-		return ID;
+
+	public int getID_Inmueble() {
+		return ID_Inmueble;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	public void setID_Inmueble(int iD_Inmueble) {
+		ID_Inmueble = iD_Inmueble;
 	}
+	
 	public String getEscalera() {
 		return Escalera;
 	}
@@ -33,11 +35,12 @@ public class Inmueble {
 	public void setPuerta(String puerta) {
 		Puerta = puerta;
 	}
-	public String getFloat() {
-		return Float;
+
+	public Float getPorcentaje() {
+		return Porcentaje;
 	}
-	public void setFloat(String f) {
-		Float = f;
+	public void setPorcentaje(Float porcentaje) {
+		Porcentaje = porcentaje;
 	}
 	
 	

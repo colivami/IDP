@@ -3,17 +3,21 @@ package negocio;
 
 public class LineaFactura {
 	
-	private int ID;
+	private int ID_Linea_Factura;
 	private float ImporteLinea;
 	private String Observacion;
+	private int NumFactura;
 	
 	
-	public int getID() {
-		return ID;
+
+	public int getID_Linea_Factura() {
+		return ID_Linea_Factura;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	public void setID_Linea_Factura(int iD_Linea_Factura) {
+		ID_Linea_Factura = iD_Linea_Factura;
 	}
+
+
 	public float getImporteLinea() {
 		return ImporteLinea;
 	}
@@ -26,5 +30,10 @@ public class LineaFactura {
 	public void setObservacion(String observacion) {
 		Observacion = observacion;
 	}
-	
+	public int getNumFactura() {
+		return NumFactura;
+	}
+	public void setNumFactura(int numFactura) {
+		NumFactura = numFactura;
+	}
 }

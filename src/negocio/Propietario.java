@@ -11,7 +11,7 @@ public class Propietario {
 	private String Telefono;
 	private String Observaciones;
 	private String FechaAlta;
-	
+	private int ID_Inmueble;
 	
 	public int getID() {
 		return ID;
@@ -60,6 +60,12 @@ public class Propietario {
 	}
 	public void setFechaAlta(String fechaAlta) {
 		FechaAlta = fechaAlta;
+	}
+	public int getID_Inmueble() {
+		return ID_Inmueble;
+	}
+	public void setID_Inmueble(int iD_Inmueble) {
+		ID_Inmueble = iD_Inmueble;
 	}
 	
 }
