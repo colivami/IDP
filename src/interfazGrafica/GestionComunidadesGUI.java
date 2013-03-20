@@ -1,5 +1,7 @@
 package interfazGrafica;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -51,6 +53,7 @@ public class GestionComunidadesGUI extends javax.swing.JFrame {
 			GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
 			getContentPane().setLayout(thisLayout);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			this.setTitle("Comunidades");
 			{
 				jL_IDComunidades = new JLabel();
 				jL_IDComunidades.setText("ID");
@@ -86,10 +89,20 @@ public class GestionComunidadesGUI extends javax.swing.JFrame {
 			{
 				jB_GuardarComunidades = new JButton();
 				jB_GuardarComunidades.setText("Guardar");
+				jB_GuardarComunidades.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						jB_GuardarComunidadesActionPerformed(evt);
+					}
+				});
 			}
 			{
 				jB_CancelarComunidades = new JButton();
 				jB_CancelarComunidades.setText("Cancelar");
+				jB_CancelarComunidades.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						jB_CancelarComunidadesActionPerformed(evt);
+					}
+				});
 			}
 			{
 				jTF_CalleComunidades = new JTextField();
@@ -165,6 +178,14 @@ public class GestionComunidadesGUI extends javax.swing.JFrame {
 		    //add your error handling code here
 			e.printStackTrace();
 		}
+	}
+	
+	private void jB_GuardarComunidadesActionPerformed(ActionEvent evt) {
+
+	}
+	
+	private void jB_CancelarComunidadesActionPerformed(ActionEvent evt) {
+		this.dispose();
 	}
 
 }

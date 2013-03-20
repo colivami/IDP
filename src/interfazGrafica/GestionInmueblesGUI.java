@@ -1,4 +1,6 @@
 package interfazGrafica;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -49,6 +51,7 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 			GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
 			getContentPane().setLayout(thisLayout);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			this.setTitle("Inmuebles");
 			{
 				jL_IDInmuebles = new JLabel();
 				jL_IDInmuebles.setText("ID");
@@ -84,10 +87,20 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 			{
 				jB_GuardarInmuebles = new JButton();
 				jB_GuardarInmuebles.setText("Guardar");
+				jB_GuardarInmuebles.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						jB_GuardarInmueblesActionPerformed(evt);
+					}
+				});
 			}
 			{
 				jB_CancelarInmuebles = new JButton();
 				jB_CancelarInmuebles.setText("Cancelar");
+				jB_CancelarInmuebles.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent evt) {
+						jB_CancelarInmueblesActionPerformed(evt);
+					}
+				});
 			}
 			{
 				jTF_EscaleraInmuebles = new JTextField();
@@ -152,6 +165,14 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 		    //add your error handling code here
 			e.printStackTrace();
 		}
+	}
+	
+	private void jB_GuardarInmueblesActionPerformed(ActionEvent evt) {
+
+	}
+	
+	private void jB_CancelarInmueblesActionPerformed(ActionEvent evt) {
+		this.dispose();
 	}
 
 }

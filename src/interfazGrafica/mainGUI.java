@@ -1,5 +1,7 @@
 package interfazGrafica;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -79,6 +81,11 @@ public class mainGUI extends javax.swing.JFrame {
 	private JMenu jMenu3;
 	private JMenuBar jMenuBar1;
 
+	
+	GestionPropietariosGUI gp = new GestionPropietariosGUI();
+	GestionInmueblesGUI    gi = new GestionInmueblesGUI();
+	GestionComunidadesGUI  gc = new GestionComunidadesGUI();
+
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
@@ -101,6 +108,7 @@ public class mainGUI extends javax.swing.JFrame {
 		try {
 			BorderLayout thisLayout = new BorderLayout();
 			getContentPane().setLayout(thisLayout);
+			this.setTitle("Gestión");
 			{
 				jTabbedPane1 = new JTabbedPane();
 				getContentPane().add(jTabbedPane1, BorderLayout.CENTER);
@@ -112,14 +120,29 @@ public class mainGUI extends javax.swing.JFrame {
 					{
 						jBAltaPropietario = new JButton();
 						jBAltaPropietario.setText("Dar de Alta");
+						jBAltaPropietario.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBAltaPropietarioActionPerformed(evt);
+							}
+						});
 					}
 					{
 						jBBajaPropietario = new JButton();
 						jBBajaPropietario.setText("Dar de Baja");
+						jBBajaPropietario.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBBajaPropietarioActionPerformed(evt);
+							}
+						});
 					}
 					{
 						jBModificarPropietario = new JButton();
 						jBModificarPropietario.setText("Modificar");
+						jBModificarPropietario.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBModificarPropietarioActionPerformed(evt);
+							}
+						});
 					}
 					{
 						TableModel jT_PropietariosModel = 
@@ -159,6 +182,11 @@ public class mainGUI extends javax.swing.JFrame {
 					{
 						jBModificarInmueble = new JButton();
 						jBModificarInmueble.setText("Modificar");
+						jBModificarInmueble.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBModificarInmuebleActionPerformed(evt);
+							}
+						});
 					}
 					{
 						TableModel jT_InmueblesModel = 
@@ -171,10 +199,20 @@ public class mainGUI extends javax.swing.JFrame {
 					{
 						jBBajaInmueble = new JButton();
 						jBBajaInmueble.setText("Dar de Baja");
+						jBBajaInmueble.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBBajaInmuebleActionPerformed(evt);
+							}
+						});
 					}
 					{
 						jBAltaInmueble = new JButton();
 						jBAltaInmueble.setText("Dar de Alta");
+						jBAltaInmueble.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBAltaInmuebleActionPerformed(evt);
+							}
+						});
 					}
 					jF_InmueblesLayout.setHorizontalGroup(jF_InmueblesLayout.createSequentialGroup()
 						.addComponent(jT_Inmuebles, 0, 643, Short.MAX_VALUE)
@@ -206,6 +244,11 @@ public class mainGUI extends javax.swing.JFrame {
 					{
 						jBAltaComunidad = new JButton();
 						jBAltaComunidad.setText("Dar de Alta");
+						jBAltaComunidad.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBAltaComunidadActionPerformed(evt);
+							}
+						});
 					}
 					{
 						TableModel jT_ComunidadesModel = 
@@ -218,10 +261,20 @@ public class mainGUI extends javax.swing.JFrame {
 					{
 						jBBajaComunidad = new JButton();
 						jBBajaComunidad.setText("Dar de Baja");
+						jBBajaComunidad.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBBajaComunidadActionPerformed(evt);
+							}
+						});
 					}
 					{
 						jBModificarComunidad = new JButton();
 						jBModificarComunidad.setText("Modificar");
+						jBModificarComunidad.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBModificarComunidadActionPerformed(evt);
+							}
+						});
 					}
 					jF_ComunidadesLayout.setHorizontalGroup(jF_ComunidadesLayout.createSequentialGroup()
 						.addComponent(jT_Comunidades, 0, 643, Short.MAX_VALUE)
@@ -331,6 +384,54 @@ public class mainGUI extends javax.swing.JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	/*
+	 * PROPIETARIOS
+	 */
+	private void jBAltaPropietarioActionPerformed(ActionEvent evt) {
+		gp.setVisible(true);
+	}
+	
+	private void jBBajaPropietarioActionPerformed(ActionEvent evt) {
+
+	}
+	
+	private void jBModificarPropietarioActionPerformed(ActionEvent evt) {
+		gp.setVisible(true);
+	}
+	
+	
+	/*
+	 * COMUNIDADES
+	 */
+	private void jBAltaComunidadActionPerformed(ActionEvent evt) {
+		gc.setVisible(true);
+	}
+	
+	private void jBBajaComunidadActionPerformed(ActionEvent evt) {
+
+	}
+	
+	private void jBModificarComunidadActionPerformed(ActionEvent evt) {
+		gc.setVisible(true);
+	}
+
+
+	/*
+	 * INMUEBLES
+	 */
+	private void jBAltaInmuebleActionPerformed(ActionEvent evt) {
+		gi.setVisible(true);
+	}
+	
+	private void jBBajaInmuebleActionPerformed(ActionEvent evt) {
+		
+	}
+	
+	private void jBModificarInmuebleActionPerformed(ActionEvent evt) {
+		gi.setVisible(true);
 	}
 
 }
