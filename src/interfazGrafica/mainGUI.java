@@ -46,7 +46,7 @@ public class mainGUI extends javax.swing.JFrame {
 		try {
 			javax.swing.UIManager.setLookAndFeel("com.jgoodies.looks.plastic.Plastic3DLookAndFeel");
 		} catch(Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 

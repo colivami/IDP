@@ -103,14 +103,15 @@ public class InmuebleHome {
 		tx = sesion.beginTransaction();
 		sesion.save(i);
 		tx.commit();
+		sesion.close();
 	}
 	
-	public ArrayList<Inmueble> buscarInmuebles() {
-		sesion = UtilidadHibernate.getSessionFactory().openSession();
-		tx = sesion.beginTransaction();
-		ArrayList<Inmueble> listaInmuebles = 
-				(ArrayList<Inmueble>) sesion.createQuery("from INMUEBLE").list();
-		sesion.getTransaction().commit(); 
-		return listaInmuebles;
-	}
+//	public ArrayList<Inmueble> buscarInmuebles() {
+//		sesion = UtilidadHibernate.getSessionFactory().openSession();
+//		tx = sesion.beginTransaction();
+//		ArrayList<Inmueble> listaInmuebles = 
+//				(ArrayList<Inmueble>) sesion.createQuery("from INMUEBLE").list();
+//		sesion.getTransaction().commit(); 
+//		return listaInmuebles;
+//	}
 }

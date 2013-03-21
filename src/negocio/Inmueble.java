@@ -20,21 +20,25 @@ public class Inmueble implements java.io.Serializable {
 	private String escalera;
 	private String piso;
 	private String puerta;
-	private Double porcentaje;
+	private double porcentaje;
 	private Set reciboinmuebles = new HashSet(0);
 	
 	InmuebleHome IHome = new InmuebleHome();
-	private ArrayList<Inmueble> listaInmuebles = IHome.buscarInmuebles();
+//	private ArrayList<Inmueble> listaInmuebles = IHome.buscarInmuebles();
 
 
-	public Inmueble() {
+	public Inmueble() { 
 	}
-	public Inmueble(int idInmueble, String escalera, String piso, String puerta, Double porcentaje) {
+
+	public Inmueble(int idInmueble, String escalera, String piso, String puerta, double porcentaje) {
 		this.idInmueble = idInmueble;
 		this.escalera = escalera;
 		this.piso = piso;
 		this.puerta = puerta;
 		this.porcentaje = porcentaje;
+		
+		IHome.anyadirInmueble(this);
+
 	}
 
 	public Inmueble(int idInmueble) {
@@ -112,11 +116,11 @@ public class Inmueble implements java.io.Serializable {
 		this.puerta = puerta;
 	}
 
-	public Double getPorcentaje() {
+	public double getPorcentaje() {
 		return this.porcentaje;
 	}
 
-	public void setPorcentaje(Double porcentaje) {
+	public void setPorcentaje(double porcentaje) {
 		this.porcentaje = porcentaje;
 	}
 
@@ -127,13 +131,13 @@ public class Inmueble implements java.io.Serializable {
 	public void setReciboinmuebles(Set reciboinmuebles) {
 		this.reciboinmuebles = reciboinmuebles;
 	}
-
-	public ArrayList<Inmueble> getListaInmuebles() {
-		return listaInmuebles;
-	}
-
-	public void setListaInmuebles(ArrayList<Inmueble> listaInmuebles) {
-		this.listaInmuebles = listaInmuebles;
-	}
+//
+//	public ArrayList<Inmueble> getListaInmuebles() {
+//		return listaInmuebles;
+//	}
+//
+//	public void setListaInmuebles(ArrayList<Inmueble> listaInmuebles) {
+//		this.listaInmuebles = listaInmuebles;
+//	}
 
 }
