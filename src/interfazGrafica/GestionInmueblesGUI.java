@@ -11,6 +11,8 @@ import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
 
+import negocio.Inmueble;
+
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -197,7 +199,15 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_GuardarInmueblesActionPerformed(ActionEvent evt) {
-
+		
+		
+		String escalera = jTF_EscaleraInmuebles.getText();
+		String puerta = jTF_PuertaInmuebles.getText();
+		String piso = jTF_PisoInmuebles.getText();
+		int idInmueble = Integer.parseInt(jTF_IDInmuebles.getText());
+		Double porcentaje = Double.parseDouble(jTF_PorcentajeInmuebles.getText());
+		
+		Inmueble i = new Inmueble(idInmueble,escalera,piso,puerta,porcentaje);
 	}
 	
 	private void jB_CancelarInmueblesActionPerformed(ActionEvent evt) {
