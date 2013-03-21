@@ -111,5 +111,6 @@ public class Inmueble implements java.io.Serializable {
 	public void setReciboinmuebles(Set reciboinmuebles) {
 		this.reciboinmuebles = reciboinmuebles;
 	}
+	
 
 }
