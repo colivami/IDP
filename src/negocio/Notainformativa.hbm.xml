@@ -1,33 +1,36 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 21-mar-2013 18:13:29 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="negocio.Notainformativa" table="NOTAINFORMATIVA" schema="PUBLIC">
-        <id name="idNotainformativa" type="java.lang.Integer">
-            <column name="ID_NOTAINFORMATIVA" />
-            <generator class="identity" />
-        </id>
-        <many-to-one name="comunidad" class="negocio.Comunidad" fetch="select">
-            <column name="ID_COMUNIDAD" />
-        </many-to-one>
-        <property name="fechacalculo" type="string">
-            <column name="FECHACALCULO" length="30" />
-        </property>
-        <property name="importenota" type="java.lang.Double">
-            <column name="IMPORTENOTA" precision="17" scale="0" />
-        </property>
-        <set name="facturas" table="FACTURA" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="ID_NOTAINFORMATIVA" />
-            </key>
-            <one-to-many class="negocio.Factura" />
-        </set>
-        <set name="reciboinmuebles" table="RECIBOINMUEBLE" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="ID_NOTAINFORMATIVA" />
-            </key>
-            <one-to-many class="negocio.Reciboinmueble" />
-        </set>
-    </class>
+ <class entity-name="Notainformativa" name="negocio.Notainformativa"
+  schema="PUBLIC" table="NOTAINFORMATIVA">
+  <id name="idNotainformativa" type="java.lang.Integer">
+   <column name="ID_NOTAINFORMATIVA"/>
+   <generator class="identity"/>
+  </id>
+  <many-to-one class="negocio.Comunidad" fetch="select" name="comunidad">
+   <column name="ID_COMUNIDAD"/>
+  </many-to-one>
+  <property generated="never" lazy="false" name="fechacalculo" type="string">
+   <column length="30" name="FECHACALCULO"/>
+  </property>
+  <property generated="never" lazy="false" name="importenota" type="java.lang.Double">
+   <column name="IMPORTENOTA" precision="17" scale="0"/>
+  </property>
+  <set fetch="select" inverse="true" lazy="true" name="facturas"
+   sort="unsorted" table="FACTURA">
+   <key>
+    <column name="ID_NOTAINFORMATIVA"/>
+   </key>
+   <one-to-many class="negocio.Factura"/>
+  </set>
+  <set fetch="select" inverse="true" lazy="true" name="reciboinmuebles"
+   sort="unsorted" table="RECIBOINMUEBLE">
+   <key>
+    <column name="ID_NOTAINFORMATIVA"/>
+   </key>
+   <one-to-many class="negocio.Reciboinmueble"/>
+  </set>
+ </class>
 </hibernate-mapping>

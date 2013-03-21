@@ -1,46 +1,49 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 21-mar-2013 18:13:29 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="negocio.Comunidad" table="COMUNIDAD" schema="PUBLIC">
-        <id name="idComunidad" type="int">
-            <column name="ID_COMUNIDAD" />
-            <generator class="foreign">
-                <param name="property">comunidad</param>
-            </generator>
-        </id>
-        <one-to-one name="comunidad" class="negocio.Comunidad" constrained="true"></one-to-one>
-        <property name="calle" type="string">
-            <column name="CALLE" length="30" />
-        </property>
-        <property name="maxrecibospendientes" type="java.lang.Integer">
-            <column name="MAXRECIBOSPENDIENTES" />
-        </property>
-        <property name="estado" type="string">
-            <column name="ESTADO" length="30" />
-        </property>
-        <property name="idInmueblePresidente" type="java.lang.Integer">
-            <column name="ID_INMUEBLE_PRESIDENTE" />
-        </property>
-        <set name="inmuebles" table="INMUEBLE" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="ID_COMUNIDAD" />
-            </key>
-            <one-to-many class="negocio.Inmueble" />
-        </set>
-        <set name="facturas" table="FACTURA" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="ID_COMUNIDAD" />
-            </key>
-            <one-to-many class="negocio.Factura" />
-        </set>
-        <one-to-one name="comunidad" class="negocio.Comunidad"></one-to-one>
-        <set name="notainformativas" table="NOTAINFORMATIVA" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="ID_COMUNIDAD" />
-            </key>
-            <one-to-many class="negocio.Notainformativa" />
-        </set>
-    </class>
+ <class entity-name="Comunidad" name="negocio.Comunidad" schema="PUBLIC" table="COMUNIDAD">
+  <id name="idComunidad" type="int">
+   <column name="ID_COMUNIDAD"/>
+   <generator class="foreign">
+    <param name="property">comunidad</param>
+   </generator>
+  </id>
+  <one-to-one class="negocio.Comunidad" constrained="true" name="comunidad"/>
+  <property generated="never" lazy="false" name="calle" type="string">
+   <column length="30" name="CALLE"/>
+  </property>
+  <property generated="never" lazy="false" name="maxrecibospendientes" type="java.lang.Integer">
+   <column name="MAXRECIBOSPENDIENTES"/>
+  </property>
+  <property generated="never" lazy="false" name="estado" type="string">
+   <column length="30" name="ESTADO"/>
+  </property>
+  <property generated="never" lazy="false" name="idInmueblePresidente" type="java.lang.Integer">
+   <column name="ID_INMUEBLE_PRESIDENTE"/>
+  </property>
+  <set fetch="select" inverse="true" lazy="true" name="inmuebles"
+   sort="unsorted" table="INMUEBLE">
+   <key>
+    <column name="ID_COMUNIDAD"/>
+   </key>
+   <one-to-many class="negocio.Inmueble"/>
+  </set>
+  <set fetch="select" inverse="true" lazy="true" name="facturas"
+   sort="unsorted" table="FACTURA">
+   <key>
+    <column name="ID_COMUNIDAD"/>
+   </key>
+   <one-to-many class="negocio.Factura"/>
+  </set>
+  <one-to-one class="negocio.Comunidad" name="comunidad"/>
+  <set fetch="select" inverse="true" lazy="true" name="notainformativas"
+   sort="unsorted" table="NOTAINFORMATIVA">
+   <key>
+    <column name="ID_COMUNIDAD"/>
+   </key>
+   <one-to-many class="negocio.Notainformativa"/>
+  </set>
+ </class>
 </hibernate-mapping>

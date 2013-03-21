@@ -1,24 +1,26 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 21-mar-2013 18:13:29 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="negocio.Datosbancarios" table="DATOSBANCARIOS" schema="PUBLIC">
-        <id name="idDatosbancarios" type="int">
-            <column name="ID_DATOSBANCARIOS" />
-            <generator class="assigned" />
-        </id>
-        <property name="entidad" type="string">
-            <column name="ENTIDAD" length="30" />
-        </property>
-        <property name="numerocuenta" type="string">
-            <column name="NUMEROCUENTA" length="30" />
-        </property>
-        <set name="inmuebles" table="INMUEBLE" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="ID_DATOSBANCARIOS" />
-            </key>
-            <one-to-many class="negocio.Inmueble" />
-        </set>
-    </class>
+ <class entity-name="Datosbancarios" name="negocio.Datosbancarios"
+  schema="PUBLIC" table="DATOSBANCARIOS">
+  <id name="idDatosbancarios" type="int">
+   <column name="ID_DATOSBANCARIOS"/>
+   <generator class="assigned"/>
+  </id>
+  <property generated="never" lazy="false" name="entidad" type="string">
+   <column length="30" name="ENTIDAD"/>
+  </property>
+  <property generated="never" lazy="false" name="numerocuenta" type="string">
+   <column length="30" name="NUMEROCUENTA"/>
+  </property>
+  <set fetch="select" inverse="true" lazy="true" name="inmuebles"
+   sort="unsorted" table="INMUEBLE">
+   <key>
+    <column name="ID_DATOSBANCARIOS"/>
+   </key>
+   <one-to-many class="negocio.Inmueble"/>
+  </set>
+ </class>
 </hibernate-mapping>

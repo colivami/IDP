@@ -1,24 +1,25 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 21-mar-2013 18:13:29 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="negocio.Lineafactura" table="LINEAFACTURA" schema="PUBLIC">
-        <id name="idLineafactura" type="java.lang.Integer">
-            <column name="ID_LINEAFACTURA" />
-            <generator class="identity" />
-        </id>
-        <many-to-one name="factura" class="negocio.Factura" fetch="select">
-            <column name="NUMFACTURA" />
-        </many-to-one>
-        <many-to-one name="concepto" class="negocio.Concepto" fetch="select">
-            <column name="ID_CONCEPTO" />
-        </many-to-one>
-        <property name="importelinea" type="java.lang.Double">
-            <column name="IMPORTELINEA" precision="17" scale="0" />
-        </property>
-        <property name="observacion" type="string">
-            <column name="OBSERVACION" length="30" />
-        </property>
-    </class>
+ <class entity-name="LineaFactura" name="negocio.Lineafactura"
+  schema="PUBLIC" table="LINEAFACTURA">
+  <id name="idLineafactura" type="java.lang.Integer">
+   <column name="ID_LINEAFACTURA"/>
+   <generator class="identity"/>
+  </id>
+  <many-to-one class="negocio.Factura" fetch="select" name="factura">
+   <column name="NUMFACTURA"/>
+  </many-to-one>
+  <many-to-one class="negocio.Concepto" fetch="select" name="concepto">
+   <column name="ID_CONCEPTO"/>
+  </many-to-one>
+  <property generated="never" lazy="false" name="importelinea" type="java.lang.Double">
+   <column name="IMPORTELINEA" precision="17" scale="0"/>
+  </property>
+  <property generated="never" lazy="false" name="observacion" type="string">
+   <column length="30" name="OBSERVACION"/>
+  </property>
+ </class>
 </hibernate-mapping>

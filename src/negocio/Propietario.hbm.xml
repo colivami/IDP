@@ -1,39 +1,41 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 21-mar-2013 18:13:29 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="negocio.Propietario" table="PROPIETARIO" schema="PUBLIC">
-        <id name="idPropietario" type="int">
-            <column name="ID_PROPIETARIO" />
-            <generator class="assigned" />
-        </id>
-        <property name="nif" type="string">
-            <column name="NIF" length="30" />
-        </property>
-        <property name="nombre" type="string">
-            <column name="NOMBRE" length="30" />
-        </property>
-        <property name="direccion" type="string">
-            <column name="DIRECCION" length="30" />
-        </property>
-        <property name="poblacion" type="string">
-            <column name="POBLACION" length="30" />
-        </property>
-        <property name="telefono" type="string">
-            <column name="TELEFONO" length="30" />
-        </property>
-        <property name="observaciones" type="string">
-            <column name="OBSERVACIONES" length="100" />
-        </property>
-        <property name="fechaalta" type="string">
-            <column name="FECHAALTA" length="30" />
-        </property>
-        <set name="inmuebles" table="INMUEBLE" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="ID_PROPIETARIO" />
-            </key>
-            <one-to-many class="negocio.Inmueble" />
-        </set>
-    </class>
+ <class entity-name="Propietario" name="negocio.Propietario"
+  schema="PUBLIC" table="PROPIETARIO">
+  <id name="idPropietario" type="int">
+   <column name="ID_PROPIETARIO"/>
+   <generator class="assigned"/>
+  </id>
+  <property generated="never" lazy="false" name="nif" type="string">
+   <column length="30" name="NIF"/>
+  </property>
+  <property generated="never" lazy="false" name="nombre" type="string">
+   <column length="30" name="NOMBRE"/>
+  </property>
+  <property generated="never" lazy="false" name="direccion" type="string">
+   <column length="30" name="DIRECCION"/>
+  </property>
+  <property generated="never" lazy="false" name="poblacion" type="string">
+   <column length="30" name="POBLACION"/>
+  </property>
+  <property generated="never" lazy="false" name="telefono" type="string">
+   <column length="30" name="TELEFONO"/>
+  </property>
+  <property generated="never" lazy="false" name="observaciones" type="string">
+   <column length="100" name="OBSERVACIONES"/>
+  </property>
+  <property generated="never" lazy="false" name="fechaalta" type="string">
+   <column length="30" name="FECHAALTA"/>
+  </property>
+  <set fetch="select" inverse="true" lazy="true" name="inmuebles"
+   sort="unsorted" table="INMUEBLE">
+   <key>
+    <column name="ID_PROPIETARIO"/>
+   </key>
+   <one-to-many class="negocio.Inmueble"/>
+  </set>
+ </class>
 </hibernate-mapping>
