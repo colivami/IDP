@@ -10,7 +10,6 @@
     <param name="property">comunidad</param>
    </generator>
   </id>
-  <one-to-one class="negocio.Comunidad" constrained="true" name="comunidad"/>
   <property generated="never" lazy="false" name="calle" type="string">
    <column length="30" name="CALLE"/>
   </property>

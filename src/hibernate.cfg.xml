@@ -8,7 +8,7 @@
   <property name="hibernate.connection.username">sa</property>
   <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
   <mapping class="negocio.Inmueble" package="negocio" resource="negocio/Inmueble.hbm.xml"/>
-  <mapping class="negocio.Comunidad" resource="negocio/Comunidad.hbm.xml"/>
+  <mapping class="negocio.Comunidad" package="negocio" resource="negocio/Comunidad.hbm.xml"/>
   <mapping class="negocio.Concepto" package="negocio" resource="negocio/Concepto.hbm.xml"/>
   <mapping class="negocio.Datosbancarios" package="negocio" resource="negocio/Datosbancarios.hbm.xml"/>
   <mapping class="negocio.Factura" package="negocio" resource="negocio/Factura.hbm.xml"/>
