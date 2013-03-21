@@ -3,8 +3,7 @@
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 21-mar-2013 18:13:29 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
- <class entity-name="LineaFactura" name="negocio.Lineafactura"
-  schema="PUBLIC" table="LINEAFACTURA">
+ <class name="negocio.Lineafactura" schema="PUBLIC" table="LINEAFACTURA">
   <id name="idLineafactura" type="java.lang.Integer">
    <column name="ID_LINEAFACTURA"/>
    <generator class="identity"/>

@@ -2,9 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 21-mar-2013 18:13:29 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>
- <class entity-name="Reciboinmueble" name="negocio.Reciboinmueble"
-  schema="PUBLIC" table="RECIBOINMUEBLE">
+<hibernate-mapping package="negocio">
+ <class name="negocio.Reciboinmueble" schema="PUBLIC" table="RECIBOINMUEBLE">
   <id name="idReciboinmueble" type="java.lang.Integer">
    <column name="ID_RECIBOINMUEBLE"/>
    <generator class="identity"/>

@@ -2,22 +2,20 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory>
+ <session-factory name="">
   <property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
   <property name="hibernate.connection.url">jdbc:hsqldb:hsql://localhost/idp</property>
   <property name="hibernate.connection.username">sa</property>
   <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
-  
   <mapping class="negocio.Inmueble" package="negocio" resource="negocio/Inmueble.hbm.xml"/>
-  <mapping class="negocio.Comunidad" package="negocio" resource="negocio/Comunidad.hbm.xml"/>
+  <mapping class="negocio.Comunidad" resource="negocio/Comunidad.hbm.xml"/>
   <mapping class="negocio.Concepto" package="negocio" resource="negocio/Concepto.hbm.xml"/>
   <mapping class="negocio.Datosbancarios" package="negocio" resource="negocio/Datosbancarios.hbm.xml"/>
   <mapping class="negocio.Factura" package="negocio" resource="negocio/Factura.hbm.xml"/>
   <mapping class="negocio.Lineafactura" package="negocio" resource="negocio/Lineafactura.hbm.xml"/>
   <mapping class="negocio.Notainformativa" package="negocio" resource="negocio/Notainformativa.hbm.xml"/>
   <mapping class="negocio.Propietario" package="negocio" resource="negocio/Propietario.hbm.xml"/>
-  <mapping resource="negocio/Reciboinmueble.hbm.xml"/>
+  <mapping class="negocio.Reciboinmueble" package="negocio" resource="negocio/Reciboinmueble.hbm.xml"/>
   <mapping class="negocio.Carta" package="negocio" resource="negocio/Carta.hbm.xml"/>
-  
  </session-factory>
 </hibernate-configuration>

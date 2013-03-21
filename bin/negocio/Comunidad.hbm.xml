@@ -3,7 +3,7 @@
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 21-mar-2013 18:13:29 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
- <class entity-name="Comunidad" name="negocio.Comunidad" schema="PUBLIC" table="COMUNIDAD">
+ <class name="negocio.Comunidad" schema="PUBLIC" table="COMUNIDAD">
   <id name="idComunidad" type="int">
    <column name="ID_COMUNIDAD"/>
    <generator class="foreign">
