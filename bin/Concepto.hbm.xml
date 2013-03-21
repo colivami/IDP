@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 21, 2013 11:01:57 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="Concepto" table="CONCEPTO" schema="PUBLIC">
+        <id name="idConcepto" type="java.lang.Integer">
+            <column name="ID_CONCEPTO" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="lineafactura" class="Lineafactura" fetch="select">
+            <column name="ID_LINEAFACTURA" not-null="true" />
+        </many-to-one>
+        <property name="claveconcepto" type="string">
+            <column name="CLAVECONCEPTO" length="30" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="30" />
+        </property>
+    </class>
+</hibernate-mapping>
