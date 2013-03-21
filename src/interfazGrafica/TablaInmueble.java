@@ -1,5 +1,6 @@
 package interfazGrafica;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
@@ -8,18 +9,18 @@ import negocio.Inmueble;
 
 public class TablaInmueble extends DefaultTableModel {
 
-	private Inmueble inm;
+	private ArrayList<Inmueble> inmuebles;
 	private boolean inmVacio;
 	private boolean modified = false;
 
-	public TablaInmueble(Inmueble inm) {
+	public TablaInmueble(ArrayList<Inmueble> inmuebles) {
 		super(null,new String[]{"ID Inmueble",
 				"Escalera", 
 				"Piso", 
 				"Puerta", 
 				"Porcentaje", 
 				"ID Comunidad"});
-		this.inm = inm;
+		this.inmuebles = inmuebles;
 		inmVacio = false;
 	}
 	

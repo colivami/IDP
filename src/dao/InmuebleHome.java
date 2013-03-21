@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.InitialContext;
@@ -105,6 +106,14 @@ public class InmuebleHome {
 		tx = sesion.beginTransaction();
 		sesion.save(i);
 		tx.commit();
-		
+	}
+	
+	public ArrayList<Inmueble> buscarInmuebles() {
+		sesion = sessionFactory.openSession();
+		sesion.beginTransaction();
+		ArrayList<Inmueble> listaInmuebles = 
+				(ArrayList<Inmueble>) sesion.createQuery("from INMUEBLE").list();
+		sesion.getTransaction().commit(); 
+		return listaInmuebles;
 	}
 }
