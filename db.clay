@@ -29,9 +29,6 @@
 <foreign-key id="13eef13e:13d8d3513f0:-7c54" name="FK_Comunidad_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_COMUNIDAD" referenced-table="Comunidad" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
 <foreign-key-column column-name="ID_Comunidad" referenced-key-column-name="ID_Comunidad"/>
 </foreign-key>
-<foreign-key id="13eef13e:13d8d3513f0:-7bcc" name="FK_Comunidad_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_INMUEBLE" referenced-table="Inmueble" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..1" source-relationship-type="" target-entity-role="" target-multiplicity="0..1" target-relationship-type="">
-<foreign-key-column column-name="ID_Inmueble_Presidente" referenced-key-column-name="ID_Inmueble"/>
-</foreign-key>
 </foreign-key-list>
 </table>
 <table id="15d5300:13d4984dcc5:-7ff0" name="Factura">
@@ -122,7 +119,7 @@
 <foreign-key id="13eef13e:13d8d3513f0:-7ddf" name="FK_Inmueble_3" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_PROPIETARIO" referenced-table="Propietario" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="0..1" target-relationship-type="">
 <foreign-key-column column-name="ID_Propietario" referenced-key-column-name="ID_Propietario"/>
 </foreign-key>
-<foreign-key id="13eef13e:13d8d3513f0:-7bf7" name="FK_Inmueble_4" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_COMUNIDAD" referenced-table="Comunidad" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="0..1" target-relationship-type="">
+<foreign-key id="11bcf22:13d8dc9a476:-7fab" name="FK_Inmueble_4" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_COMUNIDAD" referenced-table="Comunidad" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="0..1" target-relationship-type="">
 <foreign-key-column column-name="ID_Comunidad" referenced-key-column-name="ID_Comunidad"/>
 </foreign-key>
 </foreign-key-list>
@@ -275,9 +272,6 @@
 </database-model>
 <diagram>
 <table-figure refid="15d5300:13d4984dcc5:-7fff" x="31" y="68"/>
-<fk-figure refid="13eef13e:13d8d3513f0:-7bcc">
-<source-terminal x="112" y="74"/>
-</fk-figure>
 <table-figure refid="15d5300:13d4984dcc5:-7ff0" x="41" y="454"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fe9" x="246" y="320"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fe0" x="384" y="73"/>
