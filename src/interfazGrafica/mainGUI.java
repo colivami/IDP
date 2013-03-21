@@ -18,6 +18,10 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import negocio.Comunidad;
+import negocio.Inmueble;
+import negocio.Propietario;
+
 /**
 * This code was edited or generated using CloudGarden's Jigloo
 * SWT/Swing GUI Builder, which is free for non-commercial
@@ -81,10 +85,15 @@ public class mainGUI extends javax.swing.JFrame {
 	private JMenu jMenu3;
 	private JMenuBar jMenuBar1;
 
+	Inmueble    inm = new Inmueble();
+	Comunidad   com = new Comunidad();
+	Propietario pro = new Propietario();
 	
-	GestionPropietariosGUI gp = new GestionPropietariosGUI();
+ 	GestionPropietariosGUI gp = new GestionPropietariosGUI();
 	GestionInmueblesGUI    gi = new GestionInmueblesGUI();
 	GestionComunidadesGUI  gc = new GestionComunidadesGUI();
+	
+	TablaInmueble TInmuebles = new TablaInmueble(inm.getListaInmuebles());
 
 	/**
 	* Auto-generated main method to display this JFrame
@@ -189,10 +198,7 @@ public class mainGUI extends javax.swing.JFrame {
 						});
 					}
 					{
-						TableModel jT_InmueblesModel = 
-								new DefaultTableModel(
-										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-										new String[] { "Column 1", "Column 2" });
+						TableModel jT_InmueblesModel = TInmuebles;
 						jT_Inmuebles = new JTable();
 						jT_Inmuebles.setModel(jT_InmueblesModel);
 					}
