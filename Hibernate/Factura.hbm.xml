@@ -1,18 +1,30 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 13, 2013 1:05:00 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Mar 21, 2013 11:01:57 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="negocio.Factura" table="FACTURA">
-        <id name="ID_Comunidad" type="int">
-            <column name="ID_COMUNIDAD" />
-            <generator class="assigned" />
-        </id>
-        <property name="NumFactura" type="int">
+    <class name="Factura" table="FACTURA" schema="PUBLIC">
+        <id name="numfactura" type="java.lang.Integer">
             <column name="NUMFACTURA" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="comunidad" class="Comunidad" fetch="select">
+            <column name="ID_COMUNIDAD" not-null="true" />
+        </many-to-one>
+        <property name="fechafactura" type="string">
+            <column name="FECHAFACTURA" length="30" />
         </property>
-        <property name="FechaFactura" type="java.lang.String">
-            <column name="FECHAFACTURA" />
-        </property>
+        <set name="lineafacturas" table="LINEAFACTURA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NUMFACTURA" not-null="true" />
+            </key>
+            <one-to-many class="Lineafactura" />
+        </set>
+        <set name="notainformativas" table="NOTAINFORMATIVA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NUM_FACTURA" not-null="true" />
+            </key>
+            <one-to-many class="Notainformativa" />
+        </set>
     </class>
 </hibernate-mapping>

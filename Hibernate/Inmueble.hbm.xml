@@ -1,24 +1,45 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 13, 2013 1:05:00 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Mar 21, 2013 11:01:57 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="negocio.Inmueble" table="INMUEBLE">
-        <id name="ID_Inmueble" type="int">
+    <class name="Inmueble" table="INMUEBLE" schema="PUBLIC">
+        <id name="idInmueble" type="int">
             <column name="ID_INMUEBLE" />
             <generator class="assigned" />
         </id>
-        <property name="Escalera" type="java.lang.String">
-            <column name="ESCALERA" />
+        <many-to-one name="comunidad" class="Comunidad" fetch="select">
+            <column name="ID_COMUNIDAD" not-null="true" />
+        </many-to-one>
+        <property name="escalera" type="string">
+            <column name="ESCALERA" length="30" />
         </property>
-        <property name="Piso" type="java.lang.String">
-            <column name="PISO" />
+        <property name="piso" type="string">
+            <column name="PISO" length="30" />
         </property>
-        <property name="Puerta" type="java.lang.String">
-            <column name="PUERTA" />
+        <property name="puerta" type="string">
+            <column name="PUERTA" length="30" />
         </property>
-        <property name="Porcentaje" type="java.lang.Float">
-            <column name="PORCENTAJE" />
+        <property name="porcentaje" type="java.lang.Double">
+            <column name="PORCENTAJE" precision="17" scale="0" />
         </property>
+        <set name="datosbancarioses" table="DATOSBANCARIOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_INMUEBLE" not-null="true" />
+            </key>
+            <one-to-many class="Datosbancarios" />
+        </set>
+        <set name="propietarios" table="PROPIETARIO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_INMUEBLE" not-null="true" />
+            </key>
+            <one-to-many class="Propietario" />
+        </set>
+        <set name="reciboinmuebles" table="RECIBOINMUEBLE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_INMUEBLE" />
+            </key>
+            <one-to-many class="Reciboinmueble" />
+        </set>
     </class>
 </hibernate-mapping>
