@@ -27,12 +27,14 @@ import javax.swing.SwingUtilities;
 public class GestionInmueblesGUI extends javax.swing.JFrame {
 	private JLabel jL_IDInmuebles;
 	private JLabel jL_PisoInmuebles;
+	private JLabel jLabel1;
 	private JButton jB_CancelarInmuebles;
 	private JButton jB_GuardarInmuebles;
 	private JTextField jTF_PorcentajeInmuebles;
 	private JTextField jTF_PuertaInmuebles;
 	private JTextField jTF_PisoInmuebles;
 	private JTextField jTF_EscaleraInmuebles;
+	private JTextField jTF_IDComunidadInmueble;
 	private JTextField jTF_IDInmuebles;
 	private JLabel jL_PorcentajeInmuebles;
 	private JLabel jL_PuertaInmuebles;
@@ -85,6 +87,13 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 				jTF_IDInmuebles = new JTextField();
 			}
 			{
+				jLabel1 = new JLabel();
+				jLabel1.setText("ID Comunidad");
+			}
+			{
+				jTF_IDComunidadInmueble = new JTextField();
+			}
+			{
 				jB_GuardarInmuebles = new JButton();
 				jB_GuardarInmuebles.setText("Guardar");
 				jB_GuardarInmuebles.addActionListener(new ActionListener() {
@@ -106,7 +115,11 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 				jTF_EscaleraInmuebles = new JTextField();
 			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-					.addContainerGap(19, 19)
+					.addContainerGap(19, Short.MAX_VALUE)
+					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+					    .addComponent(jLabel1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					    .addComponent(jTF_IDComunidadInmueble, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 					    .addComponent(jL_IDInmuebles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 					    .addComponent(jTF_IDInmuebles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -126,7 +139,7 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 					    .addComponent(jL_PorcentajeInmuebles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 					    .addComponent(jTF_PorcentajeInmuebles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(0, 41, Short.MAX_VALUE)
+					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 					    .addComponent(jB_GuardarInmuebles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 					    .addComponent(jB_CancelarInmuebles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
@@ -146,18 +159,34 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 				        .addComponent(jL_IDInmuebles, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
 				        .addGap(91))
 				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+				        .addGap(39))
+				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 				        .addGap(24)
 				        .addComponent(jB_GuardarInmuebles, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
 				        .addGap(30)))
 				.addGroup(thisLayout.createParallelGroup()
 				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 				        .addComponent(jB_CancelarInmuebles, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-				        .addGap(0, 25, GroupLayout.PREFERRED_SIZE))
-				    .addComponent(jTF_PorcentajeInmuebles, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(jTF_PuertaInmuebles, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(jTF_PisoInmuebles, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(jTF_EscaleraInmuebles, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(jTF_IDInmuebles, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE))
+				        .addGap(0, 25, Short.MAX_VALUE))
+				    .addGroup(thisLayout.createSequentialGroup()
+				        .addComponent(jTF_PorcentajeInmuebles, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 0, Short.MAX_VALUE))
+				    .addGroup(thisLayout.createSequentialGroup()
+				        .addComponent(jTF_PuertaInmuebles, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 0, Short.MAX_VALUE))
+				    .addGroup(thisLayout.createSequentialGroup()
+				        .addComponent(jTF_PisoInmuebles, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 0, Short.MAX_VALUE))
+				    .addGroup(thisLayout.createSequentialGroup()
+				        .addComponent(jTF_EscaleraInmuebles, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 0, Short.MAX_VALUE))
+				    .addGroup(thisLayout.createSequentialGroup()
+				        .addComponent(jTF_IDInmuebles, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 0, Short.MAX_VALUE))
+				    .addGroup(thisLayout.createSequentialGroup()
+				        .addComponent(jTF_IDComunidadInmueble, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 0, Short.MAX_VALUE)))
 				.addContainerGap(67, 67));
 			pack();
 			setSize(400, 300);
