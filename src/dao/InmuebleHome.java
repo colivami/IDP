@@ -8,6 +8,7 @@ import negocio.Inmueble;
 
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
 
 /**
@@ -16,6 +17,9 @@ import org.hibernate.criterion.Example;
  * @author Hibernate Tools
  */
 public class InmuebleHome {
+
+	private org.hibernate.classic.Session sesion = null;
+	private Transaction tx = null;
 
 
 	private final SessionFactory sessionFactory = getSessionFactory();
@@ -94,5 +98,13 @@ public class InmuebleHome {
 		} catch (RuntimeException re) {
 			throw re;
 		}
+	}
+	
+	public void anyadirInmueble(Inmueble i) {
+		sesion = sessionFactory.openSession();
+		tx = sesion.beginTransaction();
+		sesion.save(i);
+		tx.commit();
+		
 	}
 }
