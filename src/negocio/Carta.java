@@ -6,7 +6,8 @@ public class Carta {
 	private int ID;
 	private char Fecha;
 	
-	
+	public Carta(){}
+
 	public int getID() {
 		return ID;
 	}

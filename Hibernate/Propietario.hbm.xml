@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 13, 2013 1:05:00 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="negocio.Propietario" table="PROPIETARIO">
+        <id name="ID" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="NIF" type="java.lang.String">
+            <column name="NIF" />
+        </property>
+        <property name="Nombre" type="java.lang.String">
+            <column name="NOMBRE" />
+        </property>
+        <property name="Direccion" type="java.lang.String">
+            <column name="DIRECCION" />
+        </property>
+        <property name="Poblacion" type="java.lang.String">
+            <column name="POBLACION" />
+        </property>
+        <property name="Telefono" type="java.lang.String">
+            <column name="TELEFONO" />
+        </property>
+        <property name="Observaciones" type="java.lang.String">
+            <column name="OBSERVACIONES" />
+        </property>
+        <property name="FechaAlta" type="java.lang.String">
+            <column name="FECHAALTA" />
+        </property>
+        <property name="ID_Inmueble" type="int">
+            <column name="ID_INMUEBLE" />
+        </property>
+    </class>
+</hibernate-mapping>

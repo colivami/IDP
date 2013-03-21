@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 13, 2013 1:05:00 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="negocio.Concepto" table="CONCEPTO">
+        <id name="ID_Concepto" type="int">
+            <column name="ID_CONCEPTO" />
+            <generator class="assigned" />
+        </id>
+        <property name="ClaveConcepto" type="java.lang.String">
+            <column name="CLAVECONCEPTO" />
+        </property>
+        <property name="Descripcion" type="java.lang.String">
+            <column name="DESCRIPCION" />
+        </property>
+        <property name="ID_LineaFactura" type="int">
+            <column name="ID_LINEAFACTURA" />
+        </property>
+    </class>
+</hibernate-mapping>

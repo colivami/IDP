@@ -7,7 +7,7 @@ public class Inmueble {
 	private String Piso;
 	private String Puerta;
 	private Float Porcentaje;
-	
+
 	
 
 	public int getID_Inmueble() {

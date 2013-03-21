@@ -18,24 +18,13 @@
 <column auto-increment="false" column-size="30" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7ff3" mandatory="false" name="Estado">
 <data-type name="VARCHAR" selected-variant-pattern="VARCHAR(%n)"/>
 </column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="188e9e4d:13d59c1605a:-7f27" mandatory="true" name="ID_Inmueble">
-<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
-</column>
-<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="188e9e4d:13d59c1605a:-7eb4" mandatory="true" name="ID_Inmueble_Presidente">
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="188e9e4d:13d59c1605a:-7eb4" mandatory="false" name="ID_Inmueble_Presidente">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
 </column-list>
 <primary-key id="15d5300:13d4984dcc5:-7ffe" name="PK_COMUNIDAD">
 <primary-key-column name="ID_Comunidad"/>
 </primary-key>
-<foreign-key-list>
-<foreign-key id="e06ddbc:13d5a449764:-7fb2" name="FK_Comunidad_1" on-delete="CASCADE" on-update="UNSPECIFIED" referenced-key="PK_INMUEBLE" referenced-table="Inmueble" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="1" source-relationship-type="" target-entity-role="" target-multiplicity="1..*" target-relationship-type="">
-<foreign-key-column column-name="ID_Inmueble" referenced-key-column-name="ID_Inmueble"/>
-</foreign-key>
-<foreign-key id="e06ddbc:13d5a449764:-7f7a" name="FK_Comunidad_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_INMUEBLE" referenced-table="Inmueble" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="1" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
-<foreign-key-column column-name="ID_Inmueble_Presidente" referenced-key-column-name="ID_Inmueble"/>
-</foreign-key>
-</foreign-key-list>
 </table>
 <table id="15d5300:13d4984dcc5:-7ff0" name="Factura">
 <column-list>
@@ -72,6 +61,9 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="7caf7316:13d4ac63e4b:-7f4d" mandatory="true" name="Num_Factura">
 <data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
 </column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="3dcdc64f:13d8c2c5760:-7fde" mandatory="true" name="ID_Comunidad">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
 </column-list>
 <primary-key id="15d5300:13d4984dcc5:-7fe8" name="PK_NOTAINFORMATIVA">
 <primary-key-column name="ID_NotaInformativa"/>
@@ -79,6 +71,9 @@
 <foreign-key-list>
 <foreign-key id="7caf7316:13d4ac63e4b:-7f28" name="FK_NotaInformativa_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_FACTURA" referenced-table="Factura" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..1" source-relationship-type="" target-entity-role="" target-multiplicity="1..*" target-relationship-type="">
 <foreign-key-column column-name="Num_Factura" referenced-key-column-name="NumFactura"/>
+</foreign-key>
+<foreign-key id="3dcdc64f:13d8c2c5760:-7fc6" name="FK_NotaInformativa_2" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_COMUNIDAD" referenced-table="Comunidad" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="ID_Comunidad" referenced-key-column-name="ID_Comunidad"/>
 </foreign-key>
 </foreign-key-list>
 </table>
@@ -99,10 +94,18 @@
 <column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="15d5300:13d4984dcc5:-7fd8" mandatory="false" name="Porcentaje">
 <data-type name="FLOAT" selected-variant-pattern="FLOAT"/>
 </column>
+<column auto-increment="false" column-size="0" decimal-digits="0" default-value="" id="2174f1f3:13d88ebcbaf:-7fb6" mandatory="true" name="ID_Comunidad">
+<data-type name="INTEGER" selected-variant-pattern="INTEGER"/>
+</column>
 </column-list>
 <primary-key id="15d5300:13d4984dcc5:-7fdf" name="PK_INMUEBLE">
 <primary-key-column name="ID_Inmueble"/>
 </primary-key>
+<foreign-key-list>
+<foreign-key id="2174f1f3:13d88ebcbaf:-7fb8" name="FK_Inmueble_1" on-delete="UNSPECIFIED" on-update="UNSPECIFIED" referenced-key="PK_COMUNIDAD" referenced-table="Comunidad" referenced-table-schema="DEFAULT_SCHEMA" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-column column-name="ID_Comunidad" referenced-key-column-name="ID_Comunidad"/>
+</foreign-key>
+</foreign-key-list>
 </table>
 <table id="15d5300:13d4984dcc5:-7fd7" name="DatosBancarios">
 <column-list>
@@ -274,7 +277,7 @@
 <table-figure refid="15d5300:13d4984dcc5:-7fff" x="31" y="68"/>
 <table-figure refid="15d5300:13d4984dcc5:-7ff0" x="43" y="458"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fe9" x="246" y="320"/>
-<table-figure refid="15d5300:13d4984dcc5:-7fe0" x="384" y="78"/>
+<table-figure refid="15d5300:13d4984dcc5:-7fe0" x="384" y="73"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fd7" x="665" y="5"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fd0" x="794" y="172"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fc4" x="508" y="312"/>

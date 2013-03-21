@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 13, 2013 1:05:00 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="negocio.Inmueble" table="INMUEBLE">
+        <id name="ID_Inmueble" type="int">
+            <column name="ID_INMUEBLE" />
+            <generator class="assigned" />
+        </id>
+        <property name="Escalera" type="java.lang.String">
+            <column name="ESCALERA" />
+        </property>
+        <property name="Piso" type="java.lang.String">
+            <column name="PISO" />
+        </property>
+        <property name="Puerta" type="java.lang.String">
+            <column name="PUERTA" />
+        </property>
+        <property name="Porcentaje" type="java.lang.Float">
+            <column name="PORCENTAJE" />
+        </property>
+    </class>
+</hibernate-mapping>
