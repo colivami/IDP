@@ -3,16 +3,19 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Mar 21, 2013 11:01:57 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="Carta" table="CARTA" schema="PUBLIC">
+    <class name="Datosbancarios" table="DATOSBANCARIOS" schema="PUBLIC">
         <id name="id" type="int">
             <column name="ID" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="reciboinmueble" class="Reciboinmueble" fetch="select">
-            <column name="ID_RECIBOINMUEBLE" />
+        <many-to-one name="inmueble" class="Inmueble" fetch="select">
+            <column name="ID_INMUEBLE" not-null="true" />
         </many-to-one>
-        <property name="fecha" type="string">
-            <column name="FECHA" length="30" />
+        <property name="entidad" type="string">
+            <column name="ENTIDAD" length="30" />
+        </property>
+        <property name="numerocuenta" type="string">
+            <column name="NUMEROCUENTA" length="30" />
         </property>
     </class>
 </hibernate-mapping>

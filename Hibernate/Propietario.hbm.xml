@@ -1,36 +1,36 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 13, 2013 1:05:00 PM by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated Mar 21, 2013 11:01:57 AM by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="negocio.Propietario" table="PROPIETARIO">
-        <id name="ID" type="int">
+    <class name="Propietario" table="PROPIETARIO" schema="PUBLIC">
+        <id name="id" type="int">
             <column name="ID" />
             <generator class="assigned" />
         </id>
-        <property name="NIF" type="java.lang.String">
-            <column name="NIF" />
+        <many-to-one name="inmueble" class="Inmueble" fetch="select">
+            <column name="ID_INMUEBLE" not-null="true" />
+        </many-to-one>
+        <property name="nif" type="string">
+            <column name="NIF" length="30" />
         </property>
-        <property name="Nombre" type="java.lang.String">
-            <column name="NOMBRE" />
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="30" />
         </property>
-        <property name="Direccion" type="java.lang.String">
-            <column name="DIRECCION" />
+        <property name="direccion" type="string">
+            <column name="DIRECCION" length="30" />
         </property>
-        <property name="Poblacion" type="java.lang.String">
-            <column name="POBLACION" />
+        <property name="poblacion" type="string">
+            <column name="POBLACION" length="30" />
         </property>
-        <property name="Telefono" type="java.lang.String">
-            <column name="TELEFONO" />
+        <property name="telefono" type="string">
+            <column name="TELEFONO" length="30" />
         </property>
-        <property name="Observaciones" type="java.lang.String">
-            <column name="OBSERVACIONES" />
+        <property name="observaciones" type="string">
+            <column name="OBSERVACIONES" length="100" />
         </property>
-        <property name="FechaAlta" type="java.lang.String">
-            <column name="FECHAALTA" />
-        </property>
-        <property name="ID_Inmueble" type="int">
-            <column name="ID_INMUEBLE" />
+        <property name="fechaalta" type="string">
+            <column name="FECHAALTA" length="30" />
         </property>
     </class>
 </hibernate-mapping>
