@@ -15,7 +15,7 @@ public class TablaInmueble extends DefaultTableModel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Inmueble> inmuebles;
+	private ArrayList<Inmueble> inmuebles = new InmuebleHome().buscarInmuebles();;
 	private boolean inmVacio;
 	private boolean modified = false;
 
@@ -29,7 +29,6 @@ public class TablaInmueble extends DefaultTableModel {
 				"ID Propietario",
 				"ID Datos Bancarios"});
 		
-		this.inmuebles = new InmuebleHome().buscarInmuebles();
 		for(Inmueble i : inmuebles) {
 			addToTabla(i);
 		}

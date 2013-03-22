@@ -23,24 +23,10 @@ public class Inmueble implements java.io.Serializable {
 	private Double porcentaje;
 	private Set reciboinmuebles = new HashSet(0);
 	
-//	InmuebleHome IHome = new InmuebleHome();
-//	private ArrayList<Inmueble> listaInmuebles = IHome.buscarInmuebles();
-
 
 	public Inmueble() { 
 	}
 
-//	public Inmueble(int idInmueble, String escalera, String piso, String puerta, Double porcentaje) {
-//		this.idInmueble = idInmueble;
-//		this.escalera = escalera;
-//		this.piso = piso;
-//		this.puerta = puerta;
-//		this.porcentaje = porcentaje;
-//		//this.comunidad.setIdComunidad(0);
-//		
-////		IHome.anyadirInmueble(this);
-//
-//	}
 
 	public Inmueble(int idInmueble) {
 		this.idInmueble = idInmueble;

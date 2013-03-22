@@ -110,8 +110,7 @@ public class InmuebleHome {
 	public ArrayList<Inmueble> buscarInmuebles() {
 		sesion = UtilidadHibernate.getSessionFactory().openSession();
 		tx = sesion.beginTransaction();
-		ArrayList<Inmueble> listaInmuebles = 
-				(ArrayList<Inmueble>) sesion.createQuery("from Inmueble").list();
+		ArrayList<Inmueble> listaInmuebles = (ArrayList<Inmueble>) sesion.createQuery("from Inmueble").list();
 		sesion.getTransaction().commit(); 
 		return listaInmuebles;
 	}
