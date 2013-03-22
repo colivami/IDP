@@ -24,10 +24,11 @@ public class Inmueble implements java.io.Serializable {
 	private Set reciboinmuebles = new HashSet(0);
 	
 	InmuebleHome IHome = new InmuebleHome();
-//	private ArrayList<Inmueble> listaInmuebles = IHome.buscarInmuebles();
+	private ArrayList<Inmueble> listaInmuebles = IHome.buscarInmuebles();
 
 
 	public Inmueble() { 
+		
 	}
 
 	public Inmueble(int idInmueble, String escalera, String piso, String puerta, double porcentaje) {
@@ -131,13 +132,13 @@ public class Inmueble implements java.io.Serializable {
 	public void setReciboinmuebles(Set reciboinmuebles) {
 		this.reciboinmuebles = reciboinmuebles;
 	}
-//
-//	public ArrayList<Inmueble> getListaInmuebles() {
-//		return listaInmuebles;
-//	}
-//
-//	public void setListaInmuebles(ArrayList<Inmueble> listaInmuebles) {
-//		this.listaInmuebles = listaInmuebles;
-//	}
+
+	public ArrayList<Inmueble> getListaInmuebles() {
+		return listaInmuebles;
+	}
+
+	public void setListaInmuebles(ArrayList<Inmueble> listaInmuebles) {
+		this.listaInmuebles = listaInmuebles;
+	}
 
 }
