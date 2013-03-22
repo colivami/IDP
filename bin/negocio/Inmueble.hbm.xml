@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 21-mar-2013 18:13:29 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>
- <class name="negocio.Inmueble" schema="PUBLIC" table="INMUEBLE">
+<hibernate-mapping default-lazy="false">
+ <class lazy="false" name="negocio.Inmueble" schema="PUBLIC" table="INMUEBLE">
   <id name="idInmueble" type="int">
    <column name="ID_INMUEBLE"/>
    <generator class="assigned"/>
@@ -29,7 +29,7 @@
   <property generated="never" lazy="false" name="porcentaje" type="java.lang.Double">
    <column name="PORCENTAJE" precision="17" scale="0"/>
   </property>
-  <set fetch="select" inverse="true" lazy="true" name="reciboinmuebles"
+  <set fetch="select" inverse="true" lazy="false" name="reciboinmuebles"
    sort="unsorted" table="RECIBOINMUEBLE">
    <key>
     <column name="ID_INMUEBLE"/>

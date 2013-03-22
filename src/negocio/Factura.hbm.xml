@@ -17,7 +17,7 @@
   <property generated="never" lazy="false" name="fechafactura" type="string">
    <column length="30" name="FECHAFACTURA"/>
   </property>
-  <set fetch="select" inverse="true" lazy="true" name="lineafacturas"
+  <set fetch="select" inverse="true" lazy="false" name="lineafacturas"
    sort="unsorted" table="LINEAFACTURA">
    <key>
     <column name="NUMFACTURA"/>

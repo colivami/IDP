@@ -207,7 +207,7 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 		int idInmueble = Integer.parseInt(jTF_IDInmuebles.getText());
 		double porcentaje = 1.0f;//Double.parseDouble(jTF_PorcentajeInmuebles.getText());
 		
-		Inmueble i = new Inmueble(idInmueble,escalera,piso,puerta,porcentaje);
+//		Inmueble i = new Inmueble(idInmueble,escalera,piso,puerta,porcentaje);
 		
 		this.dispose();
 	}

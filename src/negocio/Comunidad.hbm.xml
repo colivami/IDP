@@ -22,14 +22,14 @@
   <property generated="never" lazy="false" name="idInmueblePresidente" type="java.lang.Integer">
    <column name="ID_INMUEBLE_PRESIDENTE"/>
   </property>
-  <set fetch="select" inverse="true" lazy="true" name="inmuebles"
+  <set fetch="select" inverse="true" lazy="false" name="inmuebles"
    sort="unsorted" table="INMUEBLE">
    <key>
     <column name="ID_COMUNIDAD"/>
    </key>
    <one-to-many class="negocio.Inmueble"/>
   </set>
-  <set fetch="select" inverse="true" lazy="true" name="facturas"
+  <set fetch="select" inverse="true" lazy="false" name="facturas"
    sort="unsorted" table="FACTURA">
    <key>
     <column name="ID_COMUNIDAD"/>

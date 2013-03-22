@@ -17,14 +17,14 @@
   <property generated="never" lazy="false" name="importenota" type="java.lang.Double">
    <column name="IMPORTENOTA" precision="17" scale="0"/>
   </property>
-  <set fetch="select" inverse="true" lazy="true" name="facturas"
+  <set fetch="select" inverse="true" lazy="false" name="facturas"
    sort="unsorted" table="FACTURA">
    <key>
     <column name="ID_NOTAINFORMATIVA"/>
    </key>
    <one-to-many class="negocio.Factura"/>
   </set>
-  <set fetch="select" inverse="true" lazy="true" name="reciboinmuebles"
+  <set fetch="select" inverse="true" lazy="false" name="reciboinmuebles"
    sort="unsorted" table="RECIBOINMUEBLE">
    <key>
     <column name="ID_NOTAINFORMATIVA"/>

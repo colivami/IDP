@@ -29,7 +29,7 @@
   <property generated="never" lazy="false" name="fechaalta" type="string">
    <column length="30" name="FECHAALTA"/>
   </property>
-  <set fetch="select" inverse="true" lazy="true" name="inmuebles"
+  <set fetch="select" inverse="true" lazy="false" name="inmuebles"
    sort="unsorted" table="INMUEBLE">
    <key>
     <column name="ID_PROPIETARIO"/>

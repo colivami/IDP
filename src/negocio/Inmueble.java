@@ -13,10 +13,6 @@ import dao.InmuebleHome;
  */
 public class Inmueble implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private int idInmueble;
 	private Comunidad comunidad;
 	private Propietario propietario;
@@ -24,28 +20,27 @@ public class Inmueble implements java.io.Serializable {
 	private String escalera;
 	private String piso;
 	private String puerta;
-	private double porcentaje;
+	private Double porcentaje;
 	private Set reciboinmuebles = new HashSet(0);
 	
-	InmuebleHome IHome = new InmuebleHome();
-	private ArrayList<Inmueble> listaInmuebles = IHome.buscarInmuebles();
+//	InmuebleHome IHome = new InmuebleHome();
+//	private ArrayList<Inmueble> listaInmuebles = IHome.buscarInmuebles();
 
 
 	public Inmueble() { 
-		
 	}
 
-	public Inmueble(int idInmueble, String escalera, String piso, String puerta, double porcentaje) {
-		this.idInmueble = idInmueble;
-		this.escalera = escalera;
-		this.piso = piso;
-		this.puerta = puerta;
-		this.porcentaje = porcentaje;
-		this.comunidad.setIdComunidad(0);
-		
-		IHome.anyadirInmueble(this);
-
-	}
+//	public Inmueble(int idInmueble, String escalera, String piso, String puerta, Double porcentaje) {
+//		this.idInmueble = idInmueble;
+//		this.escalera = escalera;
+//		this.piso = piso;
+//		this.puerta = puerta;
+//		this.porcentaje = porcentaje;
+//		//this.comunidad.setIdComunidad(0);
+//		
+////		IHome.anyadirInmueble(this);
+//
+//	}
 
 	public Inmueble(int idInmueble) {
 		this.idInmueble = idInmueble;
@@ -122,11 +117,11 @@ public class Inmueble implements java.io.Serializable {
 		this.puerta = puerta;
 	}
 
-	public double getPorcentaje() {
+	public Double getPorcentaje() {
 		return this.porcentaje;
 	}
 
-	public void setPorcentaje(double porcentaje) {
+	public void setPorcentaje(Double porcentaje) {
 		this.porcentaje = porcentaje;
 	}
 
@@ -138,20 +133,5 @@ public class Inmueble implements java.io.Serializable {
 		this.reciboinmuebles = reciboinmuebles;
 	}
 
-	public ArrayList<Inmueble> getListaInmuebles() {
-		return listaInmuebles;
-	}
-
-	public void setListaInmuebles(ArrayList<Inmueble> listaInmuebles) {
-		this.listaInmuebles = listaInmuebles;
-	}
-
-	public InmuebleHome getIHome() {
-		return IHome;
-	}
-
-	public void setIHome(InmuebleHome iHome) {
-		IHome = iHome;
-	}
 
 }

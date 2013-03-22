@@ -11,7 +11,7 @@
   <property generated="never" lazy="false" name="fecha" type="string">
    <column length="30" name="FECHA"/>
   </property>
-  <set fetch="select" inverse="true" lazy="true" name="reciboinmuebles"
+  <set fetch="select" inverse="true" lazy="false" name="reciboinmuebles"
    sort="unsorted" table="RECIBOINMUEBLE">
    <key>
     <column name="ID_CARTA"/>
