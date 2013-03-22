@@ -99,7 +99,7 @@ public class mainGUI extends javax.swing.JFrame {
 	GestionInmueblesGUI    gi = new GestionInmueblesGUI();
 	GestionComunidadesGUI  gc = new GestionComunidadesGUI();
 	
-//	TablaInmueble TInmuebles = new TablaInmueble();
+	TablaInmueble TInmuebles = new TablaInmueble();
 
 	/**
 	* Auto-generated main method to display this JFrame

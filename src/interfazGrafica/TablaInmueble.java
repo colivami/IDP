@@ -21,7 +21,9 @@ public class TablaInmueble extends DefaultTableModel {
 				"Piso", 
 				"Puerta", 
 				"Porcentaje", 
-				"ID Comunidad"});
+				"ID Comunidad",
+				"ID Propietario",
+				"ID Datos Bancarios"});
 		
 		this.inmuebles = new InmuebleHome().buscarInmuebles();
 		for(Inmueble i : inmuebles) {
@@ -59,6 +61,8 @@ public class TablaInmueble extends DefaultTableModel {
 		v.add(i.getPuerta());
 		v.add(i.getPorcentaje());
 		v.add(i.getComunidad().getIdComunidad());
+		v.add(i.getPropietario().getIdPropietario());
+		v.add(i.getDatosbancarios().getIdDatosbancarios());
 		this.addRow(v);
 	}
 	
