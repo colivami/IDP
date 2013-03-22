@@ -97,7 +97,7 @@ public class mainGUI extends javax.swing.JFrame {
 	GestionInmueblesGUI    gi = new GestionInmueblesGUI();
 	GestionComunidadesGUI  gc = new GestionComunidadesGUI();
 	
-//	TablaInmueble TInmuebles = new TablaInmueble();
+	TablaInmueble TInmuebles = new TablaInmueble();
 
 	/**
 	* Auto-generated main method to display this JFrame
@@ -202,11 +202,11 @@ public class mainGUI extends javax.swing.JFrame {
 						});
 					}
 					{
-//						TableModel jT_InmueblesModel = TInmuebles;
-						TableModel jT_InmueblesModel = 
-							new DefaultTableModel(
-									new String[][] { { "One", "Two" }, { "Three", "Four" } },
-									new String[] { "Column 1", "Column 2" });
+						TableModel jT_InmueblesModel = TInmuebles;
+//						TableModel jT_InmueblesModel = 
+//							new DefaultTableModel(
+//									new String[][] { { "One", "Two" }, { "Three", "Four" } },
+//									new String[] { "Column 1", "Column 2" });
 						jT_Inmuebles = new JTable();
 						jT_Inmuebles.setModel(jT_InmueblesModel);
 					}

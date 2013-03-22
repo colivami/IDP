@@ -31,6 +31,7 @@
   <property generated="never" lazy="false" name="porcentaje" type="java.lang.Double">
    <column name="PORCENTAJE" precision="17" scale="0"/>
   </property>
+  <!--  
   <set fetch="select" inverse="true" lazy="false" name="reciboinmuebles"
    sort="unsorted" table="RECIBOINMUEBLE">
    <key>
@@ -38,5 +39,6 @@
    </key>
    <one-to-many class="negocio.Reciboinmueble"/>
   </set>
+  -->
  </class>
 </hibernate-mapping>

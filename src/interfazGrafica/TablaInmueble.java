@@ -63,9 +63,9 @@ public class TablaInmueble extends DefaultTableModel {
 		v.add(i.getPiso());
 		v.add(i.getPuerta());
 		v.add(i.getPorcentaje());
-		v.add(i.getComunidad().getIdComunidad());
-		v.add(i.getPropietario().getIdPropietario());
-		v.add(i.getDatosbancarios().getIdDatosbancarios());
+//		v.add(i.getComunidad().getIdComunidad());
+//		v.add(i.getPropietario().getIdPropietario());
+//		v.add(i.getDatosbancarios().getIdDatosbancarios());
 		this.addRow(v);
 	}
 	
