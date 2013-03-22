@@ -19,6 +19,10 @@ public class InmuebleHome {
 	private Session sesion = null;
 	private Transaction tx = null;
 
+	
+	public InmuebleHome() {
+	
+	}
 //
 //	private final SessionFactory sessionFactory = getSessionFactory();
 //

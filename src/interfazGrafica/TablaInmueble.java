@@ -11,6 +11,10 @@ import negocio.Inmueble;
 
 public class TablaInmueble extends DefaultTableModel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Inmueble> inmuebles;
 	private boolean inmVacio;
 	private boolean modified = false;

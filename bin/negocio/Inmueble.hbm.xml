@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 21-mar-2013 18:13:29 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping package="negocio">
+<hibernate-mapping>
  <class name="negocio.Inmueble" schema="PUBLIC" table="INMUEBLE">
   <id name="idInmueble" type="int">
    <column name="ID_INMUEBLE"/>

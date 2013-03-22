@@ -13,6 +13,10 @@ import dao.InmuebleHome;
  */
 public class Inmueble implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int idInmueble;
 	private Comunidad comunidad;
 	private Propietario propietario;
@@ -37,6 +41,7 @@ public class Inmueble implements java.io.Serializable {
 		this.piso = piso;
 		this.puerta = puerta;
 		this.porcentaje = porcentaje;
+		this.comunidad.setIdComunidad(0);
 		
 		IHome.anyadirInmueble(this);
 
@@ -139,6 +144,14 @@ public class Inmueble implements java.io.Serializable {
 
 	public void setListaInmuebles(ArrayList<Inmueble> listaInmuebles) {
 		this.listaInmuebles = listaInmuebles;
+	}
+
+	public InmuebleHome getIHome() {
+		return IHome;
+	}
+
+	public void setIHome(InmuebleHome iHome) {
+		IHome = iHome;
 	}
 
 }
