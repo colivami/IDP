@@ -1,17 +1,24 @@
 package interfazGrafica;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-
 import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
 
+import com.sun.xml.internal.ws.addressing.ProblemAction;
+
+import negocio.Comunidad;
+import negocio.Datosbancarios;
 import negocio.Inmueble;
+import negocio.Propietario;
+import dao.InmuebleHome;
 
 
 /**
@@ -45,6 +52,10 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 	* Auto-generated main method to display this JFrame
 	*/
 		
+	private Set reciboinmuebles = new HashSet();
+
+	InmuebleHome IHome = new InmuebleHome();
+	
 	public GestionInmueblesGUI() {
 		super();
 		initGUI();
@@ -205,10 +216,17 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 		String puerta = jTF_PuertaInmuebles.getText();
 		String piso = jTF_PisoInmuebles.getText();
 		int idInmueble = Integer.parseInt(jTF_IDInmuebles.getText());
-		double porcentaje = 1.0f;//Double.parseDouble(jTF_PorcentajeInmuebles.getText());
+
+		Datosbancarios datosbancarios = new Datosbancarios();
+		Comunidad comunidad = new Comunidad(); 
+		Propietario propietario = new Propietario();
+
+		comunidad.setIdComunidad(0);
+		propietario.setIdPropietario(0);
 		
-//		Inmueble i = new Inmueble(idInmueble,escalera,piso,puerta,porcentaje);
+		Inmueble i = new Inmueble(idInmueble, comunidad, propietario, datosbancarios, escalera, piso, puerta, (Double) 1.0, reciboinmuebles);
 		
+		IHome.anyadirInmueble(i);
 		this.dispose();
 	}
 	

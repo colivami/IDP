@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
-
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -27,7 +26,6 @@ import net.sf.jasperreports.engine.query.JRHibernateQueryExecuterFactory;
 import net.sf.jasperreports.view.JasperViewer;
 
 import org.hibernate.classic.Session;
-
 
 import dao.UtilidadHibernate;
 
@@ -99,7 +97,7 @@ public class mainGUI extends javax.swing.JFrame {
 	GestionInmueblesGUI    gi = new GestionInmueblesGUI();
 	GestionComunidadesGUI  gc = new GestionComunidadesGUI();
 	
-	TablaInmueble TInmuebles = new TablaInmueble();
+//	TablaInmueble TInmuebles = new TablaInmueble();
 
 	/**
 	* Auto-generated main method to display this JFrame
