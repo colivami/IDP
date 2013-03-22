@@ -2,6 +2,8 @@ package interfazGrafica;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -18,9 +20,16 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import negocio.Comunidad;
-import negocio.Inmueble;
-import negocio.Propietario;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.query.JRHibernateQueryExecuterFactory;
+import net.sf.jasperreports.view.JasperViewer;
+
+import org.hibernate.classic.Session;
+
+
+import dao.UtilidadHibernate;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -453,7 +462,17 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_InformeComunidadesActionPerformed(ActionEvent evt) {
-	
+		JasperPrint informe = null;
+		Session sesion= UtilidadHibernate.getSessionFactory().openSession();
+		HashMap parametros = new HashMap();
+		parametros.put(JRHibernateQueryExecuterFactory.PARAMETER_HIBERNATE_SESSION,sesion);
+		//parametros.put("genero","Comedia");
+		try {
+		String fileName= "report1.jasper";
+		informe= JasperFillManager.fillReport(fileName, parametros);
+		}
+		catch (JRException e){e.printStackTrace();}
+		JasperViewer.viewReport(informe,false);
 	}
 
 }
