@@ -5,6 +5,8 @@ import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
+import dao.InmuebleHome;
+
 import negocio.Inmueble;
 
 public class TablaInmueble extends DefaultTableModel {
@@ -13,14 +15,18 @@ public class TablaInmueble extends DefaultTableModel {
 	private boolean inmVacio;
 	private boolean modified = false;
 
-	public TablaInmueble(ArrayList<Inmueble> inmuebles) {
+	public TablaInmueble() {
 		super(null,new String[]{"ID Inmueble",
 				"Escalera", 
 				"Piso", 
 				"Puerta", 
 				"Porcentaje", 
 				"ID Comunidad"});
-		this.inmuebles = inmuebles;
+		
+		this.inmuebles = new InmuebleHome().buscarInmuebles();
+		for(Inmueble i : inmuebles) {
+			addToTabla(i);
+		}
 		inmVacio = false;
 	}
 	

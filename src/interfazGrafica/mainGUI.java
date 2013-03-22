@@ -84,16 +84,12 @@ public class mainGUI extends javax.swing.JFrame {
 	private JMenuItem newFileMenuItem;
 	private JMenu jMenu3;
 	private JMenuBar jMenuBar1;
-
-	Inmueble    inm = new Inmueble();
-	Comunidad   com = new Comunidad();
-	Propietario pro = new Propietario();
 	
  	GestionPropietariosGUI gp = new GestionPropietariosGUI();
 	GestionInmueblesGUI    gi = new GestionInmueblesGUI();
 	GestionComunidadesGUI  gc = new GestionComunidadesGUI();
 	
-	TablaInmueble TInmuebles = new TablaInmueble(inm.getListaInmuebles());
+	TablaInmueble TInmuebles = new TablaInmueble();
 
 	/**
 	* Auto-generated main method to display this JFrame
