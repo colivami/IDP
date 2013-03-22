@@ -219,11 +219,11 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 		Datosbancarios datosbancarios = new Datosbancarios();
 		Comunidad comunidad = new Comunidad(); 
 		Propietario propietario = new Propietario();
-
-		comunidad.setIdComunidad(0);
-		propietario.setIdPropietario(0);
 		
 		Inmueble i = new Inmueble(idInmueble, comunidad, propietario, datosbancarios, escalera, piso, puerta, (Double) 1.0, reciboinmuebles);
+		i.getComunidad().setIdComunidad(0);
+		i.getPropietario().setIdPropietario(0);
+		i.getDatosbancarios().setIdDatosbancarios(0);
 		
 		new InmuebleHome().anyadirInmueble(i);
 		this.dispose();
