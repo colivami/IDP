@@ -8,6 +8,7 @@
    <column name="ID_INMUEBLE"/>
    <generator class="assigned"/>
   </id>
+  <!-- 
   <many-to-one class="negocio.Comunidad" fetch="select" name="comunidad">
    <column name="ID_COMUNIDAD"/>
   </many-to-one>
@@ -17,6 +18,7 @@
   <many-to-one class="negocio.Datosbancarios" fetch="select" name="datosbancarios">
    <column name="ID_DATOSBANCARIOS"/>
   </many-to-one>
+   -->
   <property generated="never" lazy="false" name="escalera" type="string">
    <column length="30" name="ESCALERA"/>
   </property>

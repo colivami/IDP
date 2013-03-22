@@ -54,7 +54,6 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 		
 	private Set reciboinmuebles = new HashSet();
 
-	InmuebleHome IHome = new InmuebleHome();
 	
 	public GestionInmueblesGUI() {
 		super();
@@ -226,7 +225,7 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 		
 		Inmueble i = new Inmueble(idInmueble, comunidad, propietario, datosbancarios, escalera, piso, puerta, (Double) 1.0, reciboinmuebles);
 		
-		IHome.anyadirInmueble(i);
+		new InmuebleHome().anyadirInmueble(i);
 		this.dispose();
 	}
 	

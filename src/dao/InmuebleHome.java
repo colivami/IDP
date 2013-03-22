@@ -104,6 +104,7 @@ public class InmuebleHome {
 		tx = sesion.beginTransaction();
 		sesion.save(i);
 		tx.commit();
+		sesion.close();
 	}
 	
 	public ArrayList<Inmueble> buscarInmuebles() {
