@@ -72,6 +72,7 @@ public class mainGUI extends javax.swing.JFrame {
 	private JMenuItem closeFileMenuItem;
 	private JMenuItem saveAsMenuItem;
 	private JMenuItem saveMenuItem;
+	private JButton jB_InformeComunidades;
 	private JTable jT_Comunidades;
 	private JTable jT_Inmuebles;
 	private JTable jT_Propietarios;
@@ -89,7 +90,7 @@ public class mainGUI extends javax.swing.JFrame {
 	GestionInmueblesGUI    gi = new GestionInmueblesGUI();
 	GestionComunidadesGUI  gc = new GestionComunidadesGUI();
 	
-	TablaInmueble TInmuebles = new TablaInmueble();
+//	TablaInmueble TInmuebles = new TablaInmueble();
 
 	/**
 	* Auto-generated main method to display this JFrame
@@ -194,11 +195,11 @@ public class mainGUI extends javax.swing.JFrame {
 						});
 					}
 					{
-						TableModel jT_InmueblesModel = TInmuebles;
-//						TableModel jT_InmueblesModel = 
-//							new DefaultTableModel(
-//									new String[][] { { "One", "Two" }, { "Three", "Four" } },
-//									new String[] { "Column 1", "Column 2" });
+//						TableModel jT_InmueblesModel = TInmuebles;
+						TableModel jT_InmueblesModel = 
+							new DefaultTableModel(
+									new String[][] { { "One", "Two" }, { "Three", "Four" } },
+									new String[] { "Column 1", "Column 2" });
 						jT_Inmuebles = new JTable();
 						jT_Inmuebles.setModel(jT_InmueblesModel);
 					}
@@ -265,6 +266,15 @@ public class mainGUI extends javax.swing.JFrame {
 						jT_Comunidades.setModel(jT_ComunidadesModel);
 					}
 					{
+						jB_InformeComunidades = new JButton();
+						jB_InformeComunidades.setText("Informe");
+						jB_InformeComunidades.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_InformeComunidadesActionPerformed(evt);
+							}
+						});
+					}
+					{
 						jBBajaComunidad = new JButton();
 						jBBajaComunidad.setText("Dar de Baja");
 						jBBajaComunidad.addActionListener(new ActionListener() {
@@ -288,20 +298,22 @@ public class mainGUI extends javax.swing.JFrame {
 						.addGroup(jF_ComunidadesLayout.createParallelGroup()
 						    .addComponent(jBBajaComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
 						    .addComponent(jBModificarComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jBAltaComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						    .addComponent(jBAltaComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jB_InformeComunidades, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
 						.addContainerGap());
-					jF_ComunidadesLayout.setVerticalGroup(jF_ComunidadesLayout.createParallelGroup()
-						.addGroup(GroupLayout.Alignment.LEADING, jF_ComunidadesLayout.createSequentialGroup()
-						    .addComponent(jT_Comunidades, 0, 184, Short.MAX_VALUE)
-						    .addContainerGap(310, 310))
-						.addGroup(GroupLayout.Alignment.LEADING, jF_ComunidadesLayout.createSequentialGroup()
-						    .addGap(12)
-						    .addComponent(jBAltaComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-						    .addComponent(jBBajaComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-						    .addComponent(jBModificarComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						    .addContainerGap(310, Short.MAX_VALUE)));
+					jF_ComunidadesLayout.setVerticalGroup(jF_ComunidadesLayout.createSequentialGroup()
+						.addGroup(jF_ComunidadesLayout.createParallelGroup()
+						    .addComponent(jT_Comunidades, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
+						    .addGroup(GroupLayout.Alignment.LEADING, jF_ComunidadesLayout.createSequentialGroup()
+						        .addGap(12)
+						        .addComponent(jBAltaComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						        .addComponent(jBBajaComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						        .addComponent(jBModificarComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
+						.addGap(52)
+						.addComponent(jB_InformeComunidades, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(208, Short.MAX_VALUE));
 				}
 			}
 			this.setSize(800, 600);
@@ -438,6 +450,10 @@ public class mainGUI extends javax.swing.JFrame {
 	
 	private void jBModificarInmuebleActionPerformed(ActionEvent evt) {
 		gi.setVisible(true);
+	}
+	
+	private void jB_InformeComunidadesActionPerformed(ActionEvent evt) {
+	
 	}
 
 }
