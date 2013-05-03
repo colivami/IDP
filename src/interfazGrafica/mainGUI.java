@@ -19,6 +19,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import negocio.Inmueble;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -457,6 +458,7 @@ public class mainGUI extends javax.swing.JFrame {
 		InmuebleHome iHome = new InmuebleHome();
 		int row = (int) jT_Inmuebles.getSelectedRow(); 
 		if (row == -1){
+			// mostrar error
 		}
 		else{
 			int id = (int) TInmuebles.getValueAt(row, 0);
@@ -466,7 +468,16 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jBModificarInmuebleActionPerformed(ActionEvent evt) {
-		gi.setVisible(true);
+		int row = (int) jT_Inmuebles.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else {
+			Inmueble i = new Inmueble();
+			// Cogemos datos
+		}
+		
+		// Abrimos la nueva ventana con los datos cargados  ->   gi.setVisible(true);
 	}
 	
 	private void jB_InformeComunidadesActionPerformed(ActionEvent evt) {

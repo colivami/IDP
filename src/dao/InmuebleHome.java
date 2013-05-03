@@ -116,6 +116,7 @@ public class InmuebleHome {
 		return listaInmuebles;
 	}
 	
+	
 	public void borrarInmueble(int id) {
 		sesion = UtilidadHibernate.getSessionFactory().openSession();
 		tx = sesion.beginTransaction();
