@@ -111,7 +111,17 @@ public class InmuebleHome {
 		sesion = UtilidadHibernate.getSessionFactory().openSession();
 		tx = sesion.beginTransaction();
 		ArrayList<Inmueble> listaInmuebles = (ArrayList<Inmueble>) sesion.createQuery("from Inmueble").list();
-		sesion.getTransaction().commit(); 
+		sesion.getTransaction().commit();
+		sesion.close();
 		return listaInmuebles;
+	}
+	
+	public void borrarInmueble(int id) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Inmueble i = (Inmueble) sesion.get(Inmueble.class, new Integer(id));
+		sesion.delete(i);
+		tx.commit();
+		sesion.close();
 	}
 }

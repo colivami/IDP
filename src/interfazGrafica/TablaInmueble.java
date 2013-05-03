@@ -5,9 +5,8 @@ import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
-import dao.InmuebleHome;
-
 import negocio.Inmueble;
+import dao.InmuebleHome;
 
 public class TablaInmueble extends DefaultTableModel {
 
@@ -15,7 +14,8 @@ public class TablaInmueble extends DefaultTableModel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Inmueble> inmuebles = new InmuebleHome().buscarInmuebles();;
+	private InmuebleHome iHome = new InmuebleHome();
+	private ArrayList<Inmueble> inmuebles = iHome.buscarInmuebles();
 	private boolean inmVacio;
 	private boolean modified = false;
 
@@ -69,7 +69,9 @@ public class TablaInmueble extends DefaultTableModel {
 		this.addRow(v);
 	}
 	
-	private void addInmueble(Inmueble i) {
+	public void addInmueble(Inmueble i) {
 		this.addToTabla(i);
+		iHome.anyadirInmueble(i);
 	}
+
 }

@@ -275,6 +275,9 @@
 <table-figure refid="15d5300:13d4984dcc5:-7ff0" x="41" y="454"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fe9" x="246" y="320"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fe0" x="384" y="73"/>
+<fk-figure refid="11bcf22:13d8dc9a476:-7fab">
+<target-terminal x="144" y="49"/>
+</fk-figure>
 <table-figure refid="15d5300:13d4984dcc5:-7fd7" x="665" y="5"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fd0" x="794" y="172"/>
 <table-figure refid="15d5300:13d4984dcc5:-7fc4" x="508" y="312"/>

@@ -12,13 +12,10 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
-import com.sun.xml.internal.ws.addressing.ProblemAction;
-
 import negocio.Comunidad;
 import negocio.Datosbancarios;
 import negocio.Inmueble;
 import negocio.Propietario;
-import dao.InmuebleHome;
 
 
 /**
@@ -53,11 +50,12 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 	*/
 		
 	private Set reciboinmuebles = new HashSet();
-
+	TablaInmueble tInmueble;
 	
-	public GestionInmueblesGUI() {
+	public GestionInmueblesGUI(TablaInmueble ti) {
 		super();
 		initGUI();
+		tInmueble = ti;
 	}
 	
 	private void initGUI() {
@@ -225,7 +223,7 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 		i.getPropietario().setIdPropietario(0);
 		i.getDatosbancarios().setIdDatosbancarios(0);
 		
-		new InmuebleHome().anyadirInmueble(i);
+		tInmueble.addInmueble(i);
 		this.dispose();
 	}
 	

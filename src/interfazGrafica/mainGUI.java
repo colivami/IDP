@@ -27,6 +27,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 import org.hibernate.classic.Session;
 
+import dao.InmuebleHome;
 import dao.UtilidadHibernate;
 
 /**
@@ -93,11 +94,12 @@ public class mainGUI extends javax.swing.JFrame {
 	private JMenu jMenu3;
 	private JMenuBar jMenuBar1;
 	
+	TablaInmueble TInmuebles = new TablaInmueble();
+
  	GestionPropietariosGUI gp = new GestionPropietariosGUI();
-	GestionInmueblesGUI    gi = new GestionInmueblesGUI();
+	GestionInmueblesGUI    gi = new GestionInmueblesGUI(TInmuebles);
 	GestionComunidadesGUI  gc = new GestionComunidadesGUI();
 	
-	TablaInmueble TInmuebles = new TablaInmueble();
 
 	/**
 	* Auto-generated main method to display this JFrame
@@ -452,7 +454,15 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jBBajaInmuebleActionPerformed(ActionEvent evt) {
-		
+		InmuebleHome iHome = new InmuebleHome();
+		int row = (int) jT_Inmuebles.getSelectedRow(); 
+		if (row == -1){
+		}
+		else{
+			int id = (int) TInmuebles.getValueAt(row, 0);
+			iHome.borrarInmueble(id);
+			TInmuebles.removeRow(row);
+		}
 	}
 	
 	private void jBModificarInmuebleActionPerformed(ActionEvent evt) {

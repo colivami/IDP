@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="06cb2620-b0a7-4576-a067-2305d91d47b8">
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM INMUEBLE]]>
+	</queryString>
+	<field name="ID_INMUEBLE" class="java.lang.Integer"/>
+	<field name="ESCALERA" class="java.lang.String"/>
+	<field name="PISO" class="java.lang.String"/>
+	<field name="PUERTA" class="java.lang.String"/>
+	<field name="PORCENTAJE" class="java.lang.Double"/>
+	<field name="ID_COMUNIDAD" class="java.lang.Integer"/>
+	<field name="ID_PROPIETARIO" class="java.lang.Integer"/>
+	<field name="ID_DATOSBANCARIOS" class="java.lang.Integer"/>
+	<group name="ID_COMUNIDAD">
+		<groupExpression><![CDATA[$F{ID_COMUNIDAD}]]></groupExpression>
+		<groupHeader>
+			<band height="27">
+				<frame>
+					<reportElement uuid="ecf227d0-ef85-443f-8f53-0a3cf169a607" mode="Opaque" x="0" y="3" width="721" height="24" forecolor="#B89F7D" backcolor="#000000"/>
+					<textField isStretchWithOverflow="true">
+						<reportElement uuid="0a68e6ad-f6f5-42b6-8f33-230a293ee900" style="SubTitle" x="2" y="0" width="695" height="24" forecolor="#FFFFFF"/>
+						<textElement>
+							<font isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{ID_COMUNIDAD}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<rectangle>
+					<reportElement uuid="77af65c7-2f62-4570-bb86-fc35dae79aff" x="725" y="3" width="77" height="24" backcolor="#666666"/>
+					<graphicElement>
+						<pen lineWidth="0.0"/>
+					</graphicElement>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="102" splitType="Stretch">
+			<image>
+				<reportElement uuid="216dcd63-20fb-44c7-80e8-f68bb1297d90" x="725" y="0" width="77" height="102"/>
+				<imageExpression><![CDATA["cherry.jpg"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement uuid="5287d5cb-b7b8-47f0-9a89-4d49e77ee2e4" mode="Opaque" x="0" y="0" width="721" height="66" backcolor="#000000"/>
+				<staticText>
+					<reportElement uuid="90bab933-bfe9-4777-9d76-fd856b44f166" style="Title" x="0" y="0" width="370" height="66"/>
+					<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Cherry Title]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="71a12f9f-3a72-4c32-9e36-bc87d2968e90" style="SubTitle" x="370" y="37" width="316" height="29"/>
+					<textElement textAlignment="Right">
+						<font size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Cherry SubTitle]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement uuid="055470aa-946b-476a-8282-084b4a1e53a8" mode="Opaque" x="0" y="70" width="721" height="32" forecolor="#000000" backcolor="#CC0000"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="c543e8f6-e721-4b33-ac72-0ebf693cb59b" x="553" y="12" width="144" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d09d3f10-093d-4baa-a496-29a1c809b195" style="Column header" x="0" y="0" width="113" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[ID_INMUEBLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b7d2f601-ef2d-443e-b014-27da048f3a78" style="Column header" x="113" y="0" width="113" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[ESCALERA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6e071947-07e5-4ff9-a895-5ca5a8c1a960" style="Column header" x="226" y="0" width="113" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[PISO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3ecb6e6e-4290-4662-82a5-5987a1740c2c" style="Column header" x="339" y="0" width="113" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[PUERTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b6e0d773-1a43-4e60-8fdf-cc39cd77f52d" style="Column header" x="452" y="0" width="113" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[PORCENTAJE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6ea037b8-ceec-4363-90cc-0fc9ac59c4f7" style="Column header" x="565" y="0" width="113" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[ID_PROPIETARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="28f5e38d-9e3e-4f1c-aeef-284abeff0286" style="Column header" x="678" y="0" width="113" height="18" forecolor="#000000"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[ID_DATOSBANCARIOS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement uuid="1f7982b9-b203-43a0-b095-cbf19ff8b9fd" style="Row" mode="Opaque" x="0" y="0" width="797" height="18"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="dc75cefb-71dc-4184-857f-c802b4a8de37" style="Detail" positionType="Float" x="0" y="0" width="113" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ID_INMUEBLE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="57600e07-419b-49bc-bccf-da29059dfa64" style="Detail" positionType="Float" x="113" y="0" width="113" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ESCALERA}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="18837fe7-dd4a-4012-b2ab-685cb2b28a14" style="Detail" positionType="Float" x="226" y="0" width="113" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PISO}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="27076ba6-bd36-4e51-af5f-437783b05203" style="Detail" positionType="Float" x="339" y="0" width="113" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PUERTA}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="8aac6f6b-1c40-4be6-b358-f58ab59bf6a0" style="Detail" positionType="Float" x="452" y="0" width="113" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{PORCENTAJE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="6a7c450b-ae78-4988-8840-d17318231793" style="Detail" positionType="Float" x="565" y="0" width="113" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ID_PROPIETARIO}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="e675f46d-5bb1-4a29-a66f-f5c66a8cbd4a" style="Detail" positionType="Float" x="678" y="0" width="113" height="18"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ID_DATOSBANCARIOS}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement uuid="db101a4e-aec8-45fc-8b2b-656140b2ed4c" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="d9dcfde7-331c-4154-b3a3-e7c9c55f4f1f" mode="Opaque" x="0" y="0" width="802" height="25" forecolor="#D0B48E" backcolor="#000000"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="592e1d24-6a8f-4c76-9232-faf60b44103f" style="Column header" x="757" y="3" width="40" height="20" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="6ccb5293-74b1-4677-b6fd-281f5132e6ee" style="Column header" x="677" y="3" width="80" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="04b908c9-6cc9-478c-9d46-5eddfcba6767" style="Column header" x="2" y="3" width="197" height="20" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
