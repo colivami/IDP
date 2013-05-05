@@ -28,6 +28,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 import org.hibernate.classic.Session;
 
+import dao.ComunidadHome;
 import dao.InmuebleHome;
 import dao.UtilidadHibernate;
 
@@ -96,10 +97,11 @@ public class mainGUI extends javax.swing.JFrame {
 	private JMenuBar jMenuBar1;
 	
 	TablaInmueble TInmuebles = new TablaInmueble();
+	TablaComunidad TComunidades = new TablaComunidad();
 
  	GestionPropietariosGUI gp = new GestionPropietariosGUI();
 	GestionInmueblesGUI    gi = new GestionInmueblesGUI(TInmuebles);
-	GestionComunidadesGUI  gc = new GestionComunidadesGUI();
+	GestionComunidadesGUI  gc = new GestionComunidadesGUI(TComunidades);
 	
 
 	/**
@@ -268,10 +270,11 @@ public class mainGUI extends javax.swing.JFrame {
 						});
 					}
 					{
-						TableModel jT_ComunidadesModel = 
-								new DefaultTableModel(
-										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-										new String[] { "Column 1", "Column 2" });
+						TableModel jT_ComunidadesModel = TComunidades;
+//						TableModel jT_ComunidadesModel =
+//								new DefaultTableModel(
+//										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+//										new String[] { "Column 1", "Column 2" });
 						jT_Comunidades = new JTable();
 						jT_Comunidades.setModel(jT_ComunidadesModel);
 					}
@@ -439,7 +442,16 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jBBajaComunidadActionPerformed(ActionEvent evt) {
-
+		ComunidadHome cHome = new ComunidadHome();
+		int row = (int) jT_Comunidades.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else{
+			int id = (int) TComunidades.getValueAt(row, 0);
+			cHome.borrarComunidad(id);
+			TComunidades.removeRow(row);
+		}
 	}
 	
 	private void jBModificarComunidadActionPerformed(ActionEvent evt) {

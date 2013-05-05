@@ -1,16 +1,19 @@
 package interfazGrafica;
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-
 import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
+
+import negocio.Comunidad;
+import negocio.Factura;
+import negocio.Inmueble;
+import negocio.Notainformativa;
 
 
 /**
@@ -42,10 +45,13 @@ public class GestionComunidadesGUI extends javax.swing.JFrame {
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
+	TablaComunidad tComunidad;
 		
-	public GestionComunidadesGUI() {
+	public GestionComunidadesGUI(TablaComunidad tc) {
 		super();
 		initGUI();
+		tComunidad = tc;
+		
 	}
 	
 	private void initGUI() {
@@ -183,7 +189,22 @@ public class GestionComunidadesGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_GuardarComunidadesActionPerformed(ActionEvent evt) {
-
+		String calle = jTF_CalleComunidades.getText();
+		int maxrecibospendientes = Integer.parseInt(jTF_MaxRecibosPendientesComunidades.getText());
+		String estado = jTF_EstadoComunidades.getText();
+		int idComunidad = Integer.parseInt(jTF_IDComunidades.getText());
+		int idInmueblePresidente = Integer.parseInt(jTF_IDPresidenteComunidades.getText());
+		
+		
+		Inmueble inmuebles = new Inmueble();
+		Factura facturas = new Factura();
+		Notainformativa notainformativas = new Notainformativa();
+		
+		Comunidad c = new Comunidad(idComunidad, calle, maxrecibospendientes, estado, idInmueblePresidente, inmuebles, facturas, notainformativas);
+		
+		
+		tComunidad.addComunidad(c);
+		this.dispose();
 	}
 	
 	private void jB_CancelarComunidadesActionPerformed(ActionEvent evt) {

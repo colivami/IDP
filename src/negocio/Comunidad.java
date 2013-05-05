@@ -16,9 +16,9 @@ public class Comunidad implements java.io.Serializable {
 	private Integer maxrecibospendientes;
 	private String estado;
 	private Integer idInmueblePresidente;
-	private Set inmuebles = new HashSet(0);
-	private Set facturas = new HashSet(0);
-	private Set notainformativas = new HashSet(0);
+	private Inmueble inmuebles = new Inmueble();
+	private Factura facturas = new Factura();
+	private Notainformativa notainformativas = new Notainformativa();
 
 	public Comunidad() {
 	}
@@ -29,8 +29,8 @@ public class Comunidad implements java.io.Serializable {
 
 	public Comunidad(Comunidad comunidad, String calle,
 			Integer maxrecibospendientes, String estado,
-			Integer idInmueblePresidente, Set inmuebles, Set facturas,
-			Set notainformativas) {
+			Integer idInmueblePresidente, Inmueble inmuebles, Factura facturas,
+			Notainformativa notainformativas) {
 		this.comunidad = comunidad;
 		this.calle = calle;
 		this.maxrecibospendientes = maxrecibospendientes;
@@ -83,21 +83,6 @@ public class Comunidad implements java.io.Serializable {
 		this.idInmueblePresidente = idInmueblePresidente;
 	}
 
-	public Set getInmuebles() {
-		return this.inmuebles;
-	}
-
-	public void setInmuebles(Set inmuebles) {
-		this.inmuebles = inmuebles;
-	}
-
-	public Set getFacturas() {
-		return this.facturas;
-	}
-
-	public void setFacturas(Set facturas) {
-		this.facturas = facturas;
-	}
 
 	public Comunidad getComunidad() {
 		return this.comunidad;
@@ -107,12 +92,29 @@ public class Comunidad implements java.io.Serializable {
 		this.comunidad = comunidad;
 	}
 
-	public Set getNotainformativas() {
-		return this.notainformativas;
+	public Inmueble getInmuebles() {
+		return inmuebles;
 	}
 
-	public void setNotainformativas(Set notainformativas) {
+	public void setInmuebles(Inmueble inmuebles) {
+		this.inmuebles = inmuebles;
+	}
+
+	public Factura getFacturas() {
+		return facturas;
+	}
+
+	public void setFacturas(Factura facturas) {
+		this.facturas = facturas;
+	}
+
+	public Notainformativa getNotainformativas() {
+		return notainformativas;
+	}
+
+	public void setNotainformativas(Notainformativa notainformativas) {
 		this.notainformativas = notainformativas;
 	}
+
 
 }

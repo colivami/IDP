@@ -35,12 +35,11 @@ public class TablaInmueble extends DefaultTableModel {
 		inmVacio = false;
 	}
 	
-	public Inmueble recuperarInmueblePorPosicion(int row) {
-		Inmueble i = new Inmueble();
-		
-		
-		return i;
-	}
+//	public Inmueble recuperarInmueblePorPosicion(int row) {
+//		iHome.
+//		
+//		return i;
+//	}
 	
 	public boolean isModified() {
 		return modified;
