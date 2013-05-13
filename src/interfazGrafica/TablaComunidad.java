@@ -1,12 +1,10 @@
 package interfazGrafica;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
 import negocio.Comunidad;
-import negocio.Inmueble;
 import dao.ComunidadHome;
 
 public class TablaComunidad extends DefaultTableModel {
@@ -16,18 +14,10 @@ public class TablaComunidad extends DefaultTableModel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private ComunidadHome cHome = new ComunidadHome();
-	private ArrayList<Comunidad> comunidades = cHome.buscarComunidades();
+//	private ArrayList<Comunidad> comunidades = cHome.buscarComunidades();
 	
 	public TablaComunidad() {
-		super(null,new String[]{"ID Comunidad",
-				"Calle", 
-				"MaxRecibosPendientes", 
-				"Estado", 
-				"ID Inmueble Presidente"});
-		
-		for(Comunidad i : comunidades) {
-			addToTabla(i);
-		}
+		super(null,new String[]{"ID Comunidad", "Calle", "MaxRecibosPendientes", "Estado", "ID Inmueble Presidente"});
 	}
 	
 //	
@@ -52,7 +42,7 @@ public class TablaComunidad extends DefaultTableModel {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private void addToTabla(Comunidad c){
+	public void addToTabla(Comunidad c){
 		Vector v=new Vector();
 		v.add(c.getIdComunidad());
 		v.add(c.getCalle());

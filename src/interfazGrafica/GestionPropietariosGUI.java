@@ -1,7 +1,7 @@
 package interfazGrafica;
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -9,9 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-
 import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
+
+import negocio.Comunidad;
+import negocio.Datosbancarios;
+import negocio.Inmueble;
+import negocio.Propietario;
 
 
 /**
@@ -40,8 +43,8 @@ public class GestionPropietariosGUI extends javax.swing.JFrame {
 	private JTextField jTF_NIFPropietario;
 	private JTextField jTF_IDPropietario;
 	private JLabel jL_ObservacionesPropietario;
-	private JButton jB_GuardarComunidades;
-	private JButton jB_CancelarComunidades;
+	private JButton jB_GuardarPropietarioes;
+	private JButton jB_CancelarPropietarioes;
 	private JLabel jL_TelefonoPropietario;
 	private JLabel jL_PoblacionPropietario;
 	private JLabel jL_DireccionPropietario;
@@ -51,10 +54,12 @@ public class GestionPropietariosGUI extends javax.swing.JFrame {
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
+	TablaPropietario tPropietario;
 		
-	public GestionPropietariosGUI() {
+	public GestionPropietariosGUI(TablaPropietario tp) {
 		super();
 		initGUI();
+		tPropietario = tp;
 	}
 	
 	private void initGUI() {
@@ -123,20 +128,20 @@ public class GestionPropietariosGUI extends javax.swing.JFrame {
 				jL_ObservacionesPropietario.setText("Observaciones");
 			}
 			{
-				jB_CancelarComunidades = new JButton();
-				jB_CancelarComunidades.setText("Cancelar");
-				jB_CancelarComunidades.addActionListener(new ActionListener() {
+				jB_CancelarPropietarioes = new JButton();
+				jB_CancelarPropietarioes.setText("Cancelar");
+				jB_CancelarPropietarioes.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
-						jB_CancelarComunidadesActionPerformed(evt);
+						jB_CancelarPropietarioesActionPerformed(evt);
 					}
 				});
 			}
 			{
-				jB_GuardarComunidades = new JButton();
-				jB_GuardarComunidades.setText("Guardar");
-				jB_GuardarComunidades.addActionListener(new ActionListener() {
+				jB_GuardarPropietarioes = new JButton();
+				jB_GuardarPropietarioes.setText("Guardar");
+				jB_GuardarPropietarioes.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
-						jB_GuardarComunidadesActionPerformed(evt);
+						jB_GuardarPropietarioesActionPerformed(evt);
 					}
 				});
 			}
@@ -187,8 +192,8 @@ public class GestionPropietariosGUI extends javax.swing.JFrame {
 					    .addComponent(jTA_ObservacionesPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
 					.addGap(0, 19, GroupLayout.PREFERRED_SIZE)
 					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-					    .addComponent(jB_CancelarComunidades, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					    .addComponent(jB_GuardarComunidades, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
+					    .addComponent(jB_CancelarPropietarioes, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					    .addComponent(jB_GuardarPropietarioes, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(17, 17));
 				thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
 					.addContainerGap()
@@ -213,13 +218,13 @@ public class GestionPropietariosGUI extends javax.swing.JFrame {
 					            .addComponent(jTF_IDPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)))
 					    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 					        .addGap(48)
-					        .addComponent(jB_GuardarComunidades, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)))
+					        .addComponent(jB_GuardarPropietarioes, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)))
 					.addGap(37)
 					.addGroup(thisLayout.createParallelGroup()
 					    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 					        .addGroup(thisLayout.createParallelGroup()
 					            .addGroup(thisLayout.createSequentialGroup()
-					                .addComponent(jB_CancelarComunidades, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+					                .addComponent(jB_CancelarPropietarioes, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
 					                .addGap(0, 0, Short.MAX_VALUE))
 					            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 					                .addComponent(jLabel1, 0, 83, Short.MAX_VALUE)
@@ -240,11 +245,32 @@ public class GestionPropietariosGUI extends javax.swing.JFrame {
 		}
 	}
 	
-	private void jB_GuardarComunidadesActionPerformed(ActionEvent evt) {
+	private void jB_GuardarPropietarioesActionPerformed(ActionEvent evt) {
+		String nif = jTF_NIFPropietario.getText();
+		String direccion = jTF_DireccionPropietario.getText();
+		String fechaalta = jTF_FechaAltaPropietario.getText();
+		String nombre = jTF_NombrePropietario.getText();
+		String poblacion = jTF_PoblacionPropietario.getText();
+		String telefono= jTF_TelefonoPropietario.getText();
+		String observaciones = jTA_ObservacionesPropietario.getText();
 
+		int idPropietario= Integer.parseInt(jTF_IDPropietario.getText());
+
+		Propietario p = new Propietario();
+		p.setDireccion(direccion);
+		p.setFechaalta(fechaalta);
+		p.setIdPropietario(idPropietario);
+		p.setNif(nif);
+		p.setNombre(nombre);
+		p.setPoblacion(poblacion);
+		p.setObservaciones(observaciones);
+		p.setTelefono(telefono);
+		
+		tPropietario.addPropietario(p);
+		this.dispose();
 	}
 	
-	private void jB_CancelarComunidadesActionPerformed(ActionEvent evt) {
+	private void jB_CancelarPropietarioesActionPerformed(ActionEvent evt) {
 		this.dispose();
 	}
 

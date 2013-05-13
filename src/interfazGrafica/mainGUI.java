@@ -16,10 +16,11 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import negocio.Comunidad;
 import negocio.Inmueble;
+import negocio.Propietario;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -30,6 +31,7 @@ import org.hibernate.classic.Session;
 
 import dao.ComunidadHome;
 import dao.InmuebleHome;
+import dao.PropietarioHome;
 import dao.UtilidadHibernate;
 
 /**
@@ -98,8 +100,9 @@ public class mainGUI extends javax.swing.JFrame {
 	
 	TablaInmueble TInmuebles = new TablaInmueble();
 	TablaComunidad TComunidades = new TablaComunidad();
+	TablaPropietario TPropietarios = new TablaPropietario();
 
- 	GestionPropietariosGUI gp = new GestionPropietariosGUI();
+ 	GestionPropietariosGUI gp = new GestionPropietariosGUI(TPropietarios);
 	GestionInmueblesGUI    gi = new GestionInmueblesGUI(TInmuebles);
 	GestionComunidadesGUI  gc = new GestionComunidadesGUI(TComunidades);
 	
@@ -120,6 +123,15 @@ public class mainGUI extends javax.swing.JFrame {
 	public mainGUI() {
 		super();
 		initGUI();
+		
+		for(Comunidad c : new ComunidadHome().buscarComunidades()) {
+			TComunidades.addToTabla(c);
+		}
+		
+		
+		for(Propietario p : new PropietarioHome().buscarPropietarios()) {
+			TPropietarios.addToTabla(p);
+		}
 	}
 	
 	private void initGUI() {
@@ -163,10 +175,11 @@ public class mainGUI extends javax.swing.JFrame {
 						});
 					}
 					{
-						TableModel jT_PropietariosModel = 
-								new DefaultTableModel(
-										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-										new String[] { "Column 1", "Column 2" });
+						TableModel jT_PropietariosModel = TPropietarios;
+//						TableModel jT_PropietariosModel = 
+//								new DefaultTableModel(
+//										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+//										new String[] { "Column 1", "Column 2" });
 						jT_Propietarios = new JTable();
 						jT_Propietarios.setModel(jT_PropietariosModel);
 					}
@@ -426,7 +439,16 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jBBajaPropietarioActionPerformed(ActionEvent evt) {
-
+		PropietarioHome pHome = new PropietarioHome();
+		int row = (int) jT_Propietarios.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else{
+			int id = (int) TPropietarios.getValueAt(row, 0);
+			pHome.borrarPropietario(id);
+			TPropietarios.removeRow(row);
+		}
 	}
 	
 	private void jBModificarPropietarioActionPerformed(ActionEvent evt) {
@@ -485,8 +507,17 @@ public class mainGUI extends javax.swing.JFrame {
 			// mostrar error
 		}
 		else {
+			InmuebleHome iHome = new InmuebleHome();
+
 			Inmueble i = new Inmueble();
-			// Cogemos datos
+			i.setIdInmueble(Integer.parseInt(TInmuebles.getValueAt(row, 0).toString()));
+			i.setEscalera(TInmuebles.getValueAt(row, 1).toString());
+			i.setPiso(TInmuebles.getValueAt(row, 2).toString());
+			i.setPuerta(TInmuebles.getValueAt(row, 3).toString());
+			i.setPorcentaje(Double.parseDouble(TInmuebles.getValueAt(row, 4).toString()));
+			
+			GestionInmueblesGUI gi_mod = new GestionInmueblesGUI(TInmuebles, row,iHome, i);
+			gi_mod.setVisible(true);
 		}
 		
 		// Abrimos la nueva ventana con los datos cargados  ->   gi.setVisible(true);

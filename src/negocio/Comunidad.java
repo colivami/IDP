@@ -16,9 +16,9 @@ public class Comunidad implements java.io.Serializable {
 	private Integer maxrecibospendientes;
 	private String estado;
 	private Integer idInmueblePresidente;
-	private Inmueble inmuebles = new Inmueble();
-	private Factura facturas = new Factura();
-	private Notainformativa notainformativas = new Notainformativa();
+	private Set inmuebles = new HashSet(0);
+	private Set facturas = new HashSet(0);
+	private Set notainformativas = new HashSet(0);
 
 	public Comunidad() {
 	}
@@ -29,8 +29,8 @@ public class Comunidad implements java.io.Serializable {
 
 	public Comunidad(Comunidad comunidad, String calle,
 			Integer maxrecibospendientes, String estado,
-			Integer idInmueblePresidente, Inmueble inmuebles, Factura facturas,
-			Notainformativa notainformativas) {
+			Integer idInmueblePresidente, Set inmuebles, Set facturas,
+			Set notainformativas) {
 		this.comunidad = comunidad;
 		this.calle = calle;
 		this.maxrecibospendientes = maxrecibospendientes;
@@ -92,29 +92,28 @@ public class Comunidad implements java.io.Serializable {
 		this.comunidad = comunidad;
 	}
 
-	public Inmueble getInmuebles() {
+	public Set getInmuebles() {
 		return inmuebles;
 	}
 
-	public void setInmuebles(Inmueble inmuebles) {
+	public void setInmuebles(Set inmuebles) {
 		this.inmuebles = inmuebles;
 	}
 
-	public Factura getFacturas() {
+	public Set getFacturas() {
 		return facturas;
 	}
 
-	public void setFacturas(Factura facturas) {
+	public void setFacturas(Set facturas) {
 		this.facturas = facturas;
 	}
 
-	public Notainformativa getNotainformativas() {
+	public Set getNotainformativas() {
 		return notainformativas;
 	}
 
-	public void setNotainformativas(Notainformativa notainformativas) {
+	public void setNotainformativas(Set notainformativas) {
 		this.notainformativas = notainformativas;
 	}
-
 
 }

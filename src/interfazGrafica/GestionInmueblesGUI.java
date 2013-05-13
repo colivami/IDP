@@ -16,6 +16,7 @@ import negocio.Comunidad;
 import negocio.Datosbancarios;
 import negocio.Inmueble;
 import negocio.Propietario;
+import dao.InmuebleHome;
 
 
 /**
@@ -51,11 +52,33 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 		
 	private Set reciboinmuebles = new HashSet();
 	TablaInmueble tInmueble;
+	InmuebleHome iHome;
+	
+	boolean modificar = false;
+	int idInmueble_mod;
+	int row;
 	
 	public GestionInmueblesGUI(TablaInmueble ti) {
 		super();
 		initGUI();
 		tInmueble = ti;
+	}
+	
+	public GestionInmueblesGUI(TablaInmueble ti, int row, InmuebleHome iHome, Inmueble i) {
+		super();
+		initGUI();
+		tInmueble = ti;
+		this.iHome = iHome;
+		
+		jTF_IDInmuebles.setText(""+i.getIdInmueble());
+		jTF_PuertaInmuebles.setText(i.getPuerta());
+		jTF_EscaleraInmuebles.setText(i.getEscalera());
+		jTF_PorcentajeInmuebles.setText(i.getPorcentaje().toString());
+		jTF_PisoInmuebles.setText(i.getPiso());
+		
+		this.row = row;
+		idInmueble_mod = i.getIdInmueble();
+		modificar = true;
 	}
 	
 	private void initGUI() {
@@ -217,13 +240,18 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 		Datosbancarios datosbancarios = new Datosbancarios();
 		Comunidad comunidad = new Comunidad(); 
 		Propietario propietario = new Propietario();
-		
+
+		if (modificar) {
+			iHome.borrarInmueble(idInmueble_mod);
+			tInmueble.removeRow(row);
+		}
+	
 		Inmueble i = new Inmueble(idInmueble, comunidad, propietario, datosbancarios, escalera, piso, puerta, (Double) 1.0, reciboinmuebles);
 		i.getComunidad().setIdComunidad(0);
 		i.getPropietario().setIdPropietario(0);
 		i.getDatosbancarios().setIdDatosbancarios(0);
-		
 		tInmueble.addInmueble(i);
+	
 		this.dispose();
 	}
 	

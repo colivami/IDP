@@ -196,14 +196,14 @@ public class GestionComunidadesGUI extends javax.swing.JFrame {
 		int idInmueblePresidente = Integer.parseInt(jTF_IDPresidenteComunidades.getText());
 		
 		
-		Inmueble inmuebles = new Inmueble();
-		Factura facturas = new Factura();
-		Notainformativa notainformativas = new Notainformativa();
+//		Inmueble inmuebles = new Inmueble();
+//		Factura facturas = new Factura();
+//		Notainformativa notainformativas = new Notainformativa();
+//		
+//		Comunidad c = new Comunidad(idComunidad, calle, maxrecibospendientes, estado, idInmueblePresidente, inmuebles, facturas, notainformativas);
+//		
 		
-		Comunidad c = new Comunidad(idComunidad, calle, maxrecibospendientes, estado, idInmueblePresidente, inmuebles, facturas, notainformativas);
-		
-		
-		tComunidad.addComunidad(c);
+//		tComunidad.addComunidad(c);
 		this.dispose();
 	}
 	
