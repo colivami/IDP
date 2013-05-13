@@ -1,6 +1,8 @@
 package interfazGrafica;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -11,9 +13,7 @@ import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
 import negocio.Comunidad;
-import negocio.Factura;
-import negocio.Inmueble;
-import negocio.Notainformativa;
+import dao.ComunidadHome;
 
 
 /**
@@ -46,12 +46,32 @@ public class GestionComunidadesGUI extends javax.swing.JFrame {
 	* Auto-generated main method to display this JFrame
 	*/
 	TablaComunidad tComunidad;
+	int row;
+	ComunidadHome cHome;
+	boolean modificar = false;
+	int idComunidad_mod;
 		
 	public GestionComunidadesGUI(TablaComunidad tc) {
 		super();
 		initGUI();
 		tComunidad = tc;
+	}
+	
+	public GestionComunidadesGUI(TablaComunidad tc, int row, ComunidadHome cHome, Comunidad c) {
+		super();
+		initGUI();
+		tComunidad = tc;
+		this.row = row;
+		this.cHome = cHome;
+		modificar = true;
 		
+		idComunidad_mod = c.getIdComunidad();
+		jTF_CalleComunidades.setText(c.getCalle());
+		jTF_EstadoComunidades.setText(c.getEstado());
+		jTF_IDComunidades.setText(""+c.getIdComunidad());
+		jTF_MaxRecibosPendientesComunidades.setText(""+c.getMaxrecibospendientes());
+		jTF_IDPresidenteComunidades.setText(""+c.getIdInmueblePresidente());
+
 	}
 	
 	private void initGUI() {
@@ -195,15 +215,20 @@ public class GestionComunidadesGUI extends javax.swing.JFrame {
 		int idComunidad = Integer.parseInt(jTF_IDComunidades.getText());
 		int idInmueblePresidente = Integer.parseInt(jTF_IDPresidenteComunidades.getText());
 		
+		if(modificar) {
+			cHome.borrarComunidad(idComunidad_mod);
+			tComunidad.removeRow(row);
+		}
+		else {
+			Set inmuebles = new HashSet();
+			Set facturas = new HashSet();
+			Set notainformativas = new HashSet();
+			
+			Comunidad c = new Comunidad(idComunidad, calle, maxrecibospendientes, estado, idInmueblePresidente, inmuebles, facturas, notainformativas);
+			
+			tComunidad.addComunidad(c);
+		}
 		
-//		Inmueble inmuebles = new Inmueble();
-//		Factura facturas = new Factura();
-//		Notainformativa notainformativas = new Notainformativa();
-//		
-//		Comunidad c = new Comunidad(idComunidad, calle, maxrecibospendientes, estado, idInmueblePresidente, inmuebles, facturas, notainformativas);
-//		
-		
-//		tComunidad.addComunidad(c);
 		this.dispose();
 	}
 	

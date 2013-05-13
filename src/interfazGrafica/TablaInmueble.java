@@ -28,11 +28,7 @@ public class TablaInmueble extends DefaultTableModel {
 				"ID Comunidad",
 				"ID Propietario",
 				"ID Datos Bancarios"});
-		
-		for(Inmueble i : inmuebles) {
-			addToTabla(i);
-		}
-		inmVacio = false;
+
 	}
 	
 //	public Inmueble recuperarInmueblePorPosicion(int row) {
@@ -62,7 +58,7 @@ public class TablaInmueble extends DefaultTableModel {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private void addToTabla(Inmueble i){
+	public void addToTabla(Inmueble i){
 		Vector v=new Vector();
 		v.add(i.getIdInmueble());
 		v.add(i.getEscalera());

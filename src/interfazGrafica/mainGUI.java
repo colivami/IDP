@@ -124,6 +124,8 @@ public class mainGUI extends javax.swing.JFrame {
 		super();
 		initGUI();
 		
+		
+		//	Rellenamos las tablas	//
 		for(Comunidad c : new ComunidadHome().buscarComunidades()) {
 			TComunidades.addToTabla(c);
 		}
@@ -132,6 +134,13 @@ public class mainGUI extends javax.swing.JFrame {
 		for(Propietario p : new PropietarioHome().buscarPropietarios()) {
 			TPropietarios.addToTabla(p);
 		}
+		
+		
+		for(Inmueble i : new InmuebleHome().buscarInmuebles()) {
+			TInmuebles.addToTabla(i);
+		}
+		//	/////////////////////	//
+		
 	}
 	
 	private void initGUI() {
@@ -477,7 +486,24 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jBModificarComunidadActionPerformed(ActionEvent evt) {
-		gc.setVisible(true);
+		int row = (int) jT_Comunidades.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else {
+			ComunidadHome cHome = new ComunidadHome();
+
+			Comunidad c	= new Comunidad();
+			c.setIdComunidad(Integer.parseInt(TComunidades.getValueAt(row, 0).toString()));
+			c.setCalle(TComunidades.getValueAt(row, 1).toString());
+			c.setMaxrecibospendientes(Integer.parseInt(TComunidades.getValueAt(row, 2).toString()));
+			c.setEstado(TComunidades.getValueAt(row, 3).toString());
+			c.setIdInmueblePresidente(Integer.parseInt(TComunidades.getValueAt(row, 4).toString()));
+			
+			
+			GestionComunidadesGUI gc_mod = new GestionComunidadesGUI(TComunidades, row, cHome, c);
+			gc_mod.setVisible(true);
+		}
 	}
 
 
@@ -516,11 +542,10 @@ public class mainGUI extends javax.swing.JFrame {
 			i.setPuerta(TInmuebles.getValueAt(row, 3).toString());
 			i.setPorcentaje(Double.parseDouble(TInmuebles.getValueAt(row, 4).toString()));
 			
-			GestionInmueblesGUI gi_mod = new GestionInmueblesGUI(TInmuebles, row,iHome, i);
+			GestionInmueblesGUI gi_mod = new GestionInmueblesGUI(TInmuebles, row, iHome, i);
 			gi_mod.setVisible(true);
 		}
 		
-		// Abrimos la nueva ventana con los datos cargados  ->   gi.setVisible(true);
 	}
 	
 	private void jB_InformeComunidadesActionPerformed(ActionEvent evt) {

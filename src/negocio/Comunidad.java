@@ -27,11 +27,24 @@ public class Comunidad implements java.io.Serializable {
 		this.comunidad = comunidad;
 	}
 
-	public Comunidad(Comunidad comunidad, String calle,
+//	public Comunidad(Comunidad comunidad, String calle,
+//			Integer maxrecibospendientes, String estado,
+//			Integer idInmueblePresidente, Set inmuebles, Set facturas,
+//			Set notainformativas) {
+//		this.comunidad = comunidad;
+//		this.calle = calle;
+//		this.maxrecibospendientes = maxrecibospendientes;
+//		this.estado = estado;
+//		this.idInmueblePresidente = idInmueblePresidente;
+//		this.inmuebles = inmuebles;
+//		this.facturas = facturas;
+//		this.comunidad = comunidad;
+//		this.notainformativas = notainformativas;
+//	}
+	public Comunidad(int idComunidad, String calle,
 			Integer maxrecibospendientes, String estado,
 			Integer idInmueblePresidente, Set inmuebles, Set facturas,
 			Set notainformativas) {
-		this.comunidad = comunidad;
 		this.calle = calle;
 		this.maxrecibospendientes = maxrecibospendientes;
 		this.estado = estado;
