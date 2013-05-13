@@ -60,10 +60,10 @@ public class GestionComunidadesGUI extends javax.swing.JFrame {
 	public GestionComunidadesGUI(TablaComunidad tc, int row, ComunidadHome cHome, Comunidad c) {
 		super();
 		initGUI();
-		tComunidad = tc;
+		this.tComunidad = tc;
 		this.row = row;
 		this.cHome = cHome;
-		modificar = true;
+		this.modificar = true;
 		
 		idComunidad_mod = c.getIdComunidad();
 		jTF_CalleComunidades.setText(c.getCalle());

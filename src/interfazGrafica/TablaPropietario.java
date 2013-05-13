@@ -28,6 +28,7 @@ public class TablaPropietario extends DefaultTableModel {
 	public void addToTabla(Propietario p){
 		Vector v=new Vector();
 		v.add(p.getIdPropietario());
+		v.add(p.getNif());
 		v.add(p.getNombre());
 		v.add(p.getDireccion());
 		v.add(p.getPoblacion());

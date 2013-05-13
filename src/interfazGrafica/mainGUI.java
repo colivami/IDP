@@ -461,7 +461,27 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jBModificarPropietarioActionPerformed(ActionEvent evt) {
-		gp.setVisible(true);
+		int row = (int) jT_Propietarios.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else {
+			PropietarioHome pHome = new PropietarioHome();
+
+			Propietario p = new Propietario();
+			p.setIdPropietario(Integer.parseInt(TPropietarios.getValueAt(row, 0).toString()));
+			p.setNif(TPropietarios.getValueAt(row, 1).toString());
+			p.setNombre(TPropietarios.getValueAt(row, 2).toString());
+			p.setDireccion(TPropietarios.getValueAt(row, 3).toString());
+			p.setPoblacion(TPropietarios.getValueAt(row, 4).toString());
+			p.setTelefono(TPropietarios.getValueAt(row, 5).toString());
+			p.setObservaciones(TPropietarios.getValueAt(row, 6).toString());
+			p.setFechaalta(TPropietarios.getValueAt(row, 7).toString());
+			
+			
+			GestionPropietariosGUI gp_mod = new GestionPropietariosGUI(TPropietarios, row, pHome, p);
+			gp_mod.setVisible(true);
+		}
 	}
 	
 	

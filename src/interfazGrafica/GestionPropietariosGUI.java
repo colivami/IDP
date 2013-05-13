@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
+import dao.PropietarioHome;
+
 import negocio.Comunidad;
 import negocio.Datosbancarios;
 import negocio.Inmueble;
@@ -55,11 +57,34 @@ public class GestionPropietariosGUI extends javax.swing.JFrame {
 	* Auto-generated main method to display this JFrame
 	*/
 	TablaPropietario tPropietario;
+	PropietarioHome pHome;
+	boolean modificar = false;
+	int idPropietario_mod;
+	int row;
 		
 	public GestionPropietariosGUI(TablaPropietario tp) {
 		super();
 		initGUI();
 		tPropietario = tp;
+	}		
+	public GestionPropietariosGUI(TablaPropietario tp, int row, PropietarioHome pHome, Propietario p) {
+		super();
+		initGUI();
+		tPropietario = tp;
+		this.pHome = pHome;
+		idPropietario_mod = p.getIdPropietario();
+		this.row = row;
+		
+		jTF_IDPropietario.setText(""+p.getIdPropietario());
+		jTF_FechaAltaPropietario.setText(p.getFechaalta());
+//		jTF_IDInmueblePropietario.setText(p.getInmuebles());
+		jTF_DireccionPropietario.setText(p.getDireccion());
+		jTF_NIFPropietario.setText(p.getNif());
+		jTF_PoblacionPropietario.setText(p.getPoblacion());
+		jTF_NombrePropietario.setText(p.getNombre());
+		jTF_TelefonoPropietario.setText(p.getTelefono());
+		
+		modificar = true;
 	}
 	
 	private void initGUI() {
@@ -256,6 +281,11 @@ public class GestionPropietariosGUI extends javax.swing.JFrame {
 
 		int idPropietario= Integer.parseInt(jTF_IDPropietario.getText());
 
+		if (modificar) {
+			pHome.borrarPropietario(idPropietario_mod);
+			tPropietario.removeRow(row);
+		}
+		
 		Propietario p = new Propietario();
 		p.setDireccion(direccion);
 		p.setFechaalta(fechaalta);
