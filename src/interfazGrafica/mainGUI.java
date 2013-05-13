@@ -19,6 +19,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.TableModel;
 
 import negocio.Comunidad;
+import negocio.Concepto;
 import negocio.Inmueble;
 import negocio.Propietario;
 import net.sf.jasperreports.engine.JRException;
@@ -30,6 +31,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import org.hibernate.classic.Session;
 
 import dao.ComunidadHome;
+import dao.ConceptoHome;
 import dao.InmuebleHome;
 import dao.PropietarioHome;
 import dao.UtilidadHibernate;
@@ -84,6 +86,11 @@ public class mainGUI extends javax.swing.JFrame {
 	private JMenuItem closeFileMenuItem;
 	private JMenuItem saveAsMenuItem;
 	private JMenuItem saveMenuItem;
+	private JTable jT_Conceptos;
+	private JButton jBAltaConcepto;
+	private JButton jBBajaConcepto;
+	private JButton jBModificarConcepto;
+	private JInternalFrame jF_Conceptos;
 	private JButton jB_InformeComunidades;
 	private JTable jT_Comunidades;
 	private JTable jT_Inmuebles;
@@ -101,10 +108,12 @@ public class mainGUI extends javax.swing.JFrame {
 	TablaInmueble TInmuebles = new TablaInmueble();
 	TablaComunidad TComunidades = new TablaComunidad();
 	TablaPropietario TPropietarios = new TablaPropietario();
+	TablaConcepto TConceptos = new TablaConcepto();
 
  	GestionPropietariosGUI gp = new GestionPropietariosGUI(TPropietarios);
 	GestionInmueblesGUI    gi = new GestionInmueblesGUI(TInmuebles);
 	GestionComunidadesGUI  gc = new GestionComunidadesGUI(TComunidades);
+	GestionConceptoGUI   gcon = new GestionConceptoGUI(TConceptos);
 	
 
 	/**
@@ -130,14 +139,16 @@ public class mainGUI extends javax.swing.JFrame {
 			TComunidades.addToTabla(c);
 		}
 		
-		
 		for(Propietario p : new PropietarioHome().buscarPropietarios()) {
 			TPropietarios.addToTabla(p);
 		}
 		
-		
 		for(Inmueble i : new InmuebleHome().buscarInmuebles()) {
 			TInmuebles.addToTabla(i);
+		}
+		
+		for(Concepto c : new ConceptoHome().buscarConceptos()) {
+			TConceptos.addToTabla(c);
 		}
 		//	/////////////////////	//
 		
@@ -151,131 +162,6 @@ public class mainGUI extends javax.swing.JFrame {
 			{
 				jTabbedPane1 = new JTabbedPane();
 				getContentPane().add(jTabbedPane1, BorderLayout.CENTER);
-				{
-					jF_Propietarios = new JInternalFrame();
-					GroupLayout jF_PropietariosLayout = new GroupLayout((JComponent)jF_Propietarios.getContentPane());
-					jF_Propietarios.getContentPane().setLayout(jF_PropietariosLayout);
-					jTabbedPane1.addTab("Propietarios", null, jF_Propietarios, null);
-					{
-						jBAltaPropietario = new JButton();
-						jBAltaPropietario.setText("Dar de Alta");
-						jBAltaPropietario.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-								jBAltaPropietarioActionPerformed(evt);
-							}
-						});
-					}
-					{
-						jBBajaPropietario = new JButton();
-						jBBajaPropietario.setText("Dar de Baja");
-						jBBajaPropietario.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-								jBBajaPropietarioActionPerformed(evt);
-							}
-						});
-					}
-					{
-						jBModificarPropietario = new JButton();
-						jBModificarPropietario.setText("Modificar");
-						jBModificarPropietario.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-								jBModificarPropietarioActionPerformed(evt);
-							}
-						});
-					}
-					{
-						TableModel jT_PropietariosModel = TPropietarios;
-//						TableModel jT_PropietariosModel = 
-//								new DefaultTableModel(
-//										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-//										new String[] { "Column 1", "Column 2" });
-						jT_Propietarios = new JTable();
-						jT_Propietarios.setModel(jT_PropietariosModel);
-					}
-					jF_PropietariosLayout.setHorizontalGroup(jF_PropietariosLayout.createSequentialGroup()
-						.addComponent(jT_Propietarios, 0, 643, Short.MAX_VALUE)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-						.addGroup(jF_PropietariosLayout.createParallelGroup()
-						    .addComponent(jBModificarPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jBBajaPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jBAltaPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap());
-					jF_PropietariosLayout.setVerticalGroup(jF_PropietariosLayout.createParallelGroup()
-						.addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
-						    .addComponent(jT_Propietarios, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
-						    .addContainerGap(310, Short.MAX_VALUE))
-						.addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
-						    .addGap(12)
-						    .addComponent(jBAltaPropietario, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-						    .addComponent(jBBajaPropietario, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-						    .addComponent(jBModificarPropietario, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						    .addContainerGap(310, Short.MAX_VALUE)));
-				}
-				{
-					jF_Inmuebles = new JInternalFrame();
-					jTabbedPane1.addTab("Inmuebles", null, jF_Inmuebles, null);
-					GroupLayout jF_InmueblesLayout = new GroupLayout((JComponent)jF_Inmuebles.getContentPane());
-					jF_Inmuebles.getContentPane().setLayout(jF_InmueblesLayout);
-					jF_Inmuebles.setVisible(true);
-					{
-						jBModificarInmueble = new JButton();
-						jBModificarInmueble.setText("Modificar");
-						jBModificarInmueble.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-								jBModificarInmuebleActionPerformed(evt);
-							}
-						});
-					}
-					{
-						TableModel jT_InmueblesModel = TInmuebles;
-//						TableModel jT_InmueblesModel = 
-//							new DefaultTableModel(
-//									new String[][] { { "One", "Two" }, { "Three", "Four" } },
-//									new String[] { "Column 1", "Column 2" });
-						jT_Inmuebles = new JTable();
-						jT_Inmuebles.setModel(jT_InmueblesModel);
-					}
-					{
-						jBBajaInmueble = new JButton();
-						jBBajaInmueble.setText("Dar de Baja");
-						jBBajaInmueble.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-								jBBajaInmuebleActionPerformed(evt);
-							}
-						});
-					}
-					{
-						jBAltaInmueble = new JButton();
-						jBAltaInmueble.setText("Dar de Alta");
-						jBAltaInmueble.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-								jBAltaInmuebleActionPerformed(evt);
-							}
-						});
-					}
-					jF_InmueblesLayout.setHorizontalGroup(jF_InmueblesLayout.createSequentialGroup()
-						.addComponent(jT_Inmuebles, 0, 643, Short.MAX_VALUE)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-						.addGroup(jF_InmueblesLayout.createParallelGroup()
-						    .addComponent(jBBajaInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jBAltaInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jBModificarInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap());
-					jF_InmueblesLayout.setVerticalGroup(jF_InmueblesLayout.createParallelGroup()
-						.addGroup(GroupLayout.Alignment.LEADING, jF_InmueblesLayout.createSequentialGroup()
-						    .addComponent(jT_Inmuebles, 0, 184, Short.MAX_VALUE)
-						    .addContainerGap(310, 310))
-						.addGroup(GroupLayout.Alignment.LEADING, jF_InmueblesLayout.createSequentialGroup()
-						    .addGap(12)
-						    .addComponent(jBAltaInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-						    .addComponent(jBBajaInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-						    .addComponent(jBModificarInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						    .addContainerGap(310, Short.MAX_VALUE)));
-				}
 				{
 					jF_Comunidades = new JInternalFrame();
 					jTabbedPane1.addTab("Comunidades", null, jF_Comunidades, null);
@@ -349,6 +235,194 @@ public class mainGUI extends javax.swing.JFrame {
 						.addGap(52)
 						.addComponent(jB_InformeComunidades, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 						.addContainerGap(208, Short.MAX_VALUE));
+				}
+				{
+					jF_Propietarios = new JInternalFrame();
+					jTabbedPane1.addTab("Propietarios", null, jF_Propietarios, null);
+					GroupLayout jF_PropietariosLayout = new GroupLayout((JComponent)jF_Propietarios.getContentPane());
+					jF_Propietarios.getContentPane().setLayout(jF_PropietariosLayout);
+					{
+						jBAltaPropietario = new JButton();
+						jBAltaPropietario.setText("Dar de Alta");
+						jBAltaPropietario.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBAltaPropietarioActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jBBajaPropietario = new JButton();
+						jBBajaPropietario.setText("Dar de Baja");
+						jBBajaPropietario.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBBajaPropietarioActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jBModificarPropietario = new JButton();
+						jBModificarPropietario.setText("Modificar");
+						jBModificarPropietario.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBModificarPropietarioActionPerformed(evt);
+							}
+						});
+					}
+					{
+						TableModel jT_PropietariosModel = TPropietarios;
+						//						TableModel jT_PropietariosModel = 
+								//								new DefaultTableModel(
+										//										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+										//										new String[] { "Column 1", "Column 2" });
+						jT_Propietarios = new JTable();
+						jT_Propietarios.setModel(jT_PropietariosModel);
+					}
+					jF_PropietariosLayout.setHorizontalGroup(jF_PropietariosLayout.createSequentialGroup()
+							.addComponent(jT_Propietarios, 0, 643, Short.MAX_VALUE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addGroup(jF_PropietariosLayout.createParallelGroup()
+									.addComponent(jBModificarPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+									.addComponent(jBBajaPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+									.addComponent(jBAltaPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+									.addContainerGap());
+					jF_PropietariosLayout.setVerticalGroup(jF_PropietariosLayout.createParallelGroup()
+							.addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
+									.addComponent(jT_Propietarios, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
+									.addContainerGap(310, Short.MAX_VALUE))
+									.addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
+											.addGap(12)
+											.addComponent(jBAltaPropietario, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+											.addComponent(jBBajaPropietario, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+											.addComponent(jBModificarPropietario, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+											.addContainerGap(310, Short.MAX_VALUE)));
+				}
+				{
+					jF_Inmuebles = new JInternalFrame();
+					jTabbedPane1.addTab("Inmuebles", null, jF_Inmuebles, null);
+					GroupLayout jF_InmueblesLayout = new GroupLayout((JComponent)jF_Inmuebles.getContentPane());
+					jF_Inmuebles.getContentPane().setLayout(jF_InmueblesLayout);
+					jF_Inmuebles.setVisible(true);
+					{
+						jBModificarInmueble = new JButton();
+						jBModificarInmueble.setText("Modificar");
+						jBModificarInmueble.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBModificarInmuebleActionPerformed(evt);
+							}
+						});
+					}
+					{
+						TableModel jT_InmueblesModel = TInmuebles;
+						//						TableModel jT_InmueblesModel = 
+								//							new DefaultTableModel(
+										//									new String[][] { { "One", "Two" }, { "Three", "Four" } },
+										//									new String[] { "Column 1", "Column 2" });
+						jT_Inmuebles = new JTable();
+						jT_Inmuebles.setModel(jT_InmueblesModel);
+					}
+					{
+						jBBajaInmueble = new JButton();
+						jBBajaInmueble.setText("Dar de Baja");
+						jBBajaInmueble.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBBajaInmuebleActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jBAltaInmueble = new JButton();
+						jBAltaInmueble.setText("Dar de Alta");
+						jBAltaInmueble.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBAltaInmuebleActionPerformed(evt);
+							}
+						});
+					}
+					jF_InmueblesLayout.setHorizontalGroup(jF_InmueblesLayout.createSequentialGroup()
+							.addComponent(jT_Inmuebles, 0, 643, Short.MAX_VALUE)
+							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+							.addGroup(jF_InmueblesLayout.createParallelGroup()
+									.addComponent(jBBajaInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+									.addComponent(jBAltaInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+									.addComponent(jBModificarInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+									.addContainerGap());
+					jF_InmueblesLayout.setVerticalGroup(jF_InmueblesLayout.createParallelGroup()
+							.addGroup(GroupLayout.Alignment.LEADING, jF_InmueblesLayout.createSequentialGroup()
+									.addComponent(jT_Inmuebles, 0, 184, Short.MAX_VALUE)
+									.addContainerGap(310, 310))
+									.addGroup(GroupLayout.Alignment.LEADING, jF_InmueblesLayout.createSequentialGroup()
+											.addGap(12)
+											.addComponent(jBAltaInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+											.addComponent(jBBajaInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+											.addComponent(jBModificarInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+											.addContainerGap(310, Short.MAX_VALUE)));
+				}
+				{
+					jF_Conceptos = new JInternalFrame();
+					jTabbedPane1.addTab("Conceptos", null, jF_Conceptos, null);
+					GroupLayout jF_ConceptosLayout = new GroupLayout((JComponent)jF_Conceptos.getContentPane());
+					jF_Conceptos.getContentPane().setLayout(jF_ConceptosLayout);
+					jF_Conceptos.setVisible(true);
+					{
+						jBModificarConcepto = new JButton();
+						jBModificarConcepto.setText("Modificar");
+						jBModificarConcepto.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBModificarConceptoActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jBBajaConcepto = new JButton();
+						jBBajaConcepto.setText("Dar de Baja");
+						jBBajaConcepto.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBBajaConceptoActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jBAltaConcepto = new JButton();
+						jBAltaConcepto.setText("Dar de Alta");
+						jBAltaConcepto.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jBAltaConceptoActionPerformed(evt);
+							}
+						});
+					}
+					{
+						TableModel jTable1Model = TConceptos;
+//						TableModel jTable1Model = 
+//								new DefaultTableModel(
+//										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+//										new String[] { "Column 1", "Column 2" });
+						jT_Conceptos = new JTable();
+						jT_Conceptos.setModel(jTable1Model);
+					}
+					jF_ConceptosLayout.setHorizontalGroup(jF_ConceptosLayout.createSequentialGroup()
+						.addComponent(jT_Conceptos, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						.addGroup(jF_ConceptosLayout.createParallelGroup()
+						    .addComponent(jBModificarConcepto, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jBBajaConcepto, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jBAltaConcepto, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap());
+					jF_ConceptosLayout.setVerticalGroup(jF_ConceptosLayout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.LEADING, jF_ConceptosLayout.createSequentialGroup()
+						    .addComponent(jT_Conceptos, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
+						    .addContainerGap(310, Short.MAX_VALUE))
+						.addGroup(GroupLayout.Alignment.LEADING, jF_ConceptosLayout.createSequentialGroup()
+						    .addGap(12)
+						    .addComponent(jBAltaConcepto, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						    .addComponent(jBBajaConcepto, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						    .addComponent(jBModificarConcepto, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						    .addContainerGap(310, Short.MAX_VALUE)));
 				}
 			}
 			this.setSize(800, 600);
@@ -526,7 +600,22 @@ public class mainGUI extends javax.swing.JFrame {
 		}
 	}
 
-
+	
+	private void jB_InformeComunidadesActionPerformed(ActionEvent evt) {
+		JasperPrint informe = null;
+		Session sesion= UtilidadHibernate.getSessionFactory().openSession();
+		HashMap parametros = new HashMap();
+		parametros.put(JRHibernateQueryExecuterFactory.PARAMETER_HIBERNATE_SESSION,sesion);
+		//parametros.put("genero","Comedia");
+		try {
+		String fileName= "report1.jasper";
+		informe= JasperFillManager.fillReport(fileName, parametros);
+		}
+		catch (JRException e){e.printStackTrace();}
+		JasperViewer.viewReport(informe,false);
+	}
+	
+	
 	/*
 	 * INMUEBLES
 	 */
@@ -568,18 +657,42 @@ public class mainGUI extends javax.swing.JFrame {
 		
 	}
 	
-	private void jB_InformeComunidadesActionPerformed(ActionEvent evt) {
-		JasperPrint informe = null;
-		Session sesion= UtilidadHibernate.getSessionFactory().openSession();
-		HashMap parametros = new HashMap();
-		parametros.put(JRHibernateQueryExecuterFactory.PARAMETER_HIBERNATE_SESSION,sesion);
-		//parametros.put("genero","Comedia");
-		try {
-		String fileName= "report1.jasper";
-		informe= JasperFillManager.fillReport(fileName, parametros);
+
+	/*
+	 * CONCEPTOS
+	 */
+	private void jBModificarConceptoActionPerformed(ActionEvent evt) {
+		int row = (int) jT_Conceptos.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
 		}
-		catch (JRException e){e.printStackTrace();}
-		JasperViewer.viewReport(informe,false);
+		else {
+			ConceptoHome conHome = new ConceptoHome();
+
+			Concepto c = new Concepto();
+			c.setIdConcepto(Integer.parseInt(TConceptos.getValueAt(row, 0).toString()));
+			c.setDescripcion(TConceptos.getValueAt(row, 1).toString());
+			
+			GestionConceptoGUI gcon_mod = new GestionConceptoGUI(TConceptos, row, conHome, c);
+			gcon_mod.setVisible(true);
+		}
+	}
+	
+	private void jBBajaConceptoActionPerformed(ActionEvent evt) {
+		ConceptoHome conHome = new ConceptoHome();
+		int row = (int) jT_Conceptos.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else{
+			int id = (int) TConceptos.getValueAt(row, 0);
+			conHome.borrarConcepto(id);
+			TConceptos.removeRow(row);
+		}
+	}
+	
+	private void jBAltaConceptoActionPerformed(ActionEvent evt) {
+		gcon.setVisible(true);
 	}
 
 }

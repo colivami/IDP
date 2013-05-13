@@ -11,12 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
-import dao.PropietarioHome;
-
-import negocio.Comunidad;
-import negocio.Datosbancarios;
-import negocio.Inmueble;
 import negocio.Propietario;
+import dao.PropietarioHome;
 
 
 /**
