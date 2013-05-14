@@ -16,7 +16,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import negocio.Carta;
@@ -151,10 +150,15 @@ public class mainGUI extends javax.swing.JFrame {
 	TablaRecibo TRecibo = new TablaRecibo();
 	TablaNotaInformativa TNota = new TablaNotaInformativa();
 
- 	GestionPropietariosGUI gp = new GestionPropietariosGUI(TPropietarios);
-	GestionInmueblesGUI    gi = new GestionInmueblesGUI(TInmuebles);
-	GestionComunidadesGUI  gc = new GestionComunidadesGUI(TComunidades);
-	GestionConceptoGUI   gcon = new GestionConceptoGUI(TConceptos);
+ 	GestionPropietariosGUI     gp = new GestionPropietariosGUI(TPropietarios);
+	GestionInmueblesGUI        gi = new GestionInmueblesGUI(TInmuebles);
+	GestionComunidadesGUI      gc = new GestionComunidadesGUI(TComunidades);
+	GestionConceptoGUI       gcon = new GestionConceptoGUI(TConceptos);
+	GestionCartasGUI	     gcar = new GestionCartasGUI(TCarta);
+	GestionFacturasGUI	       gf = new GestionFacturasGUI(TFactura);
+	GestionLineaFacturaGUI    glf = new GestionLineaFacturaGUI(TLinea);
+	GestionNotaInformativaGUI gni = new GestionNotaInformativaGUI(TNota);
+	GestionRecibosGUI		   gr = new GestionRecibosGUI(TRecibo);
 	
 
 	/**
@@ -1095,6 +1099,16 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_BajaFacturaActionPerformed(ActionEvent evt) {
+		FacturaHome fHome = new FacturaHome();
+		int row = (int) jT_Facturas.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else{
+			int num = (int) TFactura.getValueAt(row, 0);
+			fHome.borrarFactura(num);
+			TFactura.removeRow(row);
+		}
 	}
 	
 	private void jB_AltaFacturaActionPerformed(ActionEvent evt) {
@@ -1108,6 +1122,16 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_BajaNotaActionPerformed(ActionEvent evt) {
+		NotainformativaHome niHome = new NotainformativaHome();
+		int row = (int) jT_NotasInformativas.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else{
+			int id = (int) TNota.getValueAt(row, 0);
+			niHome.borrarNotainformativa(id);
+			TNota.removeRow(row);
+		}
 	}
 	
 	private void jB_AltaNotaActionPerformed(ActionEvent evt) {
@@ -1121,6 +1145,16 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_BajaReciboActionPerformed(ActionEvent evt) {
+		ReciboinmuebleHome riHome = new ReciboinmuebleHome();
+		int row = (int) jT_Recibos.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else{
+			int id = (int) TRecibo.getValueAt(row, 0);
+			riHome.borrarReciboinmueble(id);
+			TRecibo.removeRow(row);
+		}
 	}
 	
 	private void jB_AltaReciboActionPerformed(ActionEvent evt) {
@@ -1134,6 +1168,16 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_BajaLineaActionPerformed(ActionEvent evt) {
+		LineafacturaHome lfHome = new LineafacturaHome();
+		int row = (int) jT_LineaFactura.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else{
+			int id = (int) TLinea.getValueAt(row, 0);
+			lfHome.borrarLineafactura(id);
+			TLinea.removeRow(row);
+		}
 	}
 	
 	private void jB_ModificarLineaActionPerformed(ActionEvent evt) {
@@ -1147,6 +1191,16 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_BajaCartaActionPerformed(ActionEvent evt) {
+		CartaHome carHome = new CartaHome();
+		int row = (int) jT_Cartas.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else{
+			int id = (int) TCarta.getValueAt(row, 0);
+			carHome.borrarCarta(id);
+			TCarta.removeRow(row);
+		}
 	}
 	
 	private void jB_AltaCartaActionPerformed(ActionEvent evt) {

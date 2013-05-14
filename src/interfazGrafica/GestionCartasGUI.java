@@ -1,15 +1,17 @@
 package interfazGrafica;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-
 import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
+
+import negocio.Carta;
+import dao.CartaHome;
 
 
 /**
@@ -35,12 +37,31 @@ public class GestionCartasGUI extends javax.swing.JFrame {
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
-		
-	public GestionCartasGUI() {
+	CartaHome carHome;
+	TablaCarta TCarta;
+	int row;
+	int idCarta_mod;
+	boolean modificar = false;
+	
+	public GestionCartasGUI(TablaCarta tc) {
 		super();
 		initGUI();
+		this.TCarta = tc;
 	}
 	
+	public GestionCartasGUI(TablaCarta tc, int row, CartaHome carHome, Carta c) {
+		super();
+		initGUI();
+		this.TCarta = tc;
+		this.row = row;
+		this.idCarta_mod = c.getIdCarta();
+		this.carHome = carHome;
+		modificar = true;
+		
+		jTF_FechaCarta.setText(c.getFecha().toString());
+		jTF_IDCarta.setText(""+c.getIdCarta());
+		
+	}
 	private void initGUI() {
 		try {
 			GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
@@ -122,8 +143,7 @@ public class GestionCartasGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_CancelarCartaActionPerformed(ActionEvent evt) {
-		System.out.println("jB_CancelarCarta.actionPerformed, event="+evt);
-		//TODO add your code for jB_CancelarCarta.actionPerformed
+		this.dispose();
 	}
 	
 	private void jB_GuardarCartaActionPerformed(ActionEvent evt) {

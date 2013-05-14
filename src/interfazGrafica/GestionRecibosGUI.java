@@ -11,6 +11,10 @@ import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
 
+import negocio.Reciboinmueble;
+
+import dao.ReciboinmuebleHome;
+
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -43,12 +47,35 @@ public class GestionRecibosGUI extends javax.swing.JFrame {
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
-		
-	public GestionRecibosGUI() {
+	TablaRecibo TRecibo;
+	ReciboinmuebleHome rHome;
+	int row;
+	int idRecibo_mod;
+	boolean modificar = false;
+	
+	public GestionRecibosGUI(TablaRecibo tr) {
 		super();
 		initGUI();
+		this.TRecibo = tr;
 	}
 	
+	public GestionRecibosGUI(TablaRecibo tr, int row, ReciboinmuebleHome rHome, Reciboinmueble r) {
+		super();
+		initGUI();
+		this.TRecibo = tr;
+		this.row = row;
+		this.rHome = rHome;
+		this.idRecibo_mod = r.getIdReciboinmueble();
+		this.modificar = true;
+		
+		jTF_FechaPagoRecibo.setText(r.getFechapago());
+		jTF_IDCartaRecibo.setText(""+r.getCarta().getIdCarta());
+		jTF_IDInmuebleRecibo.setText(""+r.getInmueble().getIdInmueble());
+		jTF_IDRecibo.setText(""+r.getIdReciboinmueble());
+		jTF_ImporteRecibo.setText(r.getImporte().toString());
+		jTF_NotaInformativaRecibo.setText(""+r.getNotainformativa().getIdNotainformativa());
+	}
+
 	private void initGUI() {
 		try {
 			GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());

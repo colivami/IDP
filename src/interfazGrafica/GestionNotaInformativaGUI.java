@@ -11,6 +11,10 @@ import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
 
+import negocio.Notainformativa;
+
+import dao.NotainformativaHome;
+
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -39,10 +43,31 @@ public class GestionNotaInformativaGUI extends javax.swing.JFrame {
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
-		
-	public GestionNotaInformativaGUI() {
+	NotainformativaHome niHome;
+	TablaNotaInformativa TNota;
+	boolean modificar = false;
+	int row;
+	int idNota_mod;
+	
+	
+	public GestionNotaInformativaGUI(TablaNotaInformativa tni) {
 		super();
 		initGUI();
+		this.TNota = tni;
+	}
+	public GestionNotaInformativaGUI(TablaNotaInformativa tni, int row, NotainformativaHome niHome, Notainformativa ni) {
+		super();
+		initGUI();
+		this.TNota = tni;
+		this.modificar = true;
+		this.row = row;
+		this.niHome = niHome;
+		this.idNota_mod = ni.getIdNotainformativa();
+		
+		jTF_FechaNotaInformativa.setText(ni.getFechacalculo());
+		jTF_IDComunidadNotaInformativa.setText(""+ni.getComunidad().getIdComunidad());
+		jTF_IDNotaInformativa.setText(""+ni.getIdNotainformativa());
+		jTF_ImporteNotaInformativa.setText(""+ni.getImportenota());
 	}
 	
 	private void initGUI() {
@@ -169,8 +194,7 @@ public class GestionNotaInformativaGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_CancelarNotaActionPerformed(ActionEvent evt) {
-		System.out.println("jB_CancelarNota.actionPerformed, event="+evt);
-		//TODO add your code for jB_CancelarNota.actionPerformed
+		this.dispose();
 	}
 
 }

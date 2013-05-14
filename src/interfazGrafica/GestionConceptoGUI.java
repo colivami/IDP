@@ -166,7 +166,7 @@ public class GestionConceptoGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_CancelarConceptoActionPerformed(ActionEvent evt) {
-		this.disable();
+		this.dispose();
 	}
 
 }

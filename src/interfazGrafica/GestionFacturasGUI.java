@@ -1,15 +1,17 @@
 package interfazGrafica;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-
 import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
+
+import negocio.Factura;
+import dao.FacturaHome;
 
 
 /**
@@ -40,9 +42,33 @@ public class GestionFacturasGUI extends javax.swing.JFrame {
 	* Auto-generated main method to display this JFrame
 	*/
 		
-	public GestionFacturasGUI() {
+	int numFactura_mod;
+	TablaFactura TFactura;
+	FacturaHome fHome;
+	boolean modificar = false;
+	int row;
+	
+	public GestionFacturasGUI(TablaFactura tf) {
 		super();
 		initGUI();
+		this.TFactura = tf;
+	}
+	
+	public GestionFacturasGUI(TablaFactura tf, int row, FacturaHome fHome, Factura f) {
+		super();
+		initGUI();
+		
+		this.TFactura = tf;
+		this.row = row;
+		this.fHome = fHome;
+		this.numFactura_mod = f.getNumfactura();
+		this.modificar = true;
+		
+		jTF_FechaFactura.setText(f.getFechafactura().toString());
+		jTF_IDComunidadFactura.setText(""+f.getComunidad().getIdComunidad());
+		jTF_IDNotaInformativaFactura.setText(""+f.getNotainformativa().getIdNotainformativa());
+		jTF_NumFactura.setText(""+f.getNumfactura());
+		
 	}
 	
 	private void initGUI() {
@@ -157,8 +183,7 @@ public class GestionFacturasGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_CancelarFacturaActionPerformed(ActionEvent evt) {
-		System.out.println("jB_CancelarFactura.actionPerformed, event="+evt);
-		//TODO add your code for jB_CancelarFactura.actionPerformed
+		this.dispose();
 	}
 
 }

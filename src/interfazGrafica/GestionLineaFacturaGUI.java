@@ -1,15 +1,18 @@
 package interfazGrafica;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-
 import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
+
+import negocio.Lineafactura;
+
+import dao.LineafacturaHome;
 
 
 /**
@@ -41,10 +44,33 @@ public class GestionLineaFacturaGUI extends javax.swing.JFrame {
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
+	TablaLineaFactura TLinea;
+	LineafacturaHome lfHome;
+	boolean modificar = false;
+	int idLinea_mod;
+	int row;
 		
-	public GestionLineaFacturaGUI() {
+	public GestionLineaFacturaGUI(TablaLineaFactura tlf) {
 		super();
 		initGUI();
+		this.TLinea = tlf;
+	}
+	public GestionLineaFacturaGUI(TablaLineaFactura tlf, int row, LineafacturaHome lfHome, Lineafactura lf) {
+		super();
+		initGUI();
+		this.TLinea = tlf;
+		this.row = row;
+		this.lfHome = lfHome;
+		this.idLinea_mod = lf.getIdLineafactura();
+		this.modificar = true;
+		
+		jTF_IDConceptoLinea.setText(""+lf.getConcepto().getIdConcepto());
+		jTF_IDLinea.setText(""+lf.getIdLineafactura());
+		jTF_ImporteLinea.setText(""+lf.getImportelinea());
+		jTF_NumFacturaLinea.setText(""+lf.getFactura().getNumfactura());
+		jTF_ObservacionLinea.setText(lf.getObservacion());
+		
+		
 	}
 	
 	private void initGUI() {
@@ -168,8 +194,7 @@ public class GestionLineaFacturaGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_CancelarLineaActionPerformed(ActionEvent evt) {
-		System.out.println("jB_CancelarLinea.actionPerformed, event="+evt);
-		//TODO add your code for jB_CancelarLinea.actionPerformed
+		this.dispose();
 	}
 	
 	private void jB_GuardarLineaActionPerformed(ActionEvent evt) {
