@@ -215,13 +215,10 @@ public class GestionRecibosGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_CancelarReciboActionPerformed(ActionEvent evt) {
-		System.out.println("jB_CancelarRecibo.actionPerformed, event="+evt);
-		//TODO add your code for jB_CancelarRecibo.actionPerformed
+		this.dispose();
 	}
 	
 	private void jB_GuardarReciboActionPerformed(ActionEvent evt) {
-		System.out.println("jB_GuardarRecibo.actionPerformed, event="+evt);
-		//TODO add your code for jB_GuardarRecibo.actionPerformed
 	}
 
 }

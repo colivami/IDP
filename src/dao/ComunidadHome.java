@@ -98,6 +98,15 @@ public class ComunidadHome {
 //		}
 //	}
 	
+	public Comunidad buscarComunidadPorID(int id) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Comunidad c = (Comunidad) sesion.get(Comunidad.class, new Integer(id));
+		tx.commit();
+		sesion.close();
+		return c;
+	}
+	
 	
 	public void anyadirComunidad(Comunidad c) {
 		sesion = UtilidadHibernate.getSessionFactory().openSession();

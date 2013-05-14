@@ -3,7 +3,10 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.sound.sampled.Line;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -113,6 +116,8 @@ public class mainGUI extends javax.swing.JFrame {
 	private JButton jBBajaComunidad;
 	private JMenuItem openFileMenuItem;
 	private JMenuItem newFileMenuItem;
+	private JButton jB_InformeRecibo;
+	private JButton jB_InformeNota;
 	private JTable jT_Cartas;
 	private JButton jB_AltaCarta;
 	private JButton jB_BajaCarta;
@@ -160,6 +165,16 @@ public class mainGUI extends javax.swing.JFrame {
 	GestionNotaInformativaGUI gni = new GestionNotaInformativaGUI(TNota);
 	GestionRecibosGUI		   gr = new GestionRecibosGUI(TRecibo);
 	
+	
+	Set<Carta> cartas = new HashSet<Carta>();
+	Set<Propietario> propietarios = new HashSet<Propietario>();
+	Set<Comunidad> comunidades = new HashSet<Comunidad>();
+	Set<Inmueble> inmuebles = new HashSet<Inmueble>();
+	Set<Concepto> conceptos = new HashSet<Concepto>();
+	Set<Factura> facturas = new HashSet<Factura>();
+	Set<Lineafactura> lineas = new HashSet<Lineafactura>();
+	Set<Notainformativa> notas = new HashSet<Notainformativa>();
+	Set<Reciboinmueble> recibos = new HashSet<Reciboinmueble>();
 
 	/**
 	* Auto-generated main method to display this JFrame
@@ -179,41 +194,50 @@ public class mainGUI extends javax.swing.JFrame {
 		initGUI();
 		
 		
-		//	Rellenamos las tablas	//
+		//	Rellenamos las tablas y los Sets	//
 		for(Comunidad c : new ComunidadHome().buscarComunidades()) {
 			TComunidades.addToTabla(c);
+			comunidades.add(c);
 		}
 		
 		for(Propietario p : new PropietarioHome().buscarPropietarios()) {
 			TPropietarios.addToTabla(p);
+			propietarios.add(p);
 		}
 		
 		for(Inmueble i : new InmuebleHome().buscarInmuebles()) {
 			TInmuebles.addToTabla(i);
+			inmuebles.add(i);
 		}
 		
 		for(Concepto c : new ConceptoHome().buscarConceptos()) {
 			TConceptos.addToTabla(c);
+			conceptos.add(c);
 		}
 		
 		for(Reciboinmueble r : new ReciboinmuebleHome().buscarReciboinmuebles()) {
 			TRecibo.addToTabla(r);
+			recibos.add(r);
 		}
 		
 		for(Factura f : new FacturaHome().buscarFacturas()) {
 			TFactura.addToTabla(f);
+			facturas.add(f);
 		}
 		
 		for(Lineafactura lf : new LineafacturaHome().buscarLineafacturas()) {
 			TLinea.addToTabla(lf);
+			lineas.add(lf);
 		}
 		
 		for(Carta c : new CartaHome().buscarCartas()) {
 			TCarta.addToTabla(c);
+			cartas.add(c);
 		}
 		
 		for(Notainformativa n : new NotainformativaHome().buscarNotainformativas()) {
 			TNota.addToTabla(n);
+			notas.add(n);
 		}
 		//	/////////////////////	//
 		
@@ -601,29 +625,45 @@ public class mainGUI extends javax.swing.JFrame {
 						jT_NotasInformativas = new JTable();
 						jT_NotasInformativas.setModel(jTable1Model);
 					}
+					{
+						jB_InformeNota = new JButton();
+						jB_InformeNota.setText("Informe");
+						jB_InformeNota.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_InformeNotaActionPerformed(evt);
+							}
+						});
+					}
 						jF_NotasInformativasLayout.setHorizontalGroup(jF_NotasInformativasLayout.createSequentialGroup()
 						.addComponent(jT_NotasInformativas, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
-						.addGap(12)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						.addGroup(jF_NotasInformativasLayout.createParallelGroup()
 						    .addGroup(jF_NotasInformativasLayout.createSequentialGroup()
-						        .addComponent(jB_AltaNota, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						        .addComponent(jB_ModificarNota, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						        .addGap(0, 0, Short.MAX_VALUE))
 						    .addGroup(jF_NotasInformativasLayout.createSequentialGroup()
-						        .addComponent(jB_BajaNota, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						        .addComponent(jB_BajaNota, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						        .addGap(0, 0, Short.MAX_VALUE))
+						    .addGroup(jF_NotasInformativasLayout.createSequentialGroup()
+						        .addComponent(jB_AltaNota, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						        .addGap(0, 0, Short.MAX_VALUE))
 						    .addGroup(GroupLayout.Alignment.LEADING, jF_NotasInformativasLayout.createSequentialGroup()
-						        .addComponent(jB_ModificarNota, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+						        .addGap(0, 0, Short.MAX_VALUE)
+						        .addComponent(jB_InformeNota, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap());
 						jF_NotasInformativasLayout.setVerticalGroup(jF_NotasInformativasLayout.createSequentialGroup()
 						.addGroup(jF_NotasInformativasLayout.createParallelGroup()
-						    .addGroup(jF_NotasInformativasLayout.createSequentialGroup()
-						        .addComponent(jT_NotasInformativas, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE))
+						    .addComponent(jT_NotasInformativas, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
 						    .addGroup(GroupLayout.Alignment.LEADING, jF_NotasInformativasLayout.createSequentialGroup()
 						        .addGap(12)
 						        .addComponent(jB_AltaNota, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						        .addGap(11)
+						        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						        .addComponent(jB_BajaNota, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						        .addGap(11)
+						        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						        .addComponent(jB_ModificarNota, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap(310, Short.MAX_VALUE));
+						.addGap(51)
+						.addComponent(jB_InformeNota, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(209, Short.MAX_VALUE));
 				}
 				{
 					jF_Recibos = new JInternalFrame();
@@ -666,29 +706,45 @@ public class mainGUI extends javax.swing.JFrame {
 						jT_Recibos = new JTable();
 						jT_Recibos.setModel(jTable1Model);
 					}
+					{
+						jB_InformeRecibo = new JButton();
+						jB_InformeRecibo.setText("Informe");
+						jB_InformeRecibo.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_InformeReciboActionPerformed(evt);
+							}
+						});
+					}
 						jF_RecibosLayout.setHorizontalGroup(jF_RecibosLayout.createSequentialGroup()
 						.addComponent(jT_Recibos, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
-						.addGap(12)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						.addGroup(jF_RecibosLayout.createParallelGroup()
 						    .addGroup(jF_RecibosLayout.createSequentialGroup()
-						        .addComponent(jB_AltaRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						        .addComponent(jB_ModificarRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						        .addGap(0, 0, Short.MAX_VALUE))
 						    .addGroup(jF_RecibosLayout.createSequentialGroup()
-						        .addComponent(jB_BajaRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						        .addComponent(jB_BajaRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						        .addGap(0, 0, Short.MAX_VALUE))
+						    .addGroup(jF_RecibosLayout.createSequentialGroup()
+						        .addComponent(jB_AltaRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						        .addGap(0, 0, Short.MAX_VALUE))
 						    .addGroup(GroupLayout.Alignment.LEADING, jF_RecibosLayout.createSequentialGroup()
-						        .addComponent(jB_ModificarRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+						        .addGap(0, 0, Short.MAX_VALUE)
+						        .addComponent(jB_InformeRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap());
 						jF_RecibosLayout.setVerticalGroup(jF_RecibosLayout.createSequentialGroup()
 						.addGroup(jF_RecibosLayout.createParallelGroup()
-						    .addGroup(jF_RecibosLayout.createSequentialGroup()
-						        .addComponent(jT_Recibos, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE))
+						    .addComponent(jT_Recibos, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
 						    .addGroup(GroupLayout.Alignment.LEADING, jF_RecibosLayout.createSequentialGroup()
 						        .addGap(12)
 						        .addComponent(jB_AltaRecibo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						        .addGap(11)
+						        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						        .addComponent(jB_BajaRecibo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						        .addGap(11)
+						        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						        .addComponent(jB_ModificarRecibo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap(310, Short.MAX_VALUE));
+						.addGap(56)
+						.addComponent(jB_InformeRecibo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(204, Short.MAX_VALUE));
 				}
 				{
 					jF_LineaFacturas = new JInternalFrame();
@@ -910,9 +966,11 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	
-	/*
-	 * PROPIETARIOS
+	/*************************************************************************************************/
+	/*									
+	 * 												PROPIETARIOS 
 	 */
+	/*************************************************************************************************/
 	private void jBAltaPropietarioActionPerformed(ActionEvent evt) {
 		gp.setVisible(true);
 	}
@@ -955,9 +1013,11 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	
-	/*
-	 * COMUNIDADES
+	/*************************************************************************************************/
+	/*									
+	 * 												COMUNIDADES 
 	 */
+	/*************************************************************************************************/
 	private void jBAltaComunidadActionPerformed(ActionEvent evt) {
 		gc.setVisible(true);
 	}
@@ -982,14 +1042,13 @@ public class mainGUI extends javax.swing.JFrame {
 		}
 		else {
 			ComunidadHome cHome = new ComunidadHome();
-
 			Comunidad c	= new Comunidad();
+			
 			c.setIdComunidad(Integer.parseInt(TComunidades.getValueAt(row, 0).toString()));
 			c.setCalle(TComunidades.getValueAt(row, 1).toString());
 			c.setMaxrecibospendientes(Integer.parseInt(TComunidades.getValueAt(row, 2).toString()));
 			c.setEstado(TComunidades.getValueAt(row, 3).toString());
 			c.setIdInmueblePresidente(Integer.parseInt(TComunidades.getValueAt(row, 4).toString()));
-			
 			
 			GestionComunidadesGUI gc_mod = new GestionComunidadesGUI(TComunidades, row, cHome, c);
 			gc_mod.setVisible(true);
@@ -997,24 +1056,12 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 
 	
-	private void jB_InformeComunidadesActionPerformed(ActionEvent evt) {
-		JasperPrint informe = null;
-		Session sesion= UtilidadHibernate.getSessionFactory().openSession();
-		HashMap parametros = new HashMap();
-		parametros.put(JRHibernateQueryExecuterFactory.PARAMETER_HIBERNATE_SESSION,sesion);
-		//parametros.put("genero","Comedia");
-		try {
-		String fileName= "report1.jasper";
-		informe= JasperFillManager.fillReport(fileName, parametros);
-		}
-		catch (JRException e){e.printStackTrace();}
-		JasperViewer.viewReport(informe,false);
-	}
 	
-	
-	/*
-	 * INMUEBLES
+	/*************************************************************************************************/
+	/*									
+	 * 												INMUEBLES 
 	 */
+	/*************************************************************************************************/
 	private void jBAltaInmuebleActionPerformed(ActionEvent evt) {
 		gi.setVisible(true);
 	}
@@ -1054,9 +1101,11 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 
-	/*
-	 * CONCEPTOS
+	/*************************************************************************************************/
+	/*									
+	 * 												CONCEPTOS 
 	 */
+	/*************************************************************************************************/
 	private void jBModificarConceptoActionPerformed(ActionEvent evt) {
 		int row = (int) jT_Conceptos.getSelectedRow(); 
 		if (row == -1){
@@ -1092,10 +1141,34 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	
-	/*
-	 * FACTURAS
+	/*************************************************************************************************/
+	/*									
+	 * 												FACTURAS 
 	 */
+	/*************************************************************************************************/
 	private void jB_ModificarFacturaActionPerformed(ActionEvent evt) {
+		int row = (int) jT_Facturas.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else {
+			FacturaHome fHome = new FacturaHome();
+			Comunidad c = new ComunidadHome().buscarComunidadPorID(
+					Integer.parseInt(TFactura.getValueAt(row, 1).toString()));
+			Notainformativa ni = new NotainformativaHome().buscarNotainformativaPorID(
+					Integer.parseInt(TFactura.getValueAt(row, 3).toString()));
+			
+			
+
+			Factura f = new Factura();
+			f.setNumfactura(Integer.parseInt(TFactura.getValueAt(row, 0).toString()));
+			f.setComunidad(c);
+			f.setNotainformativa(ni);
+			f.setFechafactura(TFactura.getValueAt(row, 2).toString());
+			
+			GestionFacturasGUI gf_mod = new GestionFacturasGUI(TFactura, row, fHome, f);
+			gf_mod.setVisible(true);
+		}
 	}
 	
 	private void jB_BajaFacturaActionPerformed(ActionEvent evt) {
@@ -1112,12 +1185,15 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_AltaFacturaActionPerformed(ActionEvent evt) {
+		gf.setVisible(true);
 	}
 	
 	
-	/*
-	 * NOTAS INFORMATIVAS
+	/*************************************************************************************************/
+	/*									
+	 * 												NOTAS INFORMATIVAS 
 	 */
+	/*************************************************************************************************/
 	private void jB_ModificarNotaActionPerformed(ActionEvent evt) {
 	}
 	
@@ -1135,12 +1211,15 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_AltaNotaActionPerformed(ActionEvent evt) {
+		gni.setVisible(true);
 	}
 	
 	
-	/*
-	 * RECIBOS
+	/*************************************************************************************************/
+	/*									
+	 * 												RECIBOS 
 	 */
+	/*************************************************************************************************/
 	private void jB_ModificarReciboActionPerformed(ActionEvent evt) {
 	}
 	
@@ -1158,13 +1237,17 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_AltaReciboActionPerformed(ActionEvent evt) {
+		gr.setVisible(true);
 	}
 	
 	
-	/*
-	 * LINEA FACTURA
+	/*************************************************************************************************/
+	/*									
+	 * 												LINEA FACTURA 
 	 */
+	/*************************************************************************************************/
 	private void jB_AltaLineaActionPerformed(ActionEvent evt) {
+		glf.setVisible(true);
 	}
 	
 	private void jB_BajaLineaActionPerformed(ActionEvent evt) {
@@ -1184,9 +1267,11 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	
-	/*
-	 * CARTA
+	/*************************************************************************************************/
+	/*									
+	 * 												CARTA 
 	 */
+	/*************************************************************************************************/
 	private void jB_ModificarCartaActionPerformed(ActionEvent evt) {
 	}
 	
@@ -1204,6 +1289,37 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_AltaCartaActionPerformed(ActionEvent evt) {
+		gcar.setVisible(true);
+	}
+	
+	
+	
+	/*************************************************************************************************/
+	/*									
+	 * 												INFORMES 
+	 */
+	/*************************************************************************************************/
+
+
+	
+	private void jB_InformeComunidadesActionPerformed(ActionEvent evt) {
+		JasperPrint informe = null;
+		Session sesion= UtilidadHibernate.getSessionFactory().openSession();
+		HashMap parametros = new HashMap();
+		parametros.put(JRHibernateQueryExecuterFactory.PARAMETER_HIBERNATE_SESSION,sesion);
+		//parametros.put("genero","Comedia");
+		try {
+		String fileName= "report1.jasper";
+		informe= JasperFillManager.fillReport(fileName, parametros);
+		}
+		catch (JRException e){e.printStackTrace();}
+		JasperViewer.viewReport(informe,false);
+	}
+	
+	private void jB_InformeNotaActionPerformed(ActionEvent evt) {
+	}
+	
+	private void jB_InformeReciboActionPerformed(ActionEvent evt) {
 	}
 
 }

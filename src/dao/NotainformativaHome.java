@@ -4,6 +4,7 @@ package dao;
 
 import java.util.ArrayList;
 
+import negocio.Comunidad;
 import negocio.Notainformativa;
 
 import org.hibernate.Session;
@@ -19,6 +20,16 @@ public class NotainformativaHome {
 	private Session sesion = null;
 	private Transaction tx = null;
 
+	
+	public Notainformativa buscarNotainformativaPorID(int id) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Notainformativa ni = (Notainformativa) sesion.get(Notainformativa.class, new Integer(id));
+		tx.commit();
+		sesion.close();
+		return ni;
+	}
+	
 	public void anyadirNotainformativa(Notainformativa ni) {
 		sesion = UtilidadHibernate.getSessionFactory().openSession();
 		tx = sesion.beginTransaction();
