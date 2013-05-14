@@ -2,15 +2,12 @@ package dao;
 
 // Generated 21-mar-2013 18:13:29 by Hibernate Tools 3.4.0.CR1
 
-import java.util.List;
-
-import javax.naming.InitialContext;
+import java.util.ArrayList;
 
 import negocio.Lineafactura;
 
-import org.hibernate.LockMode;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Example;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  * Home object for domain model class Lineafactura.
@@ -18,83 +15,33 @@ import org.hibernate.criterion.Example;
  * @author Hibernate Tools
  */
 public class LineafacturaHome {
+	private Session sesion = null;
+	private Transaction tx = null;
 
-
-	private final SessionFactory sessionFactory = getSessionFactory();
-
-	protected SessionFactory getSessionFactory() {
-		try {
-			return (SessionFactory) new InitialContext()
-					.lookup("SessionFactory");
-		} catch (Exception e) {
-			throw new IllegalStateException(
-					"Could not locate SessionFactory in JNDI");
-		}
+	public void anyadirLineafactura(Lineafactura lf) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		sesion.save(lf);
+		tx.commit();
+		sesion.close();
 	}
-
-	public void persist(Lineafactura transientInstance) {
-		try {
-			sessionFactory.getCurrentSession().persist(transientInstance);
-		} catch (RuntimeException re) {
-			throw re;
-		}
+	
+	public ArrayList<Lineafactura> buscarLineafacturas() {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		ArrayList<Lineafactura> listaLineafacturaes = (ArrayList<Lineafactura>) sesion.createQuery("from Lineafactura").list();
+		sesion.getTransaction().commit();
+		sesion.close();
+		return listaLineafacturaes;
 	}
-
-	public void attachDirty(Lineafactura instance) {
-		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(instance);
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
-
-	public void attachClean(Lineafactura instance) {
-		try {
-			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
-
-	public void delete(Lineafactura persistentInstance) {
-		try {
-			sessionFactory.getCurrentSession().delete(persistentInstance);
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
-
-	public Lineafactura merge(Lineafactura detachedInstance) {
-		try {
-			Lineafactura result = (Lineafactura) sessionFactory
-					.getCurrentSession().merge(detachedInstance);
-			return result;
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
-
-	public Lineafactura findById(java.lang.Integer id) {
-		try {
-			Lineafactura instance = (Lineafactura) sessionFactory
-					.getCurrentSession().get("negocio.Lineafactura", id);
-			if (instance == null) {
-			} else {
-			}
-			return instance;
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
-
-	public List findByExample(Lineafactura instance) {
-		try {
-			List results = sessionFactory.getCurrentSession()
-					.createCriteria("negocio.Lineafactura")
-					.add(Example.create(instance)).list();
-			return results;
-		} catch (RuntimeException re) {
-			throw re;
-		}
+	
+	
+	public void borrarLineafactura(int id) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Lineafactura lf = (Lineafactura) sesion.get(Lineafactura.class, new Integer(id));
+		sesion.delete(lf);
+		tx.commit();
+		sesion.close();
 	}
 }

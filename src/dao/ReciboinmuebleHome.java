@@ -2,15 +2,12 @@ package dao;
 
 // Generated 21-mar-2013 18:13:29 by Hibernate Tools 3.4.0.CR1
 
-import java.util.List;
-
-import javax.naming.InitialContext;
+import java.util.ArrayList;
 
 import negocio.Reciboinmueble;
 
-import org.hibernate.LockMode;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Example;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  * Home object for domain model class Reciboinmueble.
@@ -19,82 +16,34 @@ import org.hibernate.criterion.Example;
  */
 public class ReciboinmuebleHome {
 
+	private Session sesion = null;
+	private Transaction tx = null;
 
-	private final SessionFactory sessionFactory = getSessionFactory();
-
-	protected SessionFactory getSessionFactory() {
-		try {
-			return (SessionFactory) new InitialContext()
-					.lookup("SessionFactory");
-		} catch (Exception e) {
-			throw new IllegalStateException(
-					"Could not locate SessionFactory in JNDI");
-		}
+	public void anyadirReciboinmueble(Reciboinmueble ri) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		sesion.save(ri);
+		tx.commit();
+		sesion.close();
 	}
-
-	public void persist(Reciboinmueble transientInstance) {
-		try {
-			sessionFactory.getCurrentSession().persist(transientInstance);
-		} catch (RuntimeException re) {
-			throw re;
-		}
+	
+	public ArrayList<Reciboinmueble> buscarReciboinmuebles() {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		ArrayList<Reciboinmueble> listaReciboinmueblees = (ArrayList<Reciboinmueble>) sesion.createQuery("from Reciboinmueble").list();
+		sesion.getTransaction().commit();
+		sesion.close();
+		return listaReciboinmueblees;
 	}
-
-	public void attachDirty(Reciboinmueble instance) {
-		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(instance);
-		} catch (RuntimeException re) {
-			throw re;
-		}
+	
+	
+	public void borrarReciboinmueble(int id) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Reciboinmueble ri = (Reciboinmueble) sesion.get(Reciboinmueble.class, new Integer(id));
+		sesion.delete(ri);
+		tx.commit();
+		sesion.close();
 	}
-
-	public void attachClean(Reciboinmueble instance) {
-		try {
-			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
-
-	public void delete(Reciboinmueble persistentInstance) {
-		try {
-			sessionFactory.getCurrentSession().delete(persistentInstance);
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
-
-	public Reciboinmueble merge(Reciboinmueble detachedInstance) {
-		try {
-			Reciboinmueble result = (Reciboinmueble) sessionFactory
-					.getCurrentSession().merge(detachedInstance);
-			return result;
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
-
-	public Reciboinmueble findById(java.lang.Integer id) {
-		try {
-			Reciboinmueble instance = (Reciboinmueble) sessionFactory
-					.getCurrentSession().get("negocio.Reciboinmueble", id);
-			if (instance == null) {
-			} else {
-			}
-			return instance;
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
-
-	public List findByExample(Reciboinmueble instance) {
-		try {
-			List results = sessionFactory.getCurrentSession()
-					.createCriteria("negocio.Reciboinmueble")
-					.add(Example.create(instance)).list();
-			return results;
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
+	
 }

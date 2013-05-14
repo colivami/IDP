@@ -2,14 +2,18 @@ package dao;
 
 // Generated 21-mar-2013 18:13:29 by Hibernate Tools 3.4.0.CR1
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.InitialContext;
 
 import negocio.Carta;
+import negocio.Carta;
 
 import org.hibernate.LockMode;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
 
 /**
@@ -18,83 +22,33 @@ import org.hibernate.criterion.Example;
  * @author Hibernate Tools
  */
 public class CartaHome {
+	private Session sesion = null;
+	private Transaction tx = null;
 
-
-	private final SessionFactory sessionFactory = getSessionFactory();
-
-	protected SessionFactory getSessionFactory() {
-		try {
-			return (SessionFactory) new InitialContext()
-					.lookup("SessionFactory");
-		} catch (Exception e) {
-			throw new IllegalStateException(
-					"Could not locate SessionFactory in JNDI");
-		}
+	public void anyadirCarta(Carta c) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		sesion.save(c);
+		tx.commit();
+		sesion.close();
 	}
-
-	public void persist(Carta transientInstance) {
-		try {
-			sessionFactory.getCurrentSession().persist(transientInstance);
-		} catch (RuntimeException re) {
-			throw re;
-		}
+	
+	public ArrayList<Carta> buscarCartas() {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		ArrayList<Carta> listaCartaes = (ArrayList<Carta>) sesion.createQuery("from Carta").list();
+		sesion.getTransaction().commit();
+		sesion.close();
+		return listaCartaes;
 	}
-
-	public void attachDirty(Carta instance) {
-		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(instance);
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
-
-	public void attachClean(Carta instance) {
-		try {
-			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
-
-	public void delete(Carta persistentInstance) {
-		try {
-			sessionFactory.getCurrentSession().delete(persistentInstance);
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
-
-	public Carta merge(Carta detachedInstance) {
-		try {
-			Carta result = (Carta) sessionFactory.getCurrentSession().merge(
-					detachedInstance);
-			return result;
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
-
-	public Carta findById(int id) {
-		try {
-			Carta instance = (Carta) sessionFactory.getCurrentSession().get(
-					"negocio.Carta", id);
-			if (instance == null) {
-			} else {
-			}
-			return instance;
-		} catch (RuntimeException re) {
-			throw re;
-		}
-	}
-
-	public List findByExample(Carta instance) {
-		try {
-			List results = sessionFactory.getCurrentSession()
-					.createCriteria("negocio.Carta")
-					.add(Example.create(instance)).list();
-			return results;
-		} catch (RuntimeException re) {
-			throw re;
-		}
+	
+	
+	public void borrarCarta(int id) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Carta c = (Carta) sesion.get(Carta.class, new Integer(id));
+		sesion.delete(c);
+		tx.commit();
+		sesion.close();
 	}
 }

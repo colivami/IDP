@@ -35,7 +35,7 @@ public class TablaNotaInformativa extends DefaultTableModel {
 	
 	public void addNotaInformativa(Notainformativa ni) {
 		this.addToTabla(ni);
-		niHome.anyadirNotaInformativa(ni);
+		niHome.anyadirNotainformativa(ni);
 	}
 
 }

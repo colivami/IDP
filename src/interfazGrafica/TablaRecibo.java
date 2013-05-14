@@ -1,0 +1,43 @@
+package interfazGrafica;
+
+import java.util.Vector;
+
+import javax.swing.table.DefaultTableModel;
+
+import negocio.Reciboinmueble;
+import dao.ReciboinmuebleHome;
+
+public class TablaRecibo extends DefaultTableModel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private ReciboinmuebleHome riHome = new ReciboinmuebleHome();
+	
+	public TablaRecibo() {
+		super(null,new String[]{"ID Reciboinmueble", "Fecha pago", "ID Inmueble", "ID Nota informativa", "ID Carta"});
+	}
+
+	public boolean isCellEditable(int rowindex, int colindex) {
+		return false;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void addToTabla(Reciboinmueble ri){
+		Vector v=new Vector();
+		v.add(ri.getIdReciboinmueble());
+		v.add(ri.getFechapago());
+		v.add(ri.getImporte());
+		v.add(ri.getInmueble().getIdInmueble());
+		v.add(ri.getNotainformativa().getIdNotainformativa());
+		v.add(ri.getCarta().getIdCarta());
+		this.addRow(v);
+	}
+	
+	public void addReciboinmueble(Reciboinmueble ri) {
+		this.addToTabla(ri);
+		riHome.anyadirReciboinmueble(ri);
+	}
+
+}

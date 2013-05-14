@@ -19,10 +19,15 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import negocio.Carta;
 import negocio.Comunidad;
 import negocio.Concepto;
+import negocio.Factura;
 import negocio.Inmueble;
+import negocio.Lineafactura;
+import negocio.Notainformativa;
 import negocio.Propietario;
+import negocio.Reciboinmueble;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -31,10 +36,15 @@ import net.sf.jasperreports.view.JasperViewer;
 
 import org.hibernate.classic.Session;
 
+import dao.CartaHome;
 import dao.ComunidadHome;
 import dao.ConceptoHome;
+import dao.FacturaHome;
 import dao.InmuebleHome;
+import dao.LineafacturaHome;
+import dao.NotainformativaHome;
 import dao.PropietarioHome;
+import dao.ReciboinmuebleHome;
 import dao.UtilidadHibernate;
 
 /**
@@ -135,6 +145,11 @@ public class mainGUI extends javax.swing.JFrame {
 	TablaComunidad TComunidades = new TablaComunidad();
 	TablaPropietario TPropietarios = new TablaPropietario();
 	TablaConcepto TConceptos = new TablaConcepto();
+	TablaLineaFactura TLinea = new TablaLineaFactura();
+	TablaCarta TCarta = new TablaCarta();
+	TablaFactura TFactura = new TablaFactura();
+	TablaRecibo TRecibo = new TablaRecibo();
+	TablaNotaInformativa TNota = new TablaNotaInformativa();
 
  	GestionPropietariosGUI gp = new GestionPropietariosGUI(TPropietarios);
 	GestionInmueblesGUI    gi = new GestionInmueblesGUI(TInmuebles);
@@ -175,6 +190,26 @@ public class mainGUI extends javax.swing.JFrame {
 		
 		for(Concepto c : new ConceptoHome().buscarConceptos()) {
 			TConceptos.addToTabla(c);
+		}
+		
+		for(Reciboinmueble r : new ReciboinmuebleHome().buscarReciboinmuebles()) {
+			TRecibo.addToTabla(r);
+		}
+		
+		for(Factura f : new FacturaHome().buscarFacturas()) {
+			TFactura.addToTabla(f);
+		}
+		
+		for(Lineafactura lf : new LineafacturaHome().buscarLineafacturas()) {
+			TLinea.addToTabla(lf);
+		}
+		
+		for(Carta c : new CartaHome().buscarCartas()) {
+			TCarta.addToTabla(c);
+		}
+		
+		for(Notainformativa n : new NotainformativaHome().buscarNotainformativas()) {
+			TNota.addToTabla(n);
 		}
 		//	/////////////////////	//
 		
@@ -490,10 +525,10 @@ public class mainGUI extends javax.swing.JFrame {
 						});
 					}
 					{
-						TableModel jTable1Model = 
-								new DefaultTableModel(
-										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-										new String[] { "Column 1", "Column 2" });
+						TableModel jTable1Model = TFactura;
+//								new DefaultTableModel(
+//										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+//										new String[] { "Column 1", "Column 2" });
 						jT_Facturas = new JTable();
 						jT_Facturas.setModel(jTable1Model);
 					}
@@ -555,10 +590,10 @@ public class mainGUI extends javax.swing.JFrame {
 						});
 					}
 					{
-						TableModel jTable1Model = 
-								new DefaultTableModel(
-										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-										new String[] { "Column 1", "Column 2" });
+						TableModel jTable1Model = TNota;
+//								new DefaultTableModel(
+//										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+//										new String[] { "Column 1", "Column 2" });
 						jT_NotasInformativas = new JTable();
 						jT_NotasInformativas.setModel(jTable1Model);
 					}
@@ -620,10 +655,10 @@ public class mainGUI extends javax.swing.JFrame {
 						});
 					}
 					{
-						TableModel jTable1Model = 
-								new DefaultTableModel(
-										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-										new String[] { "Column 1", "Column 2" });
+						TableModel jTable1Model = TRecibo;
+//								new DefaultTableModel(
+//										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+//										new String[] { "Column 1", "Column 2" });
 						jT_Recibos = new JTable();
 						jT_Recibos.setModel(jTable1Model);
 					}
@@ -685,10 +720,10 @@ public class mainGUI extends javax.swing.JFrame {
 						});
 					}
 					{
-						TableModel jTable1Model = 
-								new DefaultTableModel(
-										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-										new String[] { "Column 1", "Column 2" });
+						TableModel jTable1Model = TLinea;
+//								new DefaultTableModel(
+//										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+//										new String[] { "Column 1", "Column 2" });
 						jT_LineaFactura = new JTable();
 						jT_LineaFactura.setModel(jTable1Model);
 					}
@@ -750,10 +785,10 @@ public class mainGUI extends javax.swing.JFrame {
 						});
 					}
 					{
-						TableModel jTable1Model = 
-								new DefaultTableModel(
-										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-										new String[] { "Column 1", "Column 2" });
+						TableModel jTable1Model = TCarta;
+//								new DefaultTableModel(
+//										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+//										new String[] { "Column 1", "Column 2" });
 						jT_Cartas = new JTable();
 						jT_Cartas.setModel(jTable1Model);
 					}
