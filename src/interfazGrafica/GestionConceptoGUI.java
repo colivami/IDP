@@ -29,8 +29,8 @@ import dao.ConceptoHome;
 */
 public class GestionConceptoGUI extends javax.swing.JFrame {
 	private JTextField jTF_IDConcepto;
-	private JButton jB_CancelarPropietarioes;
-	private JButton jB_GuardarPropietarioes;
+	private JButton jB_CancelarConcepto;
+	private JButton jB_GuardarConcepto;
 	private JTextArea jTA_DescripcionConcepto;
 	private JLabel jL_IDConcepto;
 	private JLabel jL_DescripcionConcepto;
@@ -78,20 +78,20 @@ public class GestionConceptoGUI extends javax.swing.JFrame {
 				jTA_DescripcionConcepto = new JTextArea();
 			}
 			{
-				jB_CancelarPropietarioes = new JButton();
-				jB_CancelarPropietarioes.setText("Cancelar");
-				jB_CancelarPropietarioes.addActionListener(new ActionListener() {
+				jB_CancelarConcepto = new JButton();
+				jB_CancelarConcepto.setText("Cancelar");
+				jB_CancelarConcepto.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
-						jB_CancelarPropietarioesActionPerformed(evt);
+						jB_CancelarConceptoActionPerformed(evt);
 					}
 				});
 			}
 			{
-				jB_GuardarPropietarioes = new JButton();
-				jB_GuardarPropietarioes.setText("Guardar");
-				jB_GuardarPropietarioes.addActionListener(new ActionListener() {
+				jB_GuardarConcepto = new JButton();
+				jB_GuardarConcepto.setText("Guardar");
+				jB_GuardarConcepto.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
-						jB_GuardarPropietarioesActionPerformed(evt);
+						jB_GuardarConceptoActionPerformed(evt);
 					}
 				});
 			}
@@ -114,8 +114,8 @@ public class GestionConceptoGUI extends javax.swing.JFrame {
 				.addComponent(jTA_DescripcionConcepto, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
 				.addGap(29)
 				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(jB_CancelarPropietarioes, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(jB_GuardarPropietarioes, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
+				    .addComponent(jB_CancelarConcepto, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+				    .addComponent(jB_GuardarConcepto, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
 				.addContainerGap(19, 19));
 			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
 				.addContainerGap(57, 57)
@@ -133,9 +133,9 @@ public class GestionConceptoGUI extends javax.swing.JFrame {
 				        .addGap(0, 0, Short.MAX_VALUE))
 				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 				        .addGap(8)
-				        .addComponent(jB_GuardarPropietarioes, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+				        .addComponent(jB_GuardarConcepto, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
 				        .addGap(63)
-				        .addComponent(jB_CancelarPropietarioes, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+				        .addComponent(jB_CancelarConcepto, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
 				        .addGap(0, 8, Short.MAX_VALUE)))
 				.addContainerGap(52, 52));
 			pack();
@@ -146,7 +146,7 @@ public class GestionConceptoGUI extends javax.swing.JFrame {
 		}
 	}
 	
-	private void jB_GuardarPropietarioesActionPerformed(ActionEvent evt) {
+	private void jB_GuardarConceptoActionPerformed(ActionEvent evt) {
 		String idConcepto = jTF_IDConcepto.getText();
 		String descripcion = jTA_DescripcionConcepto.getText();
 
@@ -165,7 +165,7 @@ public class GestionConceptoGUI extends javax.swing.JFrame {
 		this.dispose();
 	}
 	
-	private void jB_CancelarPropietarioesActionPerformed(ActionEvent evt) {
+	private void jB_CancelarConceptoActionPerformed(ActionEvent evt) {
 		this.disable();
 	}
 
