@@ -16,6 +16,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import negocio.Comunidad;
@@ -86,6 +87,7 @@ public class mainGUI extends javax.swing.JFrame {
 	private JMenuItem closeFileMenuItem;
 	private JMenuItem saveAsMenuItem;
 	private JMenuItem saveMenuItem;
+	private JInternalFrame jF_Facturas;
 	private JTable jT_Conceptos;
 	private JButton jBAltaConcepto;
 	private JButton jBBajaConcepto;
@@ -102,6 +104,30 @@ public class mainGUI extends javax.swing.JFrame {
 	private JButton jBBajaComunidad;
 	private JMenuItem openFileMenuItem;
 	private JMenuItem newFileMenuItem;
+	private JTable jT_Cartas;
+	private JButton jB_AltaCarta;
+	private JButton jB_BajaCarta;
+	private JButton jB_ModificarCarta;
+	private JInternalFrame jF_Carta;
+	private JTable jT_LineaFactura;
+	private JButton jB_ModificarLinea;
+	private JButton jB_BajaLinea;
+	private JButton jB_AltaLinea;
+	private JInternalFrame jF_LineaFacturas;
+	private JTable jT_Recibos;
+	private JButton jB_AltaRecibo;
+	private JButton jB_BajaRecibo;
+	private JButton jB_ModificarRecibo;
+	private JInternalFrame jF_Recibos;
+	private JTable jT_NotasInformativas;
+	private JButton jB_AltaNota;
+	private JButton jB_BajaNota;
+	private JButton jB_ModificarNota;
+	private JInternalFrame jF_NotasInformativas;
+	private JTable jT_Facturas;
+	private JButton jB_AltaFactura;
+	private JButton jB_BajaFactura;
+	private JButton jB_ModificarFactura;
 	private JMenu jMenu3;
 	private JMenuBar jMenuBar1;
 	
@@ -407,9 +433,15 @@ public class mainGUI extends javax.swing.JFrame {
 						.addComponent(jT_Conceptos, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						.addGroup(jF_ConceptosLayout.createParallelGroup()
-						    .addComponent(jBModificarConcepto, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jBBajaConcepto, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jBAltaConcepto, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(jF_ConceptosLayout.createSequentialGroup()
+						        .addComponent(jBModificarConcepto, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						        .addGap(0, 0, Short.MAX_VALUE))
+						    .addGroup(jF_ConceptosLayout.createSequentialGroup()
+						        .addComponent(jBBajaConcepto, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						        .addGap(0, 0, Short.MAX_VALUE))
+						    .addGroup(GroupLayout.Alignment.LEADING, jF_ConceptosLayout.createSequentialGroup()
+						        .addGap(0, 0, Short.MAX_VALUE)
+						        .addComponent(jBAltaConcepto, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
 						.addContainerGap());
 					jF_ConceptosLayout.setVerticalGroup(jF_ConceptosLayout.createParallelGroup()
 						.addGroup(GroupLayout.Alignment.LEADING, jF_ConceptosLayout.createSequentialGroup()
@@ -423,6 +455,331 @@ public class mainGUI extends javax.swing.JFrame {
 						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						    .addComponent(jBModificarConcepto, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 						    .addContainerGap(310, Short.MAX_VALUE)));
+				}
+				{
+					jF_Facturas = new JInternalFrame();
+					jTabbedPane1.addTab("Facturas", null, jF_Facturas, null);
+					GroupLayout jF_FacturasLayout = new GroupLayout((JComponent)jF_Facturas.getContentPane());
+					jF_Facturas.setLayout(jF_FacturasLayout);
+					jF_Facturas.setVisible(true);
+					{
+						jB_ModificarFactura = new JButton();
+						jB_ModificarFactura.setText("Modificar");
+						jB_ModificarFactura.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_ModificarFacturaActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jB_BajaFactura = new JButton();
+						jB_BajaFactura.setText("Dar de Baja");
+						jB_BajaFactura.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_BajaFacturaActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jB_AltaFactura = new JButton();
+						jB_AltaFactura.setText("Dar de Alta");
+						jB_AltaFactura.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_AltaFacturaActionPerformed(evt);
+							}
+						});
+					}
+					{
+						TableModel jTable1Model = 
+								new DefaultTableModel(
+										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+										new String[] { "Column 1", "Column 2" });
+						jT_Facturas = new JTable();
+						jT_Facturas.setModel(jTable1Model);
+					}
+						jF_FacturasLayout.setHorizontalGroup(jF_FacturasLayout.createSequentialGroup()
+						.addComponent(jT_Facturas, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
+						.addGap(12)
+						.addGroup(jF_FacturasLayout.createParallelGroup()
+						    .addGroup(GroupLayout.Alignment.LEADING, jF_FacturasLayout.createSequentialGroup()
+						        .addComponent(jB_AltaFactura, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(jF_FacturasLayout.createSequentialGroup()
+						        .addComponent(jB_BajaFactura, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(jF_FacturasLayout.createSequentialGroup()
+						        .addComponent(jB_ModificarFactura, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap(11, Short.MAX_VALUE));
+						jF_FacturasLayout.setVerticalGroup(jF_FacturasLayout.createSequentialGroup()
+						.addGroup(jF_FacturasLayout.createParallelGroup()
+						    .addGroup(jF_FacturasLayout.createSequentialGroup()
+						        .addComponent(jT_Facturas, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(GroupLayout.Alignment.LEADING, jF_FacturasLayout.createSequentialGroup()
+						        .addGap(12)
+						        .addComponent(jB_AltaFactura, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						        .addGap(11)
+						        .addComponent(jB_BajaFactura, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						        .addGap(11)
+						        .addComponent(jB_ModificarFactura, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap(310, Short.MAX_VALUE));
+				}
+				{
+					jF_NotasInformativas = new JInternalFrame();
+					GroupLayout jF_NotasInformativasLayout = new GroupLayout((JComponent)jF_NotasInformativas.getContentPane());
+					jTabbedPane1.addTab("Notas Informativas", null, jF_NotasInformativas, null);
+					jF_NotasInformativas.setLayout(jF_NotasInformativasLayout);
+					jF_NotasInformativas.setVisible(true);
+					{
+						jB_ModificarNota = new JButton();
+						jB_ModificarNota.setText("Modificar");
+						jB_ModificarNota.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_ModificarNotaActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jB_BajaNota = new JButton();
+						jB_BajaNota.setText("Dar de Baja");
+						jB_BajaNota.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_BajaNotaActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jB_AltaNota = new JButton();
+						jB_AltaNota.setText("Dar de Alta");
+						jB_AltaNota.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_AltaNotaActionPerformed(evt);
+							}
+						});
+					}
+					{
+						TableModel jTable1Model = 
+								new DefaultTableModel(
+										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+										new String[] { "Column 1", "Column 2" });
+						jT_NotasInformativas = new JTable();
+						jT_NotasInformativas.setModel(jTable1Model);
+					}
+						jF_NotasInformativasLayout.setHorizontalGroup(jF_NotasInformativasLayout.createSequentialGroup()
+						.addComponent(jT_NotasInformativas, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
+						.addGap(12)
+						.addGroup(jF_NotasInformativasLayout.createParallelGroup()
+						    .addGroup(jF_NotasInformativasLayout.createSequentialGroup()
+						        .addComponent(jB_AltaNota, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(jF_NotasInformativasLayout.createSequentialGroup()
+						        .addComponent(jB_BajaNota, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(GroupLayout.Alignment.LEADING, jF_NotasInformativasLayout.createSequentialGroup()
+						        .addComponent(jB_ModificarNota, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+						jF_NotasInformativasLayout.setVerticalGroup(jF_NotasInformativasLayout.createSequentialGroup()
+						.addGroup(jF_NotasInformativasLayout.createParallelGroup()
+						    .addGroup(jF_NotasInformativasLayout.createSequentialGroup()
+						        .addComponent(jT_NotasInformativas, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(GroupLayout.Alignment.LEADING, jF_NotasInformativasLayout.createSequentialGroup()
+						        .addGap(12)
+						        .addComponent(jB_AltaNota, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						        .addGap(11)
+						        .addComponent(jB_BajaNota, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						        .addGap(11)
+						        .addComponent(jB_ModificarNota, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap(310, Short.MAX_VALUE));
+				}
+				{
+					jF_Recibos = new JInternalFrame();
+					GroupLayout jF_RecibosLayout = new GroupLayout((JComponent)jF_Recibos.getContentPane());
+					jTabbedPane1.addTab("Recibos", null, jF_Recibos, null);
+					jF_Recibos.setLayout(jF_RecibosLayout);
+					jF_Recibos.setVisible(true);
+					{
+						jB_ModificarRecibo = new JButton();
+						jB_ModificarRecibo.setText("Modificar");
+						jB_ModificarRecibo.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_ModificarReciboActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jB_BajaRecibo = new JButton();
+						jB_BajaRecibo.setText("Dar de Baja");
+						jB_BajaRecibo.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_BajaReciboActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jB_AltaRecibo = new JButton();
+						jB_AltaRecibo.setText("Dar de Alta");
+						jB_AltaRecibo.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_AltaReciboActionPerformed(evt);
+							}
+						});
+					}
+					{
+						TableModel jTable1Model = 
+								new DefaultTableModel(
+										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+										new String[] { "Column 1", "Column 2" });
+						jT_Recibos = new JTable();
+						jT_Recibos.setModel(jTable1Model);
+					}
+						jF_RecibosLayout.setHorizontalGroup(jF_RecibosLayout.createSequentialGroup()
+						.addComponent(jT_Recibos, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
+						.addGap(12)
+						.addGroup(jF_RecibosLayout.createParallelGroup()
+						    .addGroup(jF_RecibosLayout.createSequentialGroup()
+						        .addComponent(jB_AltaRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(jF_RecibosLayout.createSequentialGroup()
+						        .addComponent(jB_BajaRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(GroupLayout.Alignment.LEADING, jF_RecibosLayout.createSequentialGroup()
+						        .addComponent(jB_ModificarRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+						jF_RecibosLayout.setVerticalGroup(jF_RecibosLayout.createSequentialGroup()
+						.addGroup(jF_RecibosLayout.createParallelGroup()
+						    .addGroup(jF_RecibosLayout.createSequentialGroup()
+						        .addComponent(jT_Recibos, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(GroupLayout.Alignment.LEADING, jF_RecibosLayout.createSequentialGroup()
+						        .addGap(12)
+						        .addComponent(jB_AltaRecibo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						        .addGap(11)
+						        .addComponent(jB_BajaRecibo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						        .addGap(11)
+						        .addComponent(jB_ModificarRecibo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap(310, Short.MAX_VALUE));
+				}
+				{
+					jF_LineaFacturas = new JInternalFrame();
+					GroupLayout jF_LineaFacturasLayout = new GroupLayout((JComponent)jF_LineaFacturas.getContentPane());
+					jTabbedPane1.addTab("Linea Factura", null, jF_LineaFacturas, null);
+					jF_LineaFacturas.setLayout(jF_LineaFacturasLayout);
+					jF_LineaFacturas.setVisible(true);
+					{
+						jB_AltaLinea = new JButton();
+						jB_AltaLinea.setText("Dar de Alta");
+						jB_AltaLinea.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_AltaLineaActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jB_BajaLinea = new JButton();
+						jB_BajaLinea.setText("Dar de Baja");
+						jB_BajaLinea.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_BajaLineaActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jB_ModificarLinea = new JButton();
+						jB_ModificarLinea.setText("Modificar");
+						jB_ModificarLinea.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_ModificarLineaActionPerformed(evt);
+							}
+						});
+					}
+					{
+						TableModel jTable1Model = 
+								new DefaultTableModel(
+										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+										new String[] { "Column 1", "Column 2" });
+						jT_LineaFactura = new JTable();
+						jT_LineaFactura.setModel(jTable1Model);
+					}
+						jF_LineaFacturasLayout.setHorizontalGroup(jF_LineaFacturasLayout.createSequentialGroup()
+						.addComponent(jT_LineaFactura, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
+						.addGap(12)
+						.addGroup(jF_LineaFacturasLayout.createParallelGroup()
+						    .addGroup(jF_LineaFacturasLayout.createSequentialGroup()
+						        .addComponent(jB_ModificarLinea, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(GroupLayout.Alignment.LEADING, jF_LineaFacturasLayout.createSequentialGroup()
+						        .addComponent(jB_BajaLinea, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(jF_LineaFacturasLayout.createSequentialGroup()
+						        .addComponent(jB_AltaLinea, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+						jF_LineaFacturasLayout.setVerticalGroup(jF_LineaFacturasLayout.createSequentialGroup()
+						.addGroup(jF_LineaFacturasLayout.createParallelGroup()
+						    .addGroup(jF_LineaFacturasLayout.createSequentialGroup()
+						        .addComponent(jT_LineaFactura, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(GroupLayout.Alignment.LEADING, jF_LineaFacturasLayout.createSequentialGroup()
+						        .addGap(12)
+						        .addComponent(jB_AltaLinea, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						        .addGap(11)
+						        .addComponent(jB_BajaLinea, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						        .addGap(11)
+						        .addComponent(jB_ModificarLinea, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap(310, Short.MAX_VALUE));
+				}
+				{
+					jF_Carta = new JInternalFrame();
+					GroupLayout jF_CartaLayout = new GroupLayout((JComponent)jF_Carta.getContentPane());
+					jTabbedPane1.addTab("Carta", null, jF_Carta, null);
+					jF_Carta.setLayout(jF_CartaLayout);
+					jF_Carta.setVisible(true);
+					{
+						jB_ModificarCarta = new JButton();
+						jB_ModificarCarta.setText("Modificar");
+						jB_ModificarCarta.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_ModificarCartaActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jB_BajaCarta = new JButton();
+						jB_BajaCarta.setText("Dar de Baja");
+						jB_BajaCarta.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_BajaCartaActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jB_AltaCarta = new JButton();
+						jB_AltaCarta.setText("Dar de Alta");
+						jB_AltaCarta.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_AltaCartaActionPerformed(evt);
+							}
+						});
+					}
+					{
+						TableModel jTable1Model = 
+								new DefaultTableModel(
+										new String[][] { { "One", "Two" }, { "Three", "Four" } },
+										new String[] { "Column 1", "Column 2" });
+						jT_Cartas = new JTable();
+						jT_Cartas.setModel(jTable1Model);
+					}
+						jF_CartaLayout.setHorizontalGroup(jF_CartaLayout.createSequentialGroup()
+						.addComponent(jT_Cartas, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
+						.addGap(12)
+						.addGroup(jF_CartaLayout.createParallelGroup()
+						    .addGroup(jF_CartaLayout.createSequentialGroup()
+						        .addComponent(jB_AltaCarta, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(GroupLayout.Alignment.LEADING, jF_CartaLayout.createSequentialGroup()
+						        .addComponent(jB_BajaCarta, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(jF_CartaLayout.createSequentialGroup()
+						        .addComponent(jB_ModificarCarta, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+						jF_CartaLayout.setVerticalGroup(jF_CartaLayout.createSequentialGroup()
+						.addGroup(jF_CartaLayout.createParallelGroup()
+						    .addGroup(jF_CartaLayout.createSequentialGroup()
+						        .addComponent(jT_Cartas, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE))
+						    .addGroup(GroupLayout.Alignment.LEADING, jF_CartaLayout.createSequentialGroup()
+						        .addGap(12)
+						        .addComponent(jB_AltaCarta, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						        .addGap(11)
+						        .addComponent(jB_BajaCarta, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						        .addGap(11)
+						        .addComponent(jB_ModificarCarta, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap(310, Short.MAX_VALUE));
 				}
 			}
 			this.setSize(800, 600);
@@ -693,6 +1050,71 @@ public class mainGUI extends javax.swing.JFrame {
 	
 	private void jBAltaConceptoActionPerformed(ActionEvent evt) {
 		gcon.setVisible(true);
+	}
+	
+	
+	/*
+	 * FACTURAS
+	 */
+	private void jB_ModificarFacturaActionPerformed(ActionEvent evt) {
+	}
+	
+	private void jB_BajaFacturaActionPerformed(ActionEvent evt) {
+	}
+	
+	private void jB_AltaFacturaActionPerformed(ActionEvent evt) {
+	}
+	
+	
+	/*
+	 * NOTAS INFORMATIVAS
+	 */
+	private void jB_ModificarNotaActionPerformed(ActionEvent evt) {
+	}
+	
+	private void jB_BajaNotaActionPerformed(ActionEvent evt) {
+	}
+	
+	private void jB_AltaNotaActionPerformed(ActionEvent evt) {
+	}
+	
+	
+	/*
+	 * RECIBOS
+	 */
+	private void jB_ModificarReciboActionPerformed(ActionEvent evt) {
+	}
+	
+	private void jB_BajaReciboActionPerformed(ActionEvent evt) {
+	}
+	
+	private void jB_AltaReciboActionPerformed(ActionEvent evt) {
+	}
+	
+	
+	/*
+	 * LINEA FACTURA
+	 */
+	private void jB_AltaLineaActionPerformed(ActionEvent evt) {
+	}
+	
+	private void jB_BajaLineaActionPerformed(ActionEvent evt) {
+	}
+	
+	private void jB_ModificarLineaActionPerformed(ActionEvent evt) {
+	}
+	
+	
+	/*
+	 * CARTA
+	 */
+	private void jB_ModificarCartaActionPerformed(ActionEvent evt) {
+	}
+	
+	private void jB_BajaCartaActionPerformed(ActionEvent evt) {
+	}
+	
+	private void jB_AltaCartaActionPerformed(ActionEvent evt) {
 	}
 
 }
