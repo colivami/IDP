@@ -4,6 +4,7 @@ package dao;
 
 import java.util.ArrayList;
 
+import negocio.Comunidad;
 import negocio.Factura;
 
 import org.hibernate.Session;
@@ -18,6 +19,17 @@ public class FacturaHome {
 	
 	private Session sesion = null;
 	private Transaction tx = null;
+	
+
+	public Factura buscarFacturaPorID(int id) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Factura f = (Factura) sesion.get(Factura.class, new Integer(id));
+		tx.commit();
+		sesion.close();
+		return f;
+	}
+	
 
 	public void anyadirFactura(Factura f) {
 		sesion = UtilidadHibernate.getSessionFactory().openSession();

@@ -9,6 +9,7 @@ import javax.naming.InitialContext;
 
 import negocio.Carta;
 import negocio.Carta;
+import negocio.Comunidad;
 
 import org.hibernate.LockMode;
 import org.hibernate.Session;
@@ -24,6 +25,17 @@ import org.hibernate.criterion.Example;
 public class CartaHome {
 	private Session sesion = null;
 	private Transaction tx = null;
+	
+	
+
+	public Carta buscarCartaPorID(int id) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Carta c = (Carta) sesion.get(Carta.class, new Integer(id));
+		tx.commit();
+		sesion.close();
+		return c;
+	}
 
 	public void anyadirCarta(Carta c) {
 		sesion = UtilidadHibernate.getSessionFactory().openSession();

@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.sound.sampled.Line;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -37,6 +36,8 @@ import net.sf.jasperreports.engine.query.JRHibernateQueryExecuterFactory;
 import net.sf.jasperreports.view.JasperViewer;
 
 import org.hibernate.classic.Session;
+
+import com.sun.crypto.provider.TlsKeyMaterialGenerator;
 
 import dao.CartaHome;
 import dao.ComunidadHome;
@@ -1195,6 +1196,25 @@ public class mainGUI extends javax.swing.JFrame {
 	 */
 	/*************************************************************************************************/
 	private void jB_ModificarNotaActionPerformed(ActionEvent evt) {
+		int row = (int) jT_NotasInformativas.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else {
+			NotainformativaHome niHome = new NotainformativaHome();
+			
+			Comunidad c = new ComunidadHome().buscarComunidadPorID(
+					Integer.parseInt(TFactura.getValueAt(row, 3).toString()));
+			
+			Notainformativa ni = new Notainformativa();
+			ni.setIdNotainformativa(Integer.parseInt(TNota.getValueAt(row, 0).toString()));
+			ni.setFechacalculo(TNota.getValueAt(row, 1).toString());
+			ni.setImportenota(Double.parseDouble(TNota.getValueAt(row, 2).toString()));
+			ni.setComunidad(c);
+			
+			GestionNotaInformativaGUI gni_mod = new GestionNotaInformativaGUI(TNota, row, niHome, ni);
+			gni_mod.setVisible(true);
+		}
 	}
 	
 	private void jB_BajaNotaActionPerformed(ActionEvent evt) {
@@ -1221,6 +1241,30 @@ public class mainGUI extends javax.swing.JFrame {
 	 */
 	/*************************************************************************************************/
 	private void jB_ModificarReciboActionPerformed(ActionEvent evt) {
+		int row = (int) jT_Recibos.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else {
+			ReciboinmuebleHome riHome = new ReciboinmuebleHome();
+			
+			Inmueble i = new InmuebleHome().buscarInmueblePorID(
+					Integer.parseInt(TRecibo.getValueAt(row, 2).toString()));
+			Notainformativa ni = new NotainformativaHome().buscarNotainformativaPorID(
+					Integer.parseInt(TRecibo.getValueAt(row, 3).toString()));
+			Carta c = new CartaHome().buscarCartaPorID(
+					Integer.parseInt(TRecibo.getValueAt(row, 4).toString()));
+			
+			Reciboinmueble ri = new Reciboinmueble();
+			ri.setIdReciboinmueble(Integer.parseInt(TRecibo.getValueAt(row, 0).toString()));
+			ri.setFechapago(TRecibo.getValueAt(row, 1).toString());
+			ri.setInmueble(i);
+			ri.setNotainformativa(ni);
+			ri.setCarta(c);
+			
+			GestionRecibosGUI gri_mod = new GestionRecibosGUI(TRecibo, row, riHome, ri);
+			gri_mod.setVisible(true);
+		}
 	}
 	
 	private void jB_BajaReciboActionPerformed(ActionEvent evt) {
@@ -1264,6 +1308,30 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_ModificarLineaActionPerformed(ActionEvent evt) {
+		
+		int row = (int) jT_LineaFactura.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else {
+			LineafacturaHome lfHome = new LineafacturaHome();
+
+			Concepto c = new ConceptoHome().buscarConceptoPorID(
+					Integer.parseInt(TRecibo.getValueAt(row, 3).toString()));
+			Factura f = new FacturaHome().buscarFacturaPorID(
+					Integer.parseInt(TRecibo.getValueAt(row, 4).toString()));
+			
+			Lineafactura lf = new Lineafactura();
+			lf.setIdLineafactura(Integer.parseInt(TLinea.getValueAt(row, 0).toString()));
+			lf.setImportelinea(Double.parseDouble(TLinea.getValueAt(row, 1).toString()));
+			lf.setObservacion(TLinea.getValueAt(row, 2).toString());
+			lf.setFactura(f);
+			lf.setConcepto(c);
+			
+			
+			GestionLineaFacturaGUI glf_mod = new GestionLineaFacturaGUI(TLinea, row, lfHome, lf);
+			glf_mod.setVisible(true);
+		}
 	}
 	
 	
@@ -1273,6 +1341,21 @@ public class mainGUI extends javax.swing.JFrame {
 	 */
 	/*************************************************************************************************/
 	private void jB_ModificarCartaActionPerformed(ActionEvent evt) {
+		int row = (int) jT_Cartas.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else {
+			CartaHome carHome = new CartaHome();
+
+			Carta c = new Carta();
+			c.setIdCarta(Integer.parseInt(TCarta.getValueAt(row, 0).toString()));
+			c.setFecha(TCarta.getValueAt(row, 1).toString());
+			
+			
+			GestionCartasGUI gcar_mod = new GestionCartasGUI(TCarta, row, carHome, c);
+			gcar_mod.setVisible(true);
+		}
 	}
 	
 	private void jB_BajaCartaActionPerformed(ActionEvent evt) {

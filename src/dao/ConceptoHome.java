@@ -9,6 +9,7 @@ import javax.naming.InitialContext;
 
 import negocio.Concepto;
 import negocio.Concepto;
+import negocio.Factura;
 
 import org.hibernate.LockMode;
 import org.hibernate.Session;
@@ -107,6 +108,14 @@ public class ConceptoHome {
 	
 	
 
+	public Concepto buscarConceptoPorID(int id) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Concepto c = (Concepto) sesion.get(Concepto.class, new Integer(id));
+		tx.commit();
+		sesion.close();
+		return c;
+	}
 	public void anyadirConcepto(Concepto i) {
 		sesion = UtilidadHibernate.getSessionFactory().openSession();
 		tx = sesion.beginTransaction();

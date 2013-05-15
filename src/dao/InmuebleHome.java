@@ -4,6 +4,7 @@ package dao;
 
 import java.util.ArrayList;
 
+import negocio.Comunidad;
 import negocio.Inmueble;
 
 import org.hibernate.Session;
@@ -98,7 +99,15 @@ public class InmuebleHome {
 //			throw re;
 //		}
 //	}
-
+	public Inmueble buscarInmueblePorID(int id) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Inmueble i = (Inmueble) sesion.get(Inmueble.class, new Integer(id));
+		tx.commit();
+		sesion.close();
+		return i;
+	}
+	
 	public void anyadirInmueble(Inmueble i) {
 		sesion = UtilidadHibernate.getSessionFactory().openSession();
 		tx = sesion.beginTransaction();
