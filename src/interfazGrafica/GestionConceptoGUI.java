@@ -147,21 +147,20 @@ public class GestionConceptoGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_GuardarConceptoActionPerformed(ActionEvent evt) {
-		String idConcepto = jTF_IDConcepto.getText();
+//		String idConcepto = jTF_IDConcepto.getText();
 		String descripcion = jTA_DescripcionConcepto.getText();
 
-		int idPropietario= Integer.parseInt(jTF_IDConcepto.getText());
 
 		if (modificar) {
-			cHome.borrarConcepto(idConcepto_mod);
-			tConcepto.removeRow(row);
+			cHome.updateConcepto(idConcepto_mod, descripcion);
+			tConcepto.setValueAt(descripcion, row, 1);
 		}
-		
-		Concepto c = new Concepto();
-		c.setIdConcepto(Integer.parseInt(idConcepto));
-		c.setDescripcion(descripcion);
-		
-		tConcepto.addConcepto(c);
+		else {
+			Concepto c = new Concepto();
+//			c.setIdConcepto(Integer.parseInt(idConcepto));
+			c.setDescripcion(descripcion);
+			tConcepto.addConcepto(c);
+		}
 		this.dispose();
 	}
 	

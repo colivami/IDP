@@ -142,4 +142,14 @@ public class ConceptoHome {
 		tx.commit();
 		sesion.close();
 	}
+	
+	public void updateConcepto(int id, String descripcion) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Concepto c = (Concepto) sesion.get(Concepto.class, new Integer(id));
+		sesion.update(c);
+		c.setDescripcion(descripcion);
+		tx.commit();
+		sesion.close();
+	}
 }

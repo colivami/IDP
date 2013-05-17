@@ -10,8 +10,11 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
+import negocio.Concepto;
+import negocio.Factura;
 import negocio.Lineafactura;
-
+import dao.ConceptoHome;
+import dao.FacturaHome;
 import dao.LineafacturaHome;
 
 
@@ -198,8 +201,31 @@ public class GestionLineaFacturaGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_GuardarLineaActionPerformed(ActionEvent evt) {
-		System.out.println("jB_GuardarLinea.actionPerformed, event="+evt);
-		//TODO add your code for jB_GuardarLinea.actionPerformed
+		double importe = Double.parseDouble(jTF_ImporteLinea.getText());
+		String observacion = jTF_ObservacionLinea.getText();
+		
+		Factura f = new FacturaHome().buscarFacturaPorID(
+				Integer.parseInt(jTF_NumFacturaLinea.getText()));
+		
+		Concepto c = new ConceptoHome().buscarConceptoPorID(
+				Integer.parseInt(jTF_IDConceptoLinea.getText()));
+		
+		if(modificar) {
+			lfHome.updateLineafactura(idLinea_mod, importe, observacion, f, c);
+			TLinea.setValueAt(importe, row, 1);
+			TLinea.setValueAt(observacion, row, 2);
+			TLinea.setValueAt(f.getNumfactura(), row, 3);
+			TLinea.setValueAt(c.getIdConcepto(), row, 4);
+		} else {
+			Lineafactura lf = new Lineafactura();
+			lf.setImportelinea(importe);
+			lf.setConcepto(c);
+			lf.setFactura(f);
+			lf.setObservacion(observacion);
+			TLinea.addLineaFactura(lf);
+		}
+		
+		this.dispose();
 	}
 
 }

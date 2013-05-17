@@ -4,6 +4,8 @@ package dao;
 
 import java.util.ArrayList;
 
+import negocio.Concepto;
+import negocio.Factura;
 import negocio.Lineafactura;
 
 import org.hibernate.Session;
@@ -44,4 +46,18 @@ public class LineafacturaHome {
 		tx.commit();
 		sesion.close();
 	}
+	
+	public void updateLineafactura(int id, double importe, String observacion, Factura f, Concepto c) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Lineafactura lf = (Lineafactura) sesion.get(Lineafactura.class, new Integer(id));
+		sesion.update(lf);
+		lf.setConcepto(c);
+		lf.setFactura(f);
+		lf.setObservacion(observacion);
+		lf.setImportelinea(importe);
+		tx.commit();
+		sesion.close();
+	}
+	
 }
