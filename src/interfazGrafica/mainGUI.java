@@ -1156,6 +1156,7 @@ public class mainGUI extends javax.swing.JFrame {
 			FacturaHome fHome = new FacturaHome();
 			Comunidad c = new ComunidadHome().buscarComunidadPorID(
 					Integer.parseInt(TFactura.getValueAt(row, 1).toString()));
+			
 			Notainformativa ni = new NotainformativaHome().buscarNotainformativaPorID(
 					Integer.parseInt(TFactura.getValueAt(row, 3).toString()));
 			
@@ -1204,7 +1205,7 @@ public class mainGUI extends javax.swing.JFrame {
 			NotainformativaHome niHome = new NotainformativaHome();
 			
 			Comunidad c = new ComunidadHome().buscarComunidadPorID(
-					Integer.parseInt(TFactura.getValueAt(row, 3).toString()));
+					Integer.parseInt(TNota.getValueAt(row, 3).toString()));
 			
 			Notainformativa ni = new Notainformativa();
 			ni.setIdNotainformativa(Integer.parseInt(TNota.getValueAt(row, 0).toString()));

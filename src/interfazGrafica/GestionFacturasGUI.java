@@ -10,8 +10,12 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
+import negocio.Comunidad;
 import negocio.Factura;
+import negocio.Notainformativa;
+import dao.ComunidadHome;
 import dao.FacturaHome;
+import dao.NotainformativaHome;
 
 
 /**
@@ -178,8 +182,33 @@ public class GestionFacturasGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_GuardarFacturaActionPerformed(ActionEvent evt) {
-		System.out.println("jB_GuardarFactura.actionPerformed, event="+evt);
-		//TODO add your code for jB_GuardarFactura.actionPerformed
+		
+//		int numFactura = Integer.parseInt(jTF_NumFactura.getText());
+		String fecha = jTF_FechaFactura.getText();
+		
+		Comunidad c = new ComunidadHome().buscarComunidadPorID(
+				Integer.parseInt(jTF_IDComunidadFactura.getText()));
+		
+		Notainformativa ni = new NotainformativaHome().buscarNotainformativaPorID(
+				Integer.parseInt(jTF_IDNotaInformativaFactura.getText()));
+		
+		if(modificar) {
+			fHome.updateFactura(numFactura_mod, fecha, c, ni);
+			TFactura.setValueAt(c.getIdComunidad(), row, 1);
+			TFactura.setValueAt(fecha, row, 2);
+			TFactura.setValueAt(ni.getIdNotainformativa(), row, 3);
+		}
+		else {
+			Factura f = new Factura();
+			f.setNumfactura(0);
+			f.setComunidad(c);
+			f.setNotainformativa(ni);
+			f.setFechafactura(fecha);
+			TFactura.addFactura(f);
+		}
+		
+		
+		this.dispose();
 	}
 	
 	private void jB_CancelarFacturaActionPerformed(ActionEvent evt) {

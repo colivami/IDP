@@ -147,8 +147,19 @@ public class GestionCartasGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_GuardarCartaActionPerformed(ActionEvent evt) {
-		System.out.println("jB_GuardarCarta.actionPerformed, event="+evt);
-		//TODO add your code for jB_GuardarCarta.actionPerformed
+		int idCarta = Integer.parseInt(jTF_IDCarta.getText());
+		String fecha = jTF_FechaCarta.getText();
+		
+		if(modificar) {
+			carHome.borrarCarta(idCarta_mod);
+			TCarta.removeRow(row);
+		}
+		
+		Carta c = new Carta();
+		c.setIdCarta(idCarta);
+		c.setFecha(fecha);
+		TCarta.addCarta(c);
+		this.dispose();
 	}
 
 }

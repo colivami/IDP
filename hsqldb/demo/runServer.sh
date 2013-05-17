@@ -47,7 +47,7 @@ pre_main
 #
 # let's go
 #
-    $jargs="$dbhome/lib/hsqldb.jar"
+    $jargs=""
     cd $dbhome/data
     exec "$jdkhome/bin/java" $thread_flag -classpath "$cp" $jargs "org.hsqldb.Server" "$@" -database.0 idp -dbname.0 idp
 # and we exit.

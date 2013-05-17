@@ -11,8 +11,10 @@ import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
 
+import negocio.Comunidad;
 import negocio.Notainformativa;
 
+import dao.ComunidadHome;
 import dao.NotainformativaHome;
 
 
@@ -189,8 +191,29 @@ public class GestionNotaInformativaGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_GuardarNotaActionPerformed(ActionEvent evt) {
-		System.out.println("jB_GuardarNota.actionPerformed, event="+evt);
-		//TODO add your code for jB_GuardarNota.actionPerformed
+//		int idnota = Integer.parseInt(jTF_IDNotaInformativa.getText());
+		String fecha = jTF_FechaNotaInformativa.getText();
+		Double importe = Double.parseDouble(jTF_ImporteNotaInformativa.getText());
+		
+		Comunidad c = new ComunidadHome().buscarComunidadPorID(
+				Integer.parseInt(jTF_IDComunidadNotaInformativa.getText()));
+		
+		if (modificar) {
+			niHome.updateNotainformativa(idNota_mod, fecha, importe, c);
+			TNota.setValueAt(fecha, row, 1);
+			TNota.setValueAt(importe, row, 2);
+			TNota.setValueAt(c.getIdComunidad(), row, 3);
+		}
+		else {
+			Notainformativa ni = new Notainformativa();
+			ni.setFechacalculo(fecha);
+			ni.setImportenota(importe);
+			ni.setComunidad(c);
+			
+			TNota.addNotaInformativa(ni);
+		}
+		
+		this.dispose();
 	}
 	
 	private void jB_CancelarNotaActionPerformed(ActionEvent evt) {

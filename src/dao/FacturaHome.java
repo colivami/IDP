@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import negocio.Comunidad;
 import negocio.Factura;
+import negocio.Notainformativa;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -48,12 +49,25 @@ public class FacturaHome {
 		return listaFacturaes;
 	}
 	
-	
+
 	public void borrarFactura(int num) {
 		sesion = UtilidadHibernate.getSessionFactory().openSession();
 		tx = sesion.beginTransaction();
 		Factura f = (Factura) sesion.get(Factura.class, new Integer(num));
 		sesion.delete(f);
+		tx.commit();
+		sesion.close();
+	}
+	
+	
+	public void updateFactura(int num, String fecha, Comunidad c, Notainformativa ni) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Factura f = (Factura) sesion.get(Factura.class, new Integer(num));
+		sesion.update(f);
+		f.setFechafactura(fecha);
+		f.setComunidad(c);
+		f.setNotainformativa(ni);
 		tx.commit();
 		sesion.close();
 	}

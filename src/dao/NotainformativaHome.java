@@ -56,4 +56,16 @@ public class NotainformativaHome {
 		tx.commit();
 		sesion.close();
 	}
+	
+	public void updateNotainformativa(int id, String fecha, double importe, Comunidad c) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Notainformativa ni = (Notainformativa) sesion.get(Notainformativa.class, new Integer(id));
+		sesion.update(ni);
+		ni.setFechacalculo(fecha);
+		ni.setImportenota(importe);
+		ni.setComunidad(c);
+		tx.commit();
+		sesion.close();
+	}
 }
