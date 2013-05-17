@@ -4,6 +4,9 @@ package dao;
 
 import java.util.ArrayList;
 
+import negocio.Carta;
+import negocio.Inmueble;
+import negocio.Notainformativa;
 import negocio.Reciboinmueble;
 
 import org.hibernate.Session;
@@ -42,6 +45,18 @@ public class ReciboinmuebleHome {
 		tx = sesion.beginTransaction();
 		Reciboinmueble ri = (Reciboinmueble) sesion.get(Reciboinmueble.class, new Integer(id));
 		sesion.delete(ri);
+		tx.commit();
+		sesion.close();
+	}
+	public void updateRecibo(int id, String fecha, Inmueble i, Notainformativa ni, Carta c) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Reciboinmueble ri = (Reciboinmueble) sesion.get(Reciboinmueble.class, new Integer(id));
+		sesion.update(ri);
+		ri.setFechapago(fecha);
+		ri.setInmueble(i);
+		ri.setNotainformativa(ni);
+		ri.setCarta(c);
 		tx.commit();
 		sesion.close();
 	}

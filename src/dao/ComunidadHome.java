@@ -134,4 +134,20 @@ public class ComunidadHome {
 		tx.commit();
 		sesion.close();
 	}
+	
+	
+	public void updateComunidad(int id, String calle, int maxrecibos, String estado, int idpresidente ) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Comunidad c = (Comunidad) sesion.get(Comunidad.class, new Integer(id));
+		sesion.update(c);
+		c.setCalle(calle);
+		c.setMaxrecibospendientes(maxrecibos);
+		c.setEstado(estado);
+		c.setIdInmueblePresidente(idpresidente);
+		tx.commit();
+		sesion.close();
+	}
+	
+	
 }

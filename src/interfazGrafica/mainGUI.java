@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.BorderFactory;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -625,6 +626,7 @@ public class mainGUI extends javax.swing.JFrame {
 //										new String[] { "Column 1", "Column 2" });
 						jT_NotasInformativas = new JTable();
 						jT_NotasInformativas.setModel(jTable1Model);
+						jT_NotasInformativas.setBorder(BorderFactory.createTitledBorder(""));
 					}
 					{
 						jB_InformeNota = new JButton();
@@ -637,20 +639,12 @@ public class mainGUI extends javax.swing.JFrame {
 					}
 						jF_NotasInformativasLayout.setHorizontalGroup(jF_NotasInformativasLayout.createSequentialGroup()
 						.addComponent(jT_NotasInformativas, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						.addGap(12)
 						.addGroup(jF_NotasInformativasLayout.createParallelGroup()
-						    .addGroup(jF_NotasInformativasLayout.createSequentialGroup()
-						        .addComponent(jB_ModificarNota, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						        .addGap(0, 0, Short.MAX_VALUE))
-						    .addGroup(jF_NotasInformativasLayout.createSequentialGroup()
-						        .addComponent(jB_BajaNota, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						        .addGap(0, 0, Short.MAX_VALUE))
-						    .addGroup(jF_NotasInformativasLayout.createSequentialGroup()
-						        .addComponent(jB_AltaNota, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						        .addGap(0, 0, Short.MAX_VALUE))
-						    .addGroup(GroupLayout.Alignment.LEADING, jF_NotasInformativasLayout.createSequentialGroup()
-						        .addGap(0, 0, Short.MAX_VALUE)
-						        .addComponent(jB_InformeNota, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
+						    .addComponent(jB_InformeNota, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jB_AltaNota, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jB_BajaNota, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jB_ModificarNota, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
 						.addContainerGap());
 						jF_NotasInformativasLayout.setVerticalGroup(jF_NotasInformativasLayout.createSequentialGroup()
 						.addGroup(jF_NotasInformativasLayout.createParallelGroup()
@@ -662,9 +656,9 @@ public class mainGUI extends javax.swing.JFrame {
 						        .addComponent(jB_BajaNota, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 						        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						        .addComponent(jB_ModificarNota, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
-						.addGap(51)
+						.addGap(41)
 						.addComponent(jB_InformeNota, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(209, Short.MAX_VALUE));
+						.addContainerGap(219, Short.MAX_VALUE));
 				}
 				{
 					jF_Recibos = new JInternalFrame();

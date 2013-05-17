@@ -14,7 +14,6 @@ public class TablaComunidad extends DefaultTableModel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private ComunidadHome cHome = new ComunidadHome();
-//	private ArrayList<Comunidad> comunidades = cHome.buscarComunidades();
 	
 	public TablaComunidad() {
 		super(null,new String[]{"ID Comunidad", "Calle", "MaxRecibosPendientes", "Estado", "ID Inmueble Presidente"});

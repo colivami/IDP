@@ -1,18 +1,22 @@
 package interfazGrafica;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-
 import javax.swing.WindowConstants;
-import javax.swing.SwingUtilities;
 
+import negocio.Carta;
+import negocio.Inmueble;
+import negocio.Notainformativa;
 import negocio.Reciboinmueble;
-
+import dao.CartaHome;
+import dao.InmuebleHome;
+import dao.NotainformativaHome;
 import dao.ReciboinmuebleHome;
 
 
@@ -219,6 +223,32 @@ public class GestionRecibosGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_GuardarReciboActionPerformed(ActionEvent evt) {
+		String fecha = jTF_FechaPagoRecibo.getText();
+		
+		Inmueble i = new InmuebleHome().buscarInmueblePorID(
+				Integer.parseInt(jTF_IDInmuebleRecibo.getText()));
+		
+		Notainformativa ni = new NotainformativaHome().buscarNotainformativaPorID(
+				Integer.parseInt(jTF_NotaInformativaRecibo.getText()));
+		
+		Carta c = new CartaHome().buscarCartaPorID(
+				Integer.parseInt(jTF_IDCartaRecibo.getText()));
+		
+		if(modificar) {
+			rHome.updateRecibo(idRecibo_mod, fecha, i, ni, c);
+			TRecibo.setValueAt(fecha, row, 1);
+			TRecibo.setValueAt(i.getIdInmueble(), row, 2);
+			TRecibo.setValueAt(ni.getIdNotainformativa(), row, 3);
+			TRecibo.setValueAt(c.getIdCarta(), row, 4);
+		} else {
+			Reciboinmueble r = new Reciboinmueble();
+			r.setFechapago(fecha);
+			r.setInmueble(i);
+			r.setNotainformativa(ni);
+			r.setCarta(c);
+			TRecibo.addReciboinmueble(r);
+		}
+		this.dispose();
 	}
 
 }
