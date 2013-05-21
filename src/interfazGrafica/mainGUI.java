@@ -2,11 +2,10 @@ package interfazGrafica;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import javax.swing.BorderFactory;
 
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -30,16 +29,6 @@ import negocio.Lineafactura;
 import negocio.Notainformativa;
 import negocio.Propietario;
 import negocio.Reciboinmueble;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.query.JRHibernateQueryExecuterFactory;
-import net.sf.jasperreports.view.JasperViewer;
-
-import org.hibernate.classic.Session;
-
-import com.sun.crypto.provider.TlsKeyMaterialGenerator;
-
 import dao.CartaHome;
 import dao.ComunidadHome;
 import dao.ConceptoHome;
@@ -49,7 +38,6 @@ import dao.LineafacturaHome;
 import dao.NotainformativaHome;
 import dao.PropietarioHome;
 import dao.ReciboinmuebleHome;
-import dao.UtilidadHibernate;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo
@@ -1381,17 +1369,17 @@ public class mainGUI extends javax.swing.JFrame {
 
 	
 	private void jB_InformeComunidadesActionPerformed(ActionEvent evt) {
-		JasperPrint informe = null;
-		Session sesion= UtilidadHibernate.getSessionFactory().openSession();
-		HashMap parametros = new HashMap();
-		parametros.put(JRHibernateQueryExecuterFactory.PARAMETER_HIBERNATE_SESSION,sesion);
-		//parametros.put("genero","Comedia");
-		try {
-		String fileName= "report1.jasper";
-		informe= JasperFillManager.fillReport(fileName, parametros);
-		}
-		catch (JRException e){e.printStackTrace();}
-		JasperViewer.viewReport(informe,false);
+//		JasperPrint informe = null;
+//		Session sesion= UtilidadHibernate.getSessionFactory().openSession();
+//		HashMap parametros = new HashMap();
+//		parametros.put(JRHibernateQueryExecuterFactory.PARAMETER_HIBERNATE_SESSION,sesion);
+//		//parametros.put("genero","Comedia");
+//		try {
+//		String fileName= "report1.jasper";
+//		informe= JasperFillManager.fillReport(fileName, parametros);
+//		}
+//		catch (JRException e){e.printStackTrace();}
+//		JasperViewer.viewReport(informe,false);
 	}
 	
 	private void jB_InformeNotaActionPerformed(ActionEvent evt) {

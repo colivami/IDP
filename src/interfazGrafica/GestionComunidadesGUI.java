@@ -215,17 +215,21 @@ public class GestionComunidadesGUI extends javax.swing.JFrame {
 		int idComunidad = Integer.parseInt(jTF_IDComunidades.getText());
 		int idInmueblePresidente = Integer.parseInt(jTF_IDPresidenteComunidades.getText());
 		
+		
 		if(modificar) {
-			cHome.borrarComunidad(idComunidad_mod);
-			tComunidad.removeRow(row);
+			cHome.updateComunidad(idComunidad_mod, calle, maxrecibospendientes, estado, idInmueblePresidente);
+			tComunidad.setValueAt(calle, row, 1);
+			tComunidad.setValueAt(maxrecibospendientes, row, 2);
+			tComunidad.setValueAt(estado, row, 3);
+			tComunidad.setValueAt(idInmueblePresidente, row, 4);
 		}
 		else {
-			Set inmuebles = new HashSet();
-			Set facturas = new HashSet();
-			Set notainformativas = new HashSet();
-			
-			Comunidad c = new Comunidad(idComunidad, calle, maxrecibospendientes, estado, idInmueblePresidente, inmuebles, facturas, notainformativas);
-			
+			Comunidad c = new Comunidad();
+			c.setEstado(estado);
+			c.setCalle(calle);
+			c.setMaxrecibospendientes(maxrecibospendientes);
+			c.setIdInmueblePresidente(idInmueblePresidente);
+			c.setIdComunidad(idComunidad);
 			tComunidad.addComunidad(c);
 		}
 		

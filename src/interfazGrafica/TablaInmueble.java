@@ -15,7 +15,6 @@ public class TablaInmueble extends DefaultTableModel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private InmuebleHome iHome = new InmuebleHome();
-	private ArrayList<Inmueble> inmuebles = iHome.buscarInmuebles();
 	private boolean inmVacio;
 	private boolean modified = false;
 

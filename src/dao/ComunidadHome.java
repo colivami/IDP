@@ -5,7 +5,6 @@ package dao;
 import java.util.ArrayList;
 
 import negocio.Comunidad;
-import negocio.Inmueble;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
