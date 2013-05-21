@@ -19,23 +19,6 @@ public class TablaComunidad extends DefaultTableModel {
 		super(null,new String[]{"ID Comunidad", "Calle", "MaxRecibosPendientes", "Estado", "ID Inmueble Presidente"});
 	}
 	
-//	
-//	public boolean isModified() {
-//		return modified;
-//	}
-//
-//	public void setModified(boolean modified) {
-//		this.modified = modified;
-//	}
-//	
-//	public boolean isInmVacio() {
-//		return inmVacio;
-//	}
-//
-//	public void setInmVacio(boolean inmVacio) {
-//		this.inmVacio = inmVacio;
-//	}
-//	
 	public boolean isCellEditable(int rowindex, int colindex) {
 		return false;
 	}

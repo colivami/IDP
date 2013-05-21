@@ -1131,8 +1131,18 @@ public class mainGUI extends javax.swing.JFrame {
 	/*************************************************************************************************/
 	private void jB_ModificarFacturaActionPerformed(ActionEvent evt) {
 		int row = (int) jT_Facturas.getSelectedRow(); 
+		
+
+		int id_restriccion = Integer.parseInt(jT_Facturas.getValueAt(row, 3).toString());
+		
+		
 		if (row == -1){
 			// mostrar error
+		}
+		else if(new NotainformativaHome().buscarNotainformativaPorID(id_restriccion).getReciboinmuebles() != null) {
+			/*
+			 * No se puede modificar una factura incluida en un recibo
+			 */
 		}
 		else {
 			FacturaHome fHome = new FacturaHome();

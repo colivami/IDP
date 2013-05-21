@@ -30,11 +30,6 @@ public class TablaInmueble extends DefaultTableModel {
 
 	}
 	
-//	public Inmueble recuperarInmueblePorPosicion(int row) {
-//		iHome.
-//		
-//		return i;
-//	}
 	
 	public boolean isModified() {
 		return modified;

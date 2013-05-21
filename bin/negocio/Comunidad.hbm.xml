@@ -22,6 +22,7 @@
   <property generated="never" lazy="false" name="idInmueblePresidente" type="java.lang.Integer">
    <column name="ID_INMUEBLE_PRESIDENTE"/>
   </property>
+  
   <set fetch="select" inverse="true" lazy="false" name="inmuebles"
    sort="unsorted" table="INMUEBLE">
    <key>
@@ -29,6 +30,7 @@
    </key>
    <one-to-many class="negocio.Inmueble"/>
   </set>
+  
   <set fetch="select" inverse="true" lazy="false" name="facturas"
    sort="unsorted" table="FACTURA">
    <key>
@@ -36,7 +38,11 @@
    </key>
    <one-to-many class="negocio.Factura"/>
   </set>
+  
+  <!-- 
   <one-to-one class="negocio.Comunidad" name="comunidad"/>
+  -->
+  
   <set fetch="select" inverse="true" lazy="true" name="notainformativas"
    sort="unsorted" table="NOTAINFORMATIVA">
    <key>
