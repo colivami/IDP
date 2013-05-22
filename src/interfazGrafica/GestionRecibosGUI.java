@@ -45,8 +45,6 @@ public class GestionRecibosGUI extends javax.swing.JFrame {
 	private JTextField jTF_IDInmuebleRecibo;
 	private JLabel jLabel2;
 	private JTextField jTF_ImporteRecibo;
-	private JLabel jLabel1;
-	private JTextField jTF_FechaPagoRecibo;
 
 	/**
 	* Auto-generated main method to display this JFrame
@@ -72,7 +70,6 @@ public class GestionRecibosGUI extends javax.swing.JFrame {
 		this.idRecibo_mod = r.getIdReciboinmueble();
 		this.modificar = true;
 		
-		jTF_FechaPagoRecibo.setText(r.getFechapago());
 		jTF_IDCartaRecibo.setText(""+r.getCarta().getIdCarta());
 		jTF_IDInmuebleRecibo.setText(""+r.getInmueble().getIdInmueble());
 		jTF_IDRecibo.setText(""+r.getIdReciboinmueble());
@@ -91,13 +88,6 @@ public class GestionRecibosGUI extends javax.swing.JFrame {
 			{
 				jL_IDNotaInformativa = new JLabel();
 				jL_IDNotaInformativa.setText("ID Recibo");
-			}
-			{
-				jTF_FechaPagoRecibo = new JTextField();
-			}
-			{
-				jLabel1 = new JLabel();
-				jLabel1.setText("Fecha pago");
 			}
 			{
 				jTF_ImporteRecibo = new JTextField();
@@ -145,16 +135,43 @@ public class GestionRecibosGUI extends javax.swing.JFrame {
 					}
 				});
 			}
+			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
+				.addContainerGap(63, 63)
+				.addGroup(thisLayout.createParallelGroup()
+				    .addComponent(jL_IDNotaInformativa, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+				    .addComponent(jLabel2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+				    .addComponent(jLabel3, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+				    .addComponent(jLabel4, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+				    .addComponent(jLabel5, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+				    .addComponent(jB_GuardarRecibo, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE))
+				.addGap(37)
+				.addGroup(thisLayout.createParallelGroup()
+				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addComponent(jTF_IDRecibo, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 17, Short.MAX_VALUE))
+				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addComponent(jTF_ImporteRecibo, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 17, Short.MAX_VALUE))
+				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addComponent(jTF_IDInmuebleRecibo, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 17, Short.MAX_VALUE))
+				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addComponent(jTF_NotaInformativaRecibo, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 17, Short.MAX_VALUE))
+				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addComponent(jTF_IDCartaRecibo, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 17, Short.MAX_VALUE))
+				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addGap(26)
+				        .addComponent(jB_CancelarRecibo, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 0, Short.MAX_VALUE)))
+				.addContainerGap(62, 62));
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
 				.addContainerGap()
 				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 				    .addComponent(jL_IDNotaInformativa, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 				    .addComponent(jTF_IDRecibo, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-				    .addComponent(jLabel1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(jTF_FechaPagoRecibo, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+				.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 38, GroupLayout.PREFERRED_SIZE)
 				.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 				    .addComponent(jLabel2, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
 				    .addComponent(jTF_ImporteRecibo, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -175,41 +192,6 @@ public class GestionRecibosGUI extends javax.swing.JFrame {
 				    .addComponent(jB_CancelarRecibo, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 				    .addComponent(jB_GuardarRecibo, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
 				.addContainerGap());
-			thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-				.addContainerGap(63, 63)
-				.addGroup(thisLayout.createParallelGroup()
-				    .addComponent(jL_IDNotaInformativa, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(jLabel1, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(jLabel2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(jLabel3, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(jLabel4, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(jLabel5, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-				    .addComponent(jB_GuardarRecibo, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE))
-				.addGap(37)
-				.addGroup(thisLayout.createParallelGroup()
-				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				        .addComponent(jTF_IDRecibo, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-				        .addGap(0, 17, Short.MAX_VALUE))
-				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				        .addComponent(jTF_FechaPagoRecibo, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-				        .addGap(0, 17, Short.MAX_VALUE))
-				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				        .addComponent(jTF_ImporteRecibo, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-				        .addGap(0, 17, Short.MAX_VALUE))
-				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				        .addComponent(jTF_IDInmuebleRecibo, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-				        .addGap(0, 17, Short.MAX_VALUE))
-				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				        .addComponent(jTF_NotaInformativaRecibo, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-				        .addGap(0, 17, Short.MAX_VALUE))
-				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				        .addComponent(jTF_IDCartaRecibo, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-				        .addGap(0, 17, Short.MAX_VALUE))
-				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-				        .addGap(26)
-				        .addComponent(jB_CancelarRecibo, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-				        .addGap(0, 0, Short.MAX_VALUE)))
-				.addContainerGap(62, 62));
 			pack();
 			setSize(400, 300);
 		} catch (Exception e) {
@@ -223,7 +205,8 @@ public class GestionRecibosGUI extends javax.swing.JFrame {
 	}
 	
 	private void jB_GuardarReciboActionPerformed(ActionEvent evt) {
-		String fecha = jTF_FechaPagoRecibo.getText();
+		
+		String fecha = "";
 		
 		Inmueble i = new InmuebleHome().buscarInmueblePorID(
 				Integer.parseInt(jTF_IDInmuebleRecibo.getText()));
@@ -234,18 +217,23 @@ public class GestionRecibosGUI extends javax.swing.JFrame {
 		Carta c = new CartaHome().buscarCartaPorID(
 				Integer.parseInt(jTF_IDCartaRecibo.getText()));
 		
+		double importe = Double.parseDouble(jTF_ImporteRecibo.getText());
+		
 		if(modificar) {
 			rHome.updateRecibo(idRecibo_mod, fecha, i, ni, c);
 			TRecibo.setValueAt(fecha, row, 1);
-			TRecibo.setValueAt(i.getIdInmueble(), row, 2);
-			TRecibo.setValueAt(ni.getIdNotainformativa(), row, 3);
-			TRecibo.setValueAt(c.getIdCarta(), row, 4);
+			TRecibo.setValueAt(importe, row, 2);
+			TRecibo.setValueAt(i.getIdInmueble(), row, 3);
+			TRecibo.setValueAt(ni.getIdNotainformativa(), row, 4);
+			TRecibo.setValueAt(c.getIdCarta(), row, 5);
+			
 		} else {
 			Reciboinmueble r = new Reciboinmueble();
 			r.setFechapago(fecha);
 			r.setInmueble(i);
 			r.setNotainformativa(ni);
 			r.setCarta(c);
+			r.setImporte(importe);
 			TRecibo.addReciboinmueble(r);
 		}
 		this.dispose();

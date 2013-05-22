@@ -1,6 +1,5 @@
 package interfazGrafica;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
@@ -12,7 +11,6 @@ public class TablaConcepto extends DefaultTableModel{
 
 	private static final long serialVersionUID = 1L;
 	private ConceptoHome cHome = new ConceptoHome();
-	private ArrayList<Concepto> conceptos = cHome.buscarConceptos();
 	
 
 	public TablaConcepto() {

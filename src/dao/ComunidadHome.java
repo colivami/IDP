@@ -16,12 +16,12 @@ import org.hibernate.Transaction;
  */
 public class ComunidadHome {
 
-	private Session sesion = null;
-	private Transaction tx = null;
+	//private Session sesion = null;
+	//private Transaction tx = null;
 	
 	public Comunidad buscarComunidadPorID(int id) {
-		sesion = UtilidadHibernate.getSessionFactory().openSession();
-		tx = sesion.beginTransaction();
+		Session sesion = UtilidadHibernate.getSessionFactory().openSession();
+		Transaction tx = sesion.beginTransaction();
 		Comunidad c = (Comunidad) sesion.get(Comunidad.class, new Integer(id));
 		tx.commit();
 		sesion.close();
@@ -30,26 +30,26 @@ public class ComunidadHome {
 	
 	
 	public void anyadirComunidad(Comunidad c) {
-		sesion = UtilidadHibernate.getSessionFactory().openSession();
-		tx = sesion.beginTransaction();
+		Session sesion = UtilidadHibernate.getSessionFactory().openSession();
+		Transaction tx = sesion.beginTransaction();
 		sesion.save(c);
 		tx.commit();
 		sesion.close();
 	}
 	
 	public ArrayList<Comunidad> buscarComunidades() {
-		sesion = UtilidadHibernate.getSessionFactory().openSession();
-		tx = sesion.beginTransaction();
+		Session sesion = UtilidadHibernate.getSessionFactory().openSession();
+		Transaction tx = sesion.beginTransaction();
 		ArrayList<Comunidad> listaComunidades = (ArrayList<Comunidad>) sesion.createQuery("from Comunidad").list();
-		sesion.getTransaction().commit();
+		tx.commit();
 		sesion.close();
 		return listaComunidades;
 	}
 	
 	
 	public void borrarComunidad(int id) {
-		sesion = UtilidadHibernate.getSessionFactory().openSession();
-		tx = sesion.beginTransaction();
+		Session sesion = UtilidadHibernate.getSessionFactory().openSession();
+		Transaction tx = sesion.beginTransaction();
 		Comunidad c = (Comunidad) sesion.get(Comunidad.class, new Integer(id));
 		sesion.delete(c);
 		tx.commit();
@@ -58,8 +58,8 @@ public class ComunidadHome {
 	
 	
 	public void updateComunidad(int id, String calle, int maxrecibos, String estado, int idpresidente ) {
-		sesion = UtilidadHibernate.getSessionFactory().openSession();
-		tx = sesion.beginTransaction();
+		Session sesion = UtilidadHibernate.getSessionFactory().openSession();
+		Transaction tx = sesion.beginTransaction();
 		Comunidad c = (Comunidad) sesion.get(Comunidad.class, new Integer(id));
 		sesion.update(c);
 		c.setCalle(calle);

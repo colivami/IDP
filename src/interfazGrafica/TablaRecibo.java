@@ -16,7 +16,7 @@ public class TablaRecibo extends DefaultTableModel {
 	private ReciboinmuebleHome riHome = new ReciboinmuebleHome();
 	
 	public TablaRecibo() {
-		super(null,new String[]{"ID Reciboinmueble", "Fecha pago", "ID Inmueble", "ID Nota informativa", "ID Carta"});
+		super(null,new String[]{"ID Reciboinmueble", "Importe", "Fecha pago", "ID Inmueble", "ID Nota informativa", "ID Carta"});
 	}
 
 	public boolean isCellEditable(int rowindex, int colindex) {

@@ -13,10 +13,11 @@ import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
 import negocio.Comunidad;
-import negocio.Datosbancarios;
 import negocio.Inmueble;
 import negocio.Propietario;
+import dao.ComunidadHome;
 import dao.InmuebleHome;
+import dao.PropietarioHome;
 
 
 /**
@@ -41,6 +42,8 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 	private JTextField jTF_PuertaInmuebles;
 	private JTextField jTF_PisoInmuebles;
 	private JTextField jTF_EscaleraInmuebles;
+	private JLabel jL_IDPropietarioInmueble;
+	private JTextField jTF_IDPropietarioInmueble;
 	private JTextField jTF_IDComunidadInmueble;
 	private JTextField jTF_IDInmuebles;
 	private JLabel jL_PorcentajeInmuebles;
@@ -127,6 +130,13 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 				jTF_IDComunidadInmueble = new JTextField();
 			}
 			{
+				jL_IDPropietarioInmueble = new JLabel();
+				jL_IDPropietarioInmueble.setText("ID Propietario");
+			}
+			{
+				jTF_IDPropietarioInmueble = new JTextField();
+			}
+			{
 				jB_GuardarInmuebles = new JButton();
 				jB_GuardarInmuebles.setText("Guardar");
 				jB_GuardarInmuebles.addActionListener(new ActionListener() {
@@ -148,15 +158,18 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 				jTF_EscaleraInmuebles = new JTextField();
 			}
 			thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
-					.addContainerGap(19, Short.MAX_VALUE)
+					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+					    .addComponent(jL_IDInmuebles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					    .addComponent(jTF_IDInmuebles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 					    .addComponent(jLabel1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 					    .addComponent(jTF_IDComunidadInmueble, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-					    .addComponent(jL_IDInmuebles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-					    .addComponent(jTF_IDInmuebles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+					    .addComponent(jL_IDPropietarioInmueble, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					    .addComponent(jTF_IDPropietarioInmueble, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(28)
 					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 					    .addComponent(jL_EscaleraInmuebles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 					    .addComponent(jTF_EscaleraInmuebles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -175,8 +188,7 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 					.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 					    .addComponent(jB_GuardarInmuebles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					    .addComponent(jB_CancelarInmuebles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap());
+					    .addComponent(jB_CancelarInmuebles, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)));
 				thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
 				.addContainerGap(42, 42)
 				.addGroup(thisLayout.createParallelGroup()
@@ -193,6 +205,9 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 				        .addGap(91))
 				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 				        .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+				        .addGap(39))
+				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+				        .addComponent(jL_IDPropietarioInmueble, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
 				        .addGap(39))
 				    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
 				        .addGap(24)
@@ -219,10 +234,13 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 				        .addGap(0, 0, Short.MAX_VALUE))
 				    .addGroup(thisLayout.createSequentialGroup()
 				        .addComponent(jTF_IDComunidadInmueble, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
+				        .addGap(0, 0, Short.MAX_VALUE))
+				    .addGroup(thisLayout.createSequentialGroup()
+				        .addComponent(jTF_IDPropietarioInmueble, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
 				        .addGap(0, 0, Short.MAX_VALUE)))
 				.addContainerGap(67, 67));
 			pack();
-			setSize(400, 300);
+			this.setSize(396, 314);
 		} catch (Exception e) {
 		    //add your error handling code here
 			e.printStackTrace();
@@ -236,22 +254,41 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 		String puerta = jTF_PuertaInmuebles.getText();
 		String piso = jTF_PisoInmuebles.getText();
 		int idInmueble = Integer.parseInt(jTF_IDInmuebles.getText());
+		int idComunidad = Integer.parseInt(jTF_IDComunidadInmueble.getText());
+		int idPropietario = Integer.parseInt(jTF_IDPropietarioInmueble.getText());
+		double porcentaje = Double.parseDouble(jTF_PorcentajeInmuebles.getText());
+		
 
-		Datosbancarios datosbancarios = new Datosbancarios();
-		Comunidad comunidad = new Comunidad(); 
-		Propietario propietario = new Propietario();
+//		Datosbancarios datosbancarios = new Datosbancarios();
+		Comunidad comunidad = new ComunidadHome().buscarComunidadPorID(idComunidad); 
+		Propietario propietario = new PropietarioHome().buscarPropietarioPorID(idPropietario);
+		
+		
 
 		if (modificar) {
-			iHome.borrarInmueble(idInmueble_mod);
-			tInmueble.removeRow(row);
+		
+			iHome.updateInmueble(idInmueble_mod,escalera,piso,puerta,porcentaje,idComunidad, idPropietario, 0);
+			tInmueble.setValueAt(escalera, row, 1);
+			tInmueble.setValueAt(piso, row, 2);
+			tInmueble.setValueAt(puerta, row, 3);
+			tInmueble.setValueAt(porcentaje, row, 4);
+			tInmueble.setValueAt(idComunidad, row, 5);
+			tInmueble.setValueAt(idPropietario, row, 6);
+		
+		} else if(comunidad.getEstado() != "baja") {
+			
+			Inmueble i = new Inmueble();
+			i.setComunidad(comunidad);
+			i.setEscalera(escalera);
+			i.setIdInmueble(idInmueble);
+			i.setPorcentaje(porcentaje);
+			i.setPropietario(propietario);
+			i.setPiso(piso);
+			i.setPuerta(puerta);
+			
+			tInmueble.addInmueble(i);
 		}
-	
-		Inmueble i = new Inmueble(idInmueble, comunidad, propietario, datosbancarios, escalera, piso, puerta, (Double) 1.0, reciboinmuebles);
-		i.getComunidad().setIdComunidad(0);
-		i.getPropietario().setIdPropietario(0);
-		i.getDatosbancarios().setIdDatosbancarios(0);
-		tInmueble.addInmueble(i);
-	
+		
 		this.dispose();
 	}
 	
