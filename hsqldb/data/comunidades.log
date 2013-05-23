@@ -1,0 +1,39 @@
+/*C1*/SET SCHEMA PUBLIC
+CONNECT USER SA
+CREATE TABLE DatosBancarios (\u000a       ID_DatosBancarios INTEGER NOT NULL\u000a     , Entidad VARCHAR(30)\u000a     , NumeroCuenta VARCHAR(30)\u000a     , PRIMARY KEY (ID_DatosBancarios)\u000a)
+CREATE TABLE Propietario (\u000a       ID_Propietario INTEGER NOT NULL\u000a     , NIF VARCHAR(30)\u000a     , Nombre VARCHAR(30)\u000a     , Direccion VARCHAR(30)\u000a     , Poblacion VARCHAR(30)\u000a     , Telefono VARCHAR(30)\u000a     , Observaciones VARCHAR(100)\u000a     , FechaAlta VARCHAR(30)\u000a     , PRIMARY KEY (ID_Propietario)\u000a)
+CREATE TABLE Concepto (\u000a       ID_Concepto INTEGER NOT NULL IDENTITY PRIMARY KEY\u000a     , ClaveConcepto VARCHAR(30)\u000a     , Descripcion VARCHAR(30)\u000a)
+CREATE TABLE Carta (\u000a       ID_Carta INTEGER NOT NULL\u000a     , Fecha VARCHAR(30)\u000a     , PRIMARY KEY (ID_Carta)\u000a)
+CREATE TABLE Comunidad (\u000a       ID_Comunidad INTEGER NOT NULL\u000a     , Calle VARCHAR(30)\u000a     , MaxRecibosPendientes INTEGER\u000a     , Estado VARCHAR(30)\u000a     , ID_Inmueble_Presidente INTEGER\u000a     , PRIMARY KEY (ID_Comunidad)\u000a)
+CREATE TABLE NotaInformativa (\u000a       ID_NotaInformativa INTEGER NOT NULL IDENTITY PRIMARY KEY\u000a     , FechaCalculo VARCHAR(30)\u000a     , ImporteNota FLOAT\u000a     , ID_Comunidad INTEGER\u000a)
+CREATE TABLE Factura (\u000a       NumFactura INTEGER NOT NULL IDENTITY PRIMARY KEY\u000a     , ID_Comunidad INTEGER\u000a     , FechaFactura VARCHAR(30)\u000a     , ID_NotaInformativa INTEGER\u000a)
+CREATE TABLE Inmueble (\u000a       ID_Inmueble INTEGER NOT NULL\u000a     , Escalera VARCHAR(30)\u000a     , Piso VARCHAR(30)\u000a     , Puerta VARCHAR(30)\u000a     , Porcentaje FLOAT\u000a     , ID_Comunidad INTEGER\u000a     , ID_Propietario INTEGER\u000a     , ID_DatosBancarios INTEGER\u000a     , PRIMARY KEY (ID_Inmueble)\u000a)
+CREATE TABLE ReciboInmueble (\u000a       ID_ReciboInmueble INTEGER NOT NULL IDENTITY PRIMARY KEY\u000a     , FechaPago VARCHAR(30)\u000a     , Importe FLOAT\u000a     , ID_Inmueble INTEGER\u000a     , ID_NotaInformativa INTEGER\u000a     , ID_Carta INTEGER\u000a)
+CREATE TABLE LineaFactura (\u000a       ID_LineaFactura INTEGER IDENTITY PRIMARY KEY\u000a     , ImporteLinea FLOAT\u000a     , Observacion VARCHAR(30)\u000a     , NumFactura INTEGER\u000a     , ID_Concepto INTEGER\u000a)
+ALTER TABLE NotaInformativa\u000a  ADD CONSTRAINT FK_NotaInformativa_2\u000a      FOREIGN KEY (ID_Comunidad)\u000a      REFERENCES Comunidad (ID_Comunidad)
+ALTER TABLE Factura\u000a  ADD CONSTRAINT FK_Factura_1\u000a      FOREIGN KEY (ID_Comunidad)\u000a      REFERENCES Comunidad (ID_Comunidad)
+ALTER TABLE Factura\u000a  ADD CONSTRAINT FK_Factura_2\u000a      FOREIGN KEY (ID_NotaInformativa)\u000a      REFERENCES NotaInformativa (ID_NotaInformativa)
+ALTER TABLE Inmueble\u000a  ADD CONSTRAINT FK_Inmueble_2\u000a      FOREIGN KEY (ID_DatosBancarios)\u000a      REFERENCES DatosBancarios (ID_DatosBancarios)
+ALTER TABLE Inmueble\u000a  ADD CONSTRAINT FK_Inmueble_3\u000a      FOREIGN KEY (ID_Propietario)\u000a      REFERENCES Propietario (ID_Propietario)
+ALTER TABLE Inmueble\u000a  ADD CONSTRAINT FK_Inmueble_4\u000a      FOREIGN KEY (ID_Comunidad)\u000a      REFERENCES Comunidad (ID_Comunidad)
+ALTER TABLE ReciboInmueble\u000a  ADD CONSTRAINT FK_ReciboInmueble_1\u000a      FOREIGN KEY (ID_NotaInformativa)\u000a      REFERENCES NotaInformativa (ID_NotaInformativa)\u000a   ON DELETE CASCADE
+ALTER TABLE ReciboInmueble\u000a  ADD CONSTRAINT FK_ReciboInmueble_2\u000a      FOREIGN KEY (ID_Inmueble)\u000a      REFERENCES Inmueble (ID_Inmueble)
+ALTER TABLE ReciboInmueble\u000a  ADD CONSTRAINT FK_ReciboInmueble_3\u000a      FOREIGN KEY (ID_Carta)\u000a      REFERENCES Carta (ID_Carta)
+ALTER TABLE LineaFactura\u000a  ADD CONSTRAINT FK_LineaFactura_1\u000a      FOREIGN KEY (NumFactura)\u000a      REFERENCES Factura (NumFactura)\u000a   ON DELETE CASCADE
+ALTER TABLE LineaFactura\u000a  ADD CONSTRAINT FK_LineaFactura_2\u000a      FOREIGN KEY (ID_Concepto)\u000a      REFERENCES Concepto (ID_Concepto)
+/*C2*/SET SCHEMA PUBLIC
+CONNECT USER SA
+SET AUTOCOMMIT FALSE
+INSERT INTO PROPIETARIO VALUES(1,'12345678A','PEPITO','C/ Falsa 123','Valencia','123123123','Observaciones','23/05/2013')
+COMMIT
+DISCONNECT
+/*C3*/SET SCHEMA PUBLIC
+CONNECT USER SA
+SET AUTOCOMMIT FALSE
+INSERT INTO COMUNIDAD VALUES(1,'C/ falsa 123',5,'estado',1)
+COMMIT
+DISCONNECT
+/*C4*/SET SCHEMA PUBLIC
+CONNECT USER SA
+SET AUTOCOMMIT FALSE
+DISCONNECT

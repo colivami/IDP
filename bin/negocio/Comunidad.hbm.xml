@@ -6,10 +6,20 @@
  <class name="negocio.Comunidad" schema="PUBLIC" table="COMUNIDAD">
   <id name="idComunidad" type="int">
    <column name="ID_COMUNIDAD"/>
+   
+   <generator class="assigned"></generator>
+   
+   
+   <!-- 
    <generator class="foreign">
     <param name="property">comunidad</param>
    </generator>
+   -->
+
+
   </id>
+  
+  
   <property generated="never" lazy="false" name="calle" type="string">
    <column length="30" name="CALLE"/>
   </property>
@@ -48,7 +58,10 @@
    <key>
     <column name="ID_COMUNIDAD"/>
    </key>
+   
    <one-to-many class="negocio.Notainformativa"/>
+  
+  
   </set>
  </class>
 </hibernate-mapping>

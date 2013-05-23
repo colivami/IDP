@@ -11,7 +11,6 @@ import java.util.Set;
 public class Comunidad implements java.io.Serializable {
 
 	private int idComunidad;
-	private Comunidad comunidad;
 	private String calle;
 	private Integer maxrecibospendientes;
 	private String estado;
@@ -21,10 +20,6 @@ public class Comunidad implements java.io.Serializable {
 	private Set notainformativas = new HashSet(0);
 
 	public Comunidad() {
-	}
-
-	public Comunidad(Comunidad comunidad) {
-		this.comunidad = comunidad;
 	}
 
 //	public Comunidad(Comunidad comunidad, String calle,
@@ -41,6 +36,7 @@ public class Comunidad implements java.io.Serializable {
 //		this.comunidad = comunidad;
 //		this.notainformativas = notainformativas;
 //	}
+	
 	public Comunidad(int idComunidad, String calle,
 			Integer maxrecibospendientes, String estado,
 			Integer idInmueblePresidente, Set inmuebles, Set facturas,
@@ -51,7 +47,6 @@ public class Comunidad implements java.io.Serializable {
 		this.idInmueblePresidente = idInmueblePresidente;
 		this.inmuebles = inmuebles;
 		this.facturas = facturas;
-		this.comunidad = comunidad;
 		this.notainformativas = notainformativas;
 	}
 
@@ -94,15 +89,6 @@ public class Comunidad implements java.io.Serializable {
 
 	public void setIdInmueblePresidente(Integer idInmueblePresidente) {
 		this.idInmueblePresidente = idInmueblePresidente;
-	}
-
-
-	public Comunidad getComunidad() {
-		return this.comunidad;
-	}
-
-	public void setComunidad(Comunidad comunidad) {
-		this.comunidad = comunidad;
 	}
 
 	public Set getInmuebles() {
