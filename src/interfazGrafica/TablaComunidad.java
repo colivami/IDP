@@ -16,7 +16,12 @@ public class TablaComunidad extends DefaultTableModel {
 	private ComunidadHome cHome = new ComunidadHome();
 	
 	public TablaComunidad() {
-		super(null,new String[]{"ID Comunidad", "Calle", "MaxRecibosPendientes", "Estado", "ID Inmueble Presidente"});
+		super(null,new String[]{"ID Comunidad",
+				"Calle", 
+				"MaxRecibosPendientes",
+				"Estado", 
+				"ID Inmueble Presidente",
+				"Porcentaje"});
 	}
 	
 	public boolean isCellEditable(int rowindex, int colindex) {

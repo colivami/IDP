@@ -27,6 +27,7 @@ import javax.swing.table.TableModel;
 import negocio.Carta;
 import negocio.Comunidad;
 import negocio.Concepto;
+import negocio.Datosbancarios;
 import negocio.Factura;
 import negocio.Inmueble;
 import negocio.Lineafactura;
@@ -36,6 +37,7 @@ import negocio.Reciboinmueble;
 import dao.CartaHome;
 import dao.ComunidadHome;
 import dao.ConceptoHome;
+import dao.DatosbancariosHome;
 import dao.FacturaHome;
 import dao.InmuebleHome;
 import dao.LineafacturaHome;
@@ -1193,13 +1195,18 @@ public class mainGUI extends javax.swing.JFrame {
 	
 	private void jBBajaInmuebleActionPerformed(ActionEvent evt) {
 		InmuebleHome iHome = new InmuebleHome();
+		DatosbancariosHome dbHome = new DatosbancariosHome();
 		int row = (int) jT_Inmuebles.getSelectedRow(); 
 		if (row == -1){
 			// mostrar error
 		}
 		else{
-			int id = (int) TInmuebles.getValueAt(row, 0);
-			iHome.borrarInmueble(id);
+			int idInmueble = (int) TInmuebles.getValueAt(row, 0);
+			iHome.borrarInmueble(idInmueble);
+			
+//			int idDatos = (int) TInmuebles.getValueAt(row, 7);
+//			dbHome.borrarDatosbancarios(idDatos);
+			
 			TInmuebles.removeRow(row);
 		}
 	}
@@ -1211,6 +1218,7 @@ public class mainGUI extends javax.swing.JFrame {
 		}
 		else {
 			InmuebleHome iHome = new InmuebleHome();
+			DatosbancariosHome dbHome = new DatosbancariosHome();
 
 			Inmueble i = new Inmueble();
 			i.setIdInmueble(Integer.parseInt(TInmuebles.getValueAt(row, 0).toString()));
@@ -1218,8 +1226,15 @@ public class mainGUI extends javax.swing.JFrame {
 			i.setPiso(TInmuebles.getValueAt(row, 2).toString());
 			i.setPuerta(TInmuebles.getValueAt(row, 3).toString());
 			i.setPorcentaje(Double.parseDouble(TInmuebles.getValueAt(row, 4).toString()));
+	
 			
-			GestionInmueblesGUI gi_mod = new GestionInmueblesGUI(TInmuebles, row, iHome, i);
+			
+			Datosbancarios db = new Datosbancarios();
+//			db.setIdDatosbancarios(Integer.parseInt(TInmuebles.getValueAt(row, 7).toString()));
+//			db.setEntidad(TInmuebles.getValueAt(row, 8).toString());
+//			db.setNumerocuenta(TInmuebles.getValueAt(row, 9).toString());
+			
+			GestionInmueblesGUI gi_mod = new GestionInmueblesGUI(TInmuebles, row, iHome, i, dbHome, db);
 			gi_mod.setVisible(true);
 		}
 		

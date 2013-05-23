@@ -5,6 +5,7 @@ package dao;
 import java.util.ArrayList;
 
 import negocio.Datosbancarios;
+import negocio.Datosbancarios;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -19,6 +20,18 @@ public class DatosbancariosHome {
 	private Session sesion = null;
 	private Transaction tx = null;
 
+	
+	
+	public Datosbancarios buscarDatosbancariosPorID(int id) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Datosbancarios db = (Datosbancarios) sesion.get(Datosbancarios.class, new Integer(id));
+		tx.commit();
+		sesion.close();
+		return db;
+	}
+	
+	
 	public void anyadirDatosbancarios(Datosbancarios db) {
 		sesion = UtilidadHibernate.getSessionFactory().openSession();
 		tx = sesion.beginTransaction();

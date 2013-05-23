@@ -26,7 +26,7 @@ public class TablaInmueble extends DefaultTableModel {
 				"Porcentaje", 
 				"ID Comunidad",
 				"ID Propietario",
-				"ID Datos Bancarios"});
+				"ID Datos Bancarios", "Entidad", "Número de cuenta"});
 
 	}
 	
@@ -62,6 +62,8 @@ public class TablaInmueble extends DefaultTableModel {
 		v.add(i.getComunidad().getIdComunidad());
 		v.add(i.getPropietario().getIdPropietario());
 //		v.add(i.getDatosbancarios().getIdDatosbancarios());
+//		v.add(i.getDatosbancarios().getEntidad());
+//		v.add(i.getDatosbancarios().getNumerocuenta());
 		this.addRow(v);
 	}
 	

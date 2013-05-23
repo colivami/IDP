@@ -19,6 +19,9 @@ public class InmuebleHome {
 	
 	private Session sesion = null;
 	private Transaction tx = null;
+	
+	
+	
 	public Inmueble buscarInmueblePorID(int id) {
 		sesion = UtilidadHibernate.getSessionFactory().openSession();
 		tx = sesion.beginTransaction();
@@ -56,7 +59,7 @@ public class InmuebleHome {
 	}
 	
 
-	public void updateInmueble(int id, String escalera, String piso, String puerta, double porcentaje, int IDcom, int IDProp, int IDDatos) {
+	public void updateInmueble(int id, String escalera, String piso, String puerta, double porcentaje, int IDcom, int IDProp, int IDDatos, String entidad, String numerocuenta) {
 		sesion = UtilidadHibernate.getSessionFactory().openSession();
 		tx = sesion.beginTransaction();
 		Inmueble i = (Inmueble) sesion.get(Inmueble.class, new Integer(id));
