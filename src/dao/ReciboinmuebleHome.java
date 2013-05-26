@@ -8,6 +8,7 @@ import negocio.Carta;
 import negocio.Inmueble;
 import negocio.Notainformativa;
 import negocio.Reciboinmueble;
+import negocio.Reciboinmueble;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -21,6 +22,16 @@ public class ReciboinmuebleHome {
 
 	private Session sesion = null;
 	private Transaction tx = null;
+	
+
+	public Reciboinmueble buscarReciboinmueblePorID(int id) {
+		sesion = UtilidadHibernate.getSessionFactory().openSession();
+		tx = sesion.beginTransaction();
+		Reciboinmueble ri = (Reciboinmueble) sesion.get(Reciboinmueble.class, new Integer(id));
+		tx.commit();
+		sesion.close();
+		return ri;
+	}
 
 	public void anyadirReciboinmueble(Reciboinmueble ri) {
 		sesion = UtilidadHibernate.getSessionFactory().openSession();
@@ -48,6 +59,7 @@ public class ReciboinmuebleHome {
 		tx.commit();
 		sesion.close();
 	}
+	
 	public void updateRecibo(int id, String fecha, Inmueble i, Notainformativa ni, Carta c) {
 		sesion = UtilidadHibernate.getSessionFactory().openSession();
 		tx = sesion.beginTransaction();

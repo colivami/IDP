@@ -16,7 +16,13 @@ public class TablaRecibosPropietario extends DefaultTableModel {
 	private ReciboinmuebleHome riHome = new ReciboinmuebleHome();
 	
 	public TablaRecibosPropietario() {
-		super(null,new String[]{"ID Reciboinmueble", "Importe", "Fecha pago", "ID Inmueble", "ID Nota informativa", "ID Carta"});
+		super(null,new String[]{"ID Reciboinmueble",
+				"Importe",
+				"Fecha pago",
+				"ID Inmueble",
+				"ID Nota informativa",
+				"ID Carta",
+				"Pagado?"});
 	}
 
 	public boolean isCellEditable(int rowindex, int colindex) {
@@ -32,6 +38,7 @@ public class TablaRecibosPropietario extends DefaultTableModel {
 		v.add(ri.getInmueble().getIdInmueble());
 		v.add(ri.getNotainformativa().getIdNotainformativa());
 		v.add(ri.getCarta().getIdCarta());
+		v.add(ri.getPagado());
 		this.addRow(v);
 	}
 	

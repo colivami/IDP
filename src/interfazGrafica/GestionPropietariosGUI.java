@@ -28,10 +28,12 @@ import dao.PropietarioHome;
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
 public class GestionPropietariosGUI extends javax.swing.JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel jL_IDPropietario;
 	private JLabel jL_FechaAltaPropietario;
-	private JTextField jTF_IDInmueblePropietario;
-	private JLabel jLabel1;
 	private JTextArea jTA_ObservacionesPropietario;
 	private JTextField jTF_FechaAltaPropietario;
 	private JTextField jTF_TelefonoPropietario;
@@ -86,19 +88,12 @@ public class GestionPropietariosGUI extends javax.swing.JFrame {
 	private void initGUI() {
 		try {
 			GroupLayout thisLayout = new GroupLayout((JComponent)getContentPane());
-			getContentPane().setLayout(thisLayout);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			getContentPane().setLayout(thisLayout);
 			this.setTitle("Propietarios");
 			{
 				jL_IDPropietario = new JLabel();
 				jL_IDPropietario.setText("ID");
-			}
-			{
-				jLabel1 = new JLabel();
-				jLabel1.setText("ID Inmueble");
-			}
-			{
-				jTF_IDInmueblePropietario = new JTextField();
 			}
 			{
 				jTA_ObservacionesPropietario = new JTextArea();
@@ -170,13 +165,47 @@ public class GestionPropietariosGUI extends javax.swing.JFrame {
 				jL_FechaAltaPropietario = new JLabel();
 				jL_FechaAltaPropietario.setText("Fecha Alta");
 			}
+				thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(thisLayout.createParallelGroup()
+					    .addGroup(thisLayout.createSequentialGroup()
+					        .addGroup(thisLayout.createParallelGroup()
+					            .addComponent(jL_TelefonoPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jL_FechaAltaPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jL_PoblacionPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jL_DireccionPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jL_NombrePropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jL_NIFPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jL_IDPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE))
+					        .addGap(8)
+					        .addGroup(thisLayout.createParallelGroup()
+					            .addComponent(jTF_TelefonoPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jTF_FechaAltaPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jTF_PoblacionPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jTF_DireccionPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jTF_NombrePropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jTF_NIFPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+					            .addComponent(jTF_IDPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)))
+					    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+					        .addGap(48)
+					        .addComponent(jB_GuardarPropietarioes, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)))
+					.addGap(37)
+					.addGroup(thisLayout.createParallelGroup()
+					    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+					        .addComponent(jB_CancelarPropietarioes, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+					        .addGap(0, 0, Short.MAX_VALUE))
+					    .addGroup(thisLayout.createSequentialGroup()
+					        .addComponent(jTA_ObservacionesPropietario, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
+					        .addGap(0, 0, Short.MAX_VALUE))
+					    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
+					        .addComponent(jL_ObservacionesPropietario, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
+					        .addGap(0, 42, Short.MAX_VALUE)))
+					.addContainerGap(19, 19));
 				thisLayout.setVerticalGroup(thisLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(thisLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
 					    .addComponent(jL_IDPropietario, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-					    .addComponent(jTF_IDPropietario, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-					    .addComponent(jLabel1, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-					    .addComponent(jTF_IDInmueblePropietario, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+					    .addComponent(jTF_IDPropietario, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
 					.addGroup(thisLayout.createParallelGroup()
 					    .addGroup(thisLayout.createSequentialGroup()
@@ -216,48 +245,6 @@ public class GestionPropietariosGUI extends javax.swing.JFrame {
 					    .addComponent(jB_CancelarPropietarioes, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 					    .addComponent(jB_GuardarPropietarioes, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(17, 17));
-				thisLayout.setHorizontalGroup(thisLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(thisLayout.createParallelGroup()
-					    .addGroup(thisLayout.createSequentialGroup()
-					        .addGroup(thisLayout.createParallelGroup()
-					            .addComponent(jL_TelefonoPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jL_FechaAltaPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jL_PoblacionPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jL_DireccionPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jL_NombrePropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jL_NIFPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jL_IDPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE))
-					        .addGap(8)
-					        .addGroup(thisLayout.createParallelGroup()
-					            .addComponent(jTF_TelefonoPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jTF_FechaAltaPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jTF_PoblacionPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jTF_DireccionPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jTF_NombrePropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jTF_NIFPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
-					            .addComponent(jTF_IDPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)))
-					    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-					        .addGap(48)
-					        .addComponent(jB_GuardarPropietarioes, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)))
-					.addGap(37)
-					.addGroup(thisLayout.createParallelGroup()
-					    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-					        .addGroup(thisLayout.createParallelGroup()
-					            .addGroup(thisLayout.createSequentialGroup()
-					                .addComponent(jB_CancelarPropietarioes, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-					                .addGap(0, 0, Short.MAX_VALUE))
-					            .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-					                .addComponent(jLabel1, 0, 83, Short.MAX_VALUE)
-					                .addGap(18)))
-					        .addComponent(jTF_IDInmueblePropietario, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE))
-					    .addGroup(thisLayout.createSequentialGroup()
-					        .addComponent(jTA_ObservacionesPropietario, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
-					        .addGap(0, 0, Short.MAX_VALUE))
-					    .addGroup(GroupLayout.Alignment.LEADING, thisLayout.createSequentialGroup()
-					        .addComponent(jL_ObservacionesPropietario, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)
-					        .addGap(0, 42, Short.MAX_VALUE)))
-					.addContainerGap(19, 19));
 			pack();
 			setSize(400, 300);
 		} catch (Exception e) {

@@ -21,7 +21,7 @@ public class TablaComunidad extends DefaultTableModel {
 				"MaxRecibosPendientes",
 				"Estado", 
 				"ID Inmueble Presidente",
-				"Porcentaje"});
+				"Cuadrado"});
 	}
 	
 	public boolean isCellEditable(int rowindex, int colindex) {
@@ -36,6 +36,7 @@ public class TablaComunidad extends DefaultTableModel {
 		v.add(c.getMaxrecibospendientes());
 		v.add(c.getEstado());
 		v.add(c.getIdInmueblePresidente());
+		v.add(c.getCuadrado());
 		this.addRow(v);
 	}
 	

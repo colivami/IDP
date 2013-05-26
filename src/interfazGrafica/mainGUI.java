@@ -3,7 +3,6 @@ package interfazGrafica;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,9 +18,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import negocio.Carta;
@@ -101,7 +100,6 @@ public class mainGUI extends javax.swing.JFrame {
 	private JButton jBBajaConcepto;
 	private JButton jBModificarConcepto;
 	private JInternalFrame jF_Conceptos;
-	private JButton jB_InformeComunidades;
 	private JTable jT_Comunidades;
 	private JTable jT_Inmuebles;
 	private JTable jT_Propietarios;
@@ -115,7 +113,6 @@ public class mainGUI extends javax.swing.JFrame {
 	private JTable jT_RecibosPropietario;
 	private JTable jT_InmueblesPropietario;
 	private JButton jB_ListarInmueblesYRecibos;
-	private JButton jB_InformeRecibo;
 	private JButton jB_InformeNota;
 	private JTable jT_Cartas;
 	private JButton jB_AltaCarta;
@@ -143,6 +140,15 @@ public class mainGUI extends javax.swing.JFrame {
 	private JButton jB_ModificarFactura;
 	private JMenu jMenu3;
 	private JMenuBar jMenuBar1;
+	private JLabel jLabel3;
+	private JTextField jTF_PagarPropietario;
+	private JButton jB_PagarPropietario;
+	private JLabel jL_Pagar;
+	private JTextField jTF_Pagar;
+	private JButton jB_PagarRecibos;
+	private JButton jB_Filtrar;
+	private JLabel jLabel2;
+	private JLabel jLabel1;
 	
 	TablaInmueble TInmuebles = new TablaInmueble();
 	TablaComunidad TComunidades = new TablaComunidad();
@@ -160,9 +166,16 @@ public class mainGUI extends javax.swing.JFrame {
  	GestionPropietariosGUI     gp = new GestionPropietariosGUI(TPropietarios);
 	GestionInmueblesGUI        gi = new GestionInmueblesGUI(TInmuebles);
 	GestionComunidadesGUI      gc = new GestionComunidadesGUI(TComunidades);
-	private JButton jB_Filtrar;
-	private JLabel jLabel2;
-	private JLabel jLabel1;
+	private JButton jButton1;
+	private JButton jB_GenerarRecibo;
+	private JLabel jL_total;
+	private JLabel jL_numero;
+	private JLabel jLabel5;
+	private JLabel jLabel4;
+	private JButton jB_ActualizarInmuebles;
+	private JButton jB_ActualizarComunidad;
+	private JButton jB_ActualizarRecibo;
+
 	GestionConceptoGUI       gcon = new GestionConceptoGUI(TConceptos);
 	GestionCartasGUI	     gcar = new GestionCartasGUI(TCarta);
 	GestionFacturasGUI	       gf = new GestionFacturasGUI(TFactura);
@@ -181,6 +194,9 @@ public class mainGUI extends javax.swing.JFrame {
 	Set<Notainformativa> notas = new HashSet<Notainformativa>();
 	Set<Reciboinmueble> recibos = new HashSet<Reciboinmueble>();
 
+	
+	
+
 	/**
 	* Auto-generated main method to display this JFrame
 	*/
@@ -193,57 +209,95 @@ public class mainGUI extends javax.swing.JFrame {
 			}
 		});
 	}
+		
+	
+	void actualizarComunidad() {
+		while (TComunidades.getRowCount() > 0)
+			TComunidades.removeRow(0);
+		
+		for(Comunidad c : new ComunidadHome().buscarComunidades()) {
+			c.cuadrarComunidad();
+			TComunidades.addToTabla(c);
+		}
+	}
+	
+	
+	
+	void actualizarRecibos() {
+		while (TRecibo.getRowCount() > 0)
+			TRecibo.removeRow(0);
+		
+		for(Reciboinmueble r : new ReciboinmuebleHome().buscarReciboinmuebles()) {
+			if(r.getFechapago().isEmpty())
+				r.setPagado("Pendiente");
+			else 
+				r.setPagado("Pagado");
+			
+			TRecibo.addToTabla(r);
+		}
+	}
+	
+	
+	void actualizarInmuebles() {
+		while (TInmuebles.getRowCount() > 0)
+			TInmuebles.removeRow(0);
+		
+		for(Inmueble i : new InmuebleHome().buscarInmuebles()) {
+			TInmuebles.addToTabla(i);
+		}
+	}
+	
+	
+	void actualizarFacturas() {
+		while (TFactura.getRowCount() > 0)
+			TFactura.removeRow(0);
+		
+		for(Factura f : new FacturaHome().buscarFacturas()) {
+			TFactura.addToTabla(f);
+		}
+	}
+	
 	
 	public mainGUI() {
 		super();
 		initGUI();
 		
 		
-		//	Rellenamos las tablas y los Sets	//
-		for(Comunidad c : new ComunidadHome().buscarComunidades()) {
-			TComunidades.addToTabla(c);
-			comunidades.add(c);
-		}
-		
+		//	Rellenamos las tablas	//
 		for(Propietario p : new PropietarioHome().buscarPropietarios()) {
 			TPropietarios.addToTabla(p);
-			propietarios.add(p);
 		}
 		
-		for(Inmueble i : new InmuebleHome().buscarInmuebles()) {
-			TInmuebles.addToTabla(i);
-			inmuebles.add(i);
-		}
-		
-		for(Concepto c : new ConceptoHome().buscarConceptos()) {
-			TConceptos.addToTabla(c);
-			conceptos.add(c);
-		}
-		
-		for(Reciboinmueble r : new ReciboinmuebleHome().buscarReciboinmuebles()) {
-			TRecibo.addToTabla(r);
-			recibos.add(r);
-		}
-		
-		for(Factura f : new FacturaHome().buscarFacturas()) {
-			TFactura.addToTabla(f);
-			facturas.add(f);
-		}
+		actualizarComunidad();
+		actualizarRecibos();
+		actualizarInmuebles();
+		actualizarFacturas();
 		
 		for(Lineafactura lf : new LineafacturaHome().buscarLineafacturas()) {
 			TLinea.addToTabla(lf);
-			lineas.add(lf);
+		}
+		
+		
+		
+		for(Notainformativa n : new NotainformativaHome().buscarNotainformativas()) {
+			TNota.addToTabla(n);
+		}
+		
+		
+		
+		for(Concepto c : new ConceptoHome().buscarConceptos()) {
+			TConceptos.addToTabla(c);
 		}
 		
 		for(Carta c : new CartaHome().buscarCartas()) {
 			TCarta.addToTabla(c);
-			cartas.add(c);
 		}
 		
-		for(Notainformativa n : new NotainformativaHome().buscarNotainformativas()) {
-			TNota.addToTabla(n);
-			notas.add(n);
-		}
+		
+		
+		
+		
+		
 		//	/////////////////////	//
 		
 	}
@@ -273,19 +327,24 @@ public class mainGUI extends javax.swing.JFrame {
 					}
 					{
 						TableModel jT_ComunidadesModel = TComunidades;
-//						TableModel jT_ComunidadesModel =
-//								new DefaultTableModel(
-//										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-//										new String[] { "Column 1", "Column 2" });
 						jT_Comunidades = new JTable();
 						jT_Comunidades.setModel(jT_ComunidadesModel);
 					}
 					{
-						jB_InformeComunidades = new JButton();
-						jB_InformeComunidades.setText("Informe");
-						jB_InformeComunidades.addActionListener(new ActionListener() {
+						jB_GenerarRecibo = new JButton();
+						jB_GenerarRecibo.setText("Generar Recibo");
+						jB_GenerarRecibo.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
-								jB_InformeComunidadesActionPerformed(evt);
+								jB_GenerarReciboActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jB_ActualizarComunidad = new JButton();
+						jB_ActualizarComunidad.setText("Actualizar");
+						jB_ActualizarComunidad.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_ActualizarComunidadActionPerformed(evt);
 							}
 						});
 					}
@@ -307,15 +366,21 @@ public class mainGUI extends javax.swing.JFrame {
 							}
 						});
 					}
-					jF_ComunidadesLayout.setHorizontalGroup(jF_ComunidadesLayout.createSequentialGroup()
-						.addComponent(jT_Comunidades, 0, 643, Short.MAX_VALUE)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-						.addGroup(jF_ComunidadesLayout.createParallelGroup()
-						    .addComponent(jBBajaComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jBModificarComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jBAltaComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						    .addComponent(jB_InformeComunidades, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap());
+					jF_ComunidadesLayout.setHorizontalGroup(jF_ComunidadesLayout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.LEADING, jF_ComunidadesLayout.createSequentialGroup()
+						    .addComponent(jT_Comunidades, 0, 643, Short.MAX_VALUE)
+						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						    .addGroup(jF_ComunidadesLayout.createParallelGroup()
+						        .addComponent(jBAltaComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						        .addComponent(jBBajaComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						        .addComponent(jBModificarComunidad, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						    .addContainerGap())
+						.addGroup(GroupLayout.Alignment.LEADING, jF_ComunidadesLayout.createSequentialGroup()
+						    .addGap(58)
+						    .addComponent(jB_GenerarRecibo, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
+						    .addGap(0, 329, Short.MAX_VALUE)
+						    .addComponent(jB_ActualizarComunidad, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+						    .addContainerGap()));
 					jF_ComunidadesLayout.setVerticalGroup(jF_ComunidadesLayout.createSequentialGroup()
 						.addGroup(jF_ComunidadesLayout.createParallelGroup()
 						    .addComponent(jT_Comunidades, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
@@ -326,9 +391,16 @@ public class mainGUI extends javax.swing.JFrame {
 						        .addComponent(jBBajaComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 						        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						        .addComponent(jBModificarComunidad, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
-						.addGap(52)
-						.addComponent(jB_InformeComunidades, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(208, Short.MAX_VALUE));
+						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						.addGroup(jF_ComunidadesLayout.createParallelGroup()
+						    .addGroup(jF_ComunidadesLayout.createSequentialGroup()
+						        .addComponent(jB_ActualizarComunidad, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+						        .addGap(0, 0, Short.MAX_VALUE))
+						    .addGroup(GroupLayout.Alignment.LEADING, jF_ComunidadesLayout.createSequentialGroup()
+						        .addGap(8)
+						        .addComponent(jB_GenerarRecibo, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+						        .addGap(0, 34, Short.MAX_VALUE)))
+						.addContainerGap(223, 223));
 				}
 				{
 					jF_Propietarios = new JInternalFrame();
@@ -372,6 +444,36 @@ public class mainGUI extends javax.swing.JFrame {
 						jT_Propietarios.setModel(jT_PropietariosModel);
 					}
 					{
+						jLabel4 = new JLabel();
+						jLabel4.setText("Número de recibos pendientes");
+					}
+					{
+						jLabel5 = new JLabel();
+						jLabel5.setText("Importe total");
+					}
+					{
+						jL_numero = new JLabel();
+					}
+					{
+						jL_total = new JLabel();
+					}
+					{
+						jB_PagarPropietario = new JButton();
+						jB_PagarPropietario.setText("Pagar");
+						jB_PagarPropietario.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_PagarPropietarioActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jTF_PagarPropietario = new JTextField();
+					}
+					{
+						jLabel3 = new JLabel();
+						jLabel3.setText("Inserta fecha de pago");
+					}
+					{
 						jB_Filtrar = new JButton();
 						jB_Filtrar.setText("Filtrar");
 						jB_Filtrar.addActionListener(new ActionListener() {
@@ -390,17 +492,11 @@ public class mainGUI extends javax.swing.JFrame {
 					}
 					{
 						TableModel jTable1Model = TIPropietario;
-//								new DefaultTableModel(
-//										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-//										new String[] { "Column 1", "Column 2" });
 						jT_InmueblesPropietario = new JTable();
 						jT_InmueblesPropietario.setModel(jTable1Model);
 					}
 					{
 						TableModel jTable2Model = TRPropietario;
-//								new DefaultTableModel(
-//										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-//										new String[] { "Column 1", "Column 2" });
 						jT_RecibosPropietario = new JTable();
 						jT_RecibosPropietario.setModel(jTable2Model);
 					}
@@ -415,36 +511,64 @@ public class mainGUI extends javax.swing.JFrame {
 					}
 					jF_PropietariosLayout.setHorizontalGroup(jF_PropietariosLayout.createParallelGroup()
 						.addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
-						    .addComponent(jT_Propietarios, 0, 643, Short.MAX_VALUE)
+						    .addComponent(jT_Propietarios, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
 						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						    .addGroup(jF_PropietariosLayout.createParallelGroup()
-						        .addComponent(jBModificarPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						        .addComponent(jBBajaPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						        .addComponent(jBAltaPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						        .addGroup(jF_PropietariosLayout.createSequentialGroup()
+						            .addComponent(jBModificarPropietario, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						            .addGap(0, 0, Short.MAX_VALUE))
+						        .addGroup(jF_PropietariosLayout.createSequentialGroup()
+						            .addComponent(jBBajaPropietario, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						            .addGap(0, 0, Short.MAX_VALUE))
+						        .addGroup(jF_PropietariosLayout.createSequentialGroup()
+						            .addComponent(jBAltaPropietario, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						            .addGap(0, 0, Short.MAX_VALUE))
+						        .addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
+						            .addPreferredGap(jBModificarPropietario, jL_numero, LayoutStyle.ComponentPlacement.INDENT)
+						            .addComponent(jL_numero, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+						            .addGap(0, 35, Short.MAX_VALUE)))
 						    .addContainerGap())
 						.addGroup(jF_PropietariosLayout.createSequentialGroup()
 						    .addGap(25)
 						    .addGroup(jF_PropietariosLayout.createParallelGroup()
 						        .addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
 						            .addComponent(jT_InmueblesPropietario, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE)
-						            .addGap(69)
-						            .addComponent(jT_RecibosPropietario, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE)
-						            .addGap(0, 0, Short.MAX_VALUE))
-						        .addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
+						            .addGap(17)
+						            .addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+						            .addGroup(jF_PropietariosLayout.createParallelGroup()
+						                .addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
+						                    .addComponent(jTF_PagarPropietario, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+						                    .addGap(0, 104, Short.MAX_VALUE))
+						                .addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
+						                    .addGap(18)
+						                    .addComponent(jLabel2, 0, 182, Short.MAX_VALUE)))
+						            .addGap(25))
+						        .addGroup(jF_PropietariosLayout.createSequentialGroup()
 						            .addGap(105)
 						            .addGroup(jF_PropietariosLayout.createParallelGroup()
 						                .addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
 						                    .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-						                    .addGap(224))
+						                    .addGap(133)
+						                    .addGroup(jF_PropietariosLayout.createParallelGroup()
+						                        .addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
+						                            .addComponent(jT_RecibosPropietario, GroupLayout.PREFERRED_SIZE, 313, GroupLayout.PREFERRED_SIZE)
+						                            .addGap(0, 15, Short.MAX_VALUE))
+						                        .addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
+						                            .addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
+						                            .addComponent(jB_PagarPropietario, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						                            .addGap(0, 0, Short.MAX_VALUE))
+						                        .addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
+						                            .addComponent(jLabel5, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
+						                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						                            .addComponent(jL_total, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+						                            .addGap(0, 58, Short.MAX_VALUE))))
 						                .addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
 						                    .addPreferredGap(jLabel1, jB_Filtrar, LayoutStyle.ComponentPlacement.INDENT)
-						                    .addComponent(jB_Filtrar, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
-						                    .addGap(23)
-						                    .addComponent(jB_ListarInmueblesYRecibos, GroupLayout.PREFERRED_SIZE, 266, GroupLayout.PREFERRED_SIZE)))
-						            .addGap(30)
-						            .addComponent(jLabel2, 0, 144, Short.MAX_VALUE)
-						            .addGap(48)))
-						    .addContainerGap(63, 63)));
+						                    .addComponent(jB_Filtrar, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+						                    .addGap(10)
+						                    .addComponent(jB_ListarInmueblesYRecibos, GroupLayout.PREFERRED_SIZE, 266, GroupLayout.PREFERRED_SIZE)
+						                    .addGap(0, 237, Short.MAX_VALUE)))))
+						    .addContainerGap(48, 48)));
 					jF_PropietariosLayout.setVerticalGroup(jF_PropietariosLayout.createSequentialGroup()
 						.addGroup(jF_PropietariosLayout.createParallelGroup()
 						    .addComponent(jT_Propietarios, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
@@ -463,11 +587,23 @@ public class mainGUI extends javax.swing.JFrame {
 						    .addComponent(jLabel2, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						.addGroup(jF_PropietariosLayout.createParallelGroup()
-						    .addComponent(jT_RecibosPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
+						    .addGroup(GroupLayout.Alignment.LEADING, jF_PropietariosLayout.createSequentialGroup()
+						        .addComponent(jT_RecibosPropietario, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+						        .addGroup(jF_PropietariosLayout.createParallelGroup()
+						            .addComponent(jLabel4, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						            .addComponent(jL_numero, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
+						        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						        .addGroup(jF_PropietariosLayout.createParallelGroup()
+						            .addComponent(jLabel5, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						            .addComponent(jL_total, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
+						        .addGap(14))
 						    .addComponent(jT_InmueblesPropietario, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(jB_Filtrar, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(42, Short.MAX_VALUE));
+						.addGroup(jF_PropietariosLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+						    .addComponent(jB_PagarPropietario, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jB_Filtrar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jTF_PagarPropietario, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jLabel3, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(20, 20));
 				}
 				{
 					jF_Inmuebles = new JInternalFrame();
@@ -486,12 +622,17 @@ public class mainGUI extends javax.swing.JFrame {
 					}
 					{
 						TableModel jT_InmueblesModel = TInmuebles;
-						//						TableModel jT_InmueblesModel = 
-								//							new DefaultTableModel(
-										//									new String[][] { { "One", "Two" }, { "Three", "Four" } },
-										//									new String[] { "Column 1", "Column 2" });
 						jT_Inmuebles = new JTable();
 						jT_Inmuebles.setModel(jT_InmueblesModel);
+					}
+					{
+						jB_ActualizarInmuebles = new JButton();
+						jB_ActualizarInmuebles.setText("Actualizar");
+						jB_ActualizarInmuebles.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_ActualizarInmueblesActionPerformed(evt);
+							}
+						});
 					}
 					{
 						jBBajaInmueble = new JButton();
@@ -511,26 +652,32 @@ public class mainGUI extends javax.swing.JFrame {
 							}
 						});
 					}
-					jF_InmueblesLayout.setHorizontalGroup(jF_InmueblesLayout.createSequentialGroup()
-							.addComponent(jT_Inmuebles, 0, 643, Short.MAX_VALUE)
-							.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-							.addGroup(jF_InmueblesLayout.createParallelGroup()
-									.addComponent(jBBajaInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-									.addComponent(jBAltaInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-									.addComponent(jBModificarInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-									.addContainerGap());
-					jF_InmueblesLayout.setVerticalGroup(jF_InmueblesLayout.createParallelGroup()
-							.addGroup(GroupLayout.Alignment.LEADING, jF_InmueblesLayout.createSequentialGroup()
-									.addComponent(jT_Inmuebles, 0, 184, Short.MAX_VALUE)
-									.addContainerGap(310, 310))
-									.addGroup(GroupLayout.Alignment.LEADING, jF_InmueblesLayout.createSequentialGroup()
-											.addGap(12)
-											.addComponent(jBAltaInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-											.addComponent(jBBajaInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-											.addComponent(jBModificarInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-											.addContainerGap(310, Short.MAX_VALUE)));
+					jF_InmueblesLayout.setHorizontalGroup(jF_InmueblesLayout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.LEADING, jF_InmueblesLayout.createSequentialGroup()
+						    .addComponent(jT_Inmuebles, 0, 643, Short.MAX_VALUE)
+						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						    .addGroup(jF_InmueblesLayout.createParallelGroup()
+						        .addComponent(jBBajaInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						        .addComponent(jBAltaInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						        .addComponent(jBModificarInmueble, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						    .addContainerGap())
+						.addGroup(GroupLayout.Alignment.LEADING, jF_InmueblesLayout.createSequentialGroup()
+						    .addGap(0, 0, Short.MAX_VALUE)
+						    .addComponent(jB_ActualizarInmuebles, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+						    .addContainerGap()));
+					jF_InmueblesLayout.setVerticalGroup(jF_InmueblesLayout.createSequentialGroup()
+						.addGroup(jF_InmueblesLayout.createParallelGroup()
+						    .addComponent(jT_Inmuebles, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
+						    .addGroup(GroupLayout.Alignment.LEADING, jF_InmueblesLayout.createSequentialGroup()
+						        .addGap(12)
+						        .addComponent(jBAltaInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						        .addComponent(jBBajaInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						        .addComponent(jBModificarInmueble, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
+						.addGap(19)
+						.addComponent(jB_ActualizarInmuebles, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(216, Short.MAX_VALUE));
 				}
 				{
 					jF_Conceptos = new JInternalFrame();
@@ -567,10 +714,6 @@ public class mainGUI extends javax.swing.JFrame {
 					}
 					{
 						TableModel jTable1Model = TConceptos;
-//						TableModel jTable1Model = 
-//								new DefaultTableModel(
-//										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-//										new String[] { "Column 1", "Column 2" });
 						jT_Conceptos = new JTable();
 						jT_Conceptos.setModel(jTable1Model);
 					}
@@ -636,35 +779,47 @@ public class mainGUI extends javax.swing.JFrame {
 					}
 					{
 						TableModel jTable1Model = TFactura;
-//								new DefaultTableModel(
-//										new String[][] { { "One", "Two" }, { "Three", "Four" } },
-//										new String[] { "Column 1", "Column 2" });
 						jT_Facturas = new JTable();
 						jT_Facturas.setModel(jTable1Model);
 					}
-						jF_FacturasLayout.setHorizontalGroup(jF_FacturasLayout.createSequentialGroup()
-						.addComponent(jT_Facturas, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
-						.addGap(12)
-						.addGroup(jF_FacturasLayout.createParallelGroup()
-						    .addGroup(GroupLayout.Alignment.LEADING, jF_FacturasLayout.createSequentialGroup()
-						        .addComponent(jB_AltaFactura, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-						    .addGroup(jF_FacturasLayout.createSequentialGroup()
-						        .addComponent(jB_BajaFactura, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-						    .addGroup(jF_FacturasLayout.createSequentialGroup()
-						        .addComponent(jB_ModificarFactura, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap(11, Short.MAX_VALUE));
+					{
+						jButton1 = new JButton();
+						jButton1.setText("Actualizar");
+						jButton1.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jButton1ActionPerformed(evt);
+							}
+						});
+					}
+						jF_FacturasLayout.setHorizontalGroup(jF_FacturasLayout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.LEADING, jF_FacturasLayout.createSequentialGroup()
+						    .addComponent(jT_Facturas, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
+						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						    .addGroup(jF_FacturasLayout.createParallelGroup()
+						        .addGroup(jF_FacturasLayout.createSequentialGroup()
+						            .addComponent(jB_ModificarFactura, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						        .addGroup(jF_FacturasLayout.createSequentialGroup()
+						            .addComponent(jB_BajaFactura, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						        .addGroup(jF_FacturasLayout.createSequentialGroup()
+						            .addComponent(jB_AltaFactura, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
+						    .addContainerGap(11, Short.MAX_VALUE))
+						.addGroup(GroupLayout.Alignment.LEADING, jF_FacturasLayout.createSequentialGroup()
+						    .addGap(616)
+						    .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+						    .addContainerGap(27, Short.MAX_VALUE)));
 						jF_FacturasLayout.setVerticalGroup(jF_FacturasLayout.createSequentialGroup()
 						.addGroup(jF_FacturasLayout.createParallelGroup()
-						    .addGroup(jF_FacturasLayout.createSequentialGroup()
-						        .addComponent(jT_Facturas, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE))
+						    .addComponent(jT_Facturas, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
 						    .addGroup(GroupLayout.Alignment.LEADING, jF_FacturasLayout.createSequentialGroup()
 						        .addGap(12)
 						        .addComponent(jB_AltaFactura, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						        .addGap(11)
+						        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						        .addComponent(jB_BajaFactura, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						        .addGap(11)
+						        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						        .addComponent(jB_ModificarFactura, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap(310, Short.MAX_VALUE));
+						.addGap(21)
+						.addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(214, Short.MAX_VALUE));
 				}
 				{
 					jF_NotasInformativas = new JInternalFrame();
@@ -744,7 +899,7 @@ public class mainGUI extends javax.swing.JFrame {
 					jF_Recibos = new JInternalFrame();
 					GroupLayout jF_RecibosLayout = new GroupLayout((JComponent)jF_Recibos.getContentPane());
 					jTabbedPane1.addTab("Recibos", null, jF_Recibos, null);
-					jF_Recibos.setLayout(jF_RecibosLayout);
+					jF_Recibos.getContentPane().setLayout(jF_RecibosLayout);
 					jF_Recibos.setVisible(true);
 					{
 						jB_ModificarRecibo = new JButton();
@@ -782,31 +937,51 @@ public class mainGUI extends javax.swing.JFrame {
 						jT_Recibos.setModel(jTable1Model);
 					}
 					{
-						jB_InformeRecibo = new JButton();
-						jB_InformeRecibo.setText("Informe");
-						jB_InformeRecibo.addActionListener(new ActionListener() {
+						jB_ActualizarRecibo = new JButton();
+						jB_ActualizarRecibo.setText("Actualizar");
+						jB_ActualizarRecibo.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
-								jB_InformeReciboActionPerformed(evt);
+								jB_ActualizarReciboActionPerformed(evt);
 							}
 						});
 					}
-						jF_RecibosLayout.setHorizontalGroup(jF_RecibosLayout.createSequentialGroup()
-						.addComponent(jT_Recibos, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-						.addGroup(jF_RecibosLayout.createParallelGroup()
-						    .addGroup(jF_RecibosLayout.createSequentialGroup()
-						        .addComponent(jB_ModificarRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						        .addGap(0, 0, Short.MAX_VALUE))
-						    .addGroup(jF_RecibosLayout.createSequentialGroup()
-						        .addComponent(jB_BajaRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						        .addGap(0, 0, Short.MAX_VALUE))
-						    .addGroup(jF_RecibosLayout.createSequentialGroup()
-						        .addComponent(jB_AltaRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-						        .addGap(0, 0, Short.MAX_VALUE))
-						    .addGroup(GroupLayout.Alignment.LEADING, jF_RecibosLayout.createSequentialGroup()
-						        .addGap(0, 0, Short.MAX_VALUE)
-						        .addComponent(jB_InformeRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap());
+					{
+						jB_PagarRecibos = new JButton();
+						jB_PagarRecibos.setText("Pagar");
+						jB_PagarRecibos.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								jB_PagarRecibosActionPerformed(evt);
+							}
+						});
+					}
+					{
+						jTF_Pagar = new JTextField();
+					}
+					{
+						jL_Pagar = new JLabel();
+						jL_Pagar.setText("Inserta fecha de pago");
+					}
+						jF_RecibosLayout.setHorizontalGroup(jF_RecibosLayout.createParallelGroup()
+						.addGroup(GroupLayout.Alignment.LEADING, jF_RecibosLayout.createSequentialGroup()
+						    .addComponent(jT_Recibos, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
+						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						    .addGroup(jF_RecibosLayout.createParallelGroup()
+						        .addGroup(jF_RecibosLayout.createSequentialGroup()
+						            .addComponent(jB_ModificarRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						        .addGroup(jF_RecibosLayout.createSequentialGroup()
+						            .addComponent(jB_BajaRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+						        .addGroup(jF_RecibosLayout.createSequentialGroup()
+						            .addComponent(jB_AltaRecibo, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
+						    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(GroupLayout.Alignment.LEADING, jF_RecibosLayout.createSequentialGroup()
+						    .addGap(159)
+						    .addComponent(jL_Pagar, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jTF_Pagar, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+						    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+						    .addComponent(jB_PagarRecibos, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+						    .addGap(93)
+						    .addComponent(jB_ActualizarRecibo, 0, 140, Short.MAX_VALUE)
+						    .addContainerGap()));
 						jF_RecibosLayout.setVerticalGroup(jF_RecibosLayout.createSequentialGroup()
 						.addGroup(jF_RecibosLayout.createParallelGroup()
 						    .addComponent(jT_Recibos, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)
@@ -817,9 +992,13 @@ public class mainGUI extends javax.swing.JFrame {
 						        .addComponent(jB_BajaRecibo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 						        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
 						        .addComponent(jB_ModificarRecibo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
-						.addGap(56)
-						.addComponent(jB_InformeRecibo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(204, Short.MAX_VALUE));
+						.addGap(20)
+						.addGroup(jF_RecibosLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+						    .addComponent(jB_ActualizarRecibo, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jL_Pagar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jTF_Pagar, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+						    .addComponent(jB_PagarRecibos, GroupLayout.Alignment.BASELINE, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(215, 215));
 				}
 				{
 					jF_LineaFacturas = new JInternalFrame();
@@ -1052,14 +1231,25 @@ public class mainGUI extends javax.swing.JFrame {
 	
 	private void jBBajaPropietarioActionPerformed(ActionEvent evt) {
 		PropietarioHome pHome = new PropietarioHome();
+		
 		int row = (int) jT_Propietarios.getSelectedRow(); 
+		int id = (int) TPropietarios.getValueAt(row, 0);
+		
+		boolean borrar = true;
+
 		if (row == -1){
 			// mostrar error
 		}
-		else{
-			int id = (int) TPropietarios.getValueAt(row, 0);
-			pHome.borrarPropietario(id);
-			TPropietarios.removeRow(row);
+		else {
+			for(Inmueble i : new InmuebleHome().buscarInmuebles()) {
+				if (i.getPropietario().getIdPropietario() == id)
+					borrar = false;
+			}
+			
+			if(borrar) {
+				pHome.borrarPropietario(id);
+				TPropietarios.removeRow(row);
+			}
 		}
 	}
 	
@@ -1090,7 +1280,9 @@ public class mainGUI extends javax.swing.JFrame {
 	
 	
 	private void jB_ListarInmueblesYRecibosActionPerformed(ActionEvent evt) {
-		
+		int numRecibosPendientes = 0;
+		float importeTotal = 0.0f;
+
 		int row = (int) jT_Propietarios.getSelectedRow(); 
 		if (row == -1){
 			// mostrar error
@@ -1113,15 +1305,28 @@ public class mainGUI extends javax.swing.JFrame {
 			
 			for (Reciboinmueble r : new ReciboinmuebleHome().buscarReciboinmuebles()) {
 				if(r.getInmueble().getPropietario().getIdPropietario() == idPropietario) {
+					if(r.getFechapago().isEmpty()) {
+						r.setPagado("Pendiente");
+						numRecibosPendientes++;
+						importeTotal += r.getImporte();
+					} else {
+						r.setPagado("Pagado");
+					}
 					TRPropietario.addToTabla(r);
 				}
 			}
 		}
+		
+		jL_numero.setText(""+numRecibosPendientes);
+		jL_total.setText(""+importeTotal);
 	}
 	
 	
 
 	private void jB_FiltrarActionPerformed(ActionEvent evt) {
+		int numRecibosPendientes = 0;
+		float importeTotal = 0.0f;
+		
 		int row = (int) jT_InmueblesPropietario.getSelectedRow(); 
 		if (row == -1){
 			// mostrar error
@@ -1134,12 +1339,57 @@ public class mainGUI extends javax.swing.JFrame {
 			
 			for (Reciboinmueble r : new ReciboinmuebleHome().buscarReciboinmuebles()) {
 				if(r.getInmueble().getIdInmueble() == idInmueble) {
+					if(r.getFechapago().isEmpty()) {
+						r.setPagado("Pendiente");
+						numRecibosPendientes++;
+						importeTotal += r.getImporte();
+					} else {
+						r.setPagado("Pagado");
+					}
 					TRPropietario.addToTabla(r);
 				}
 			}
 		}
+		
+		
+		jL_numero.setText(""+numRecibosPendientes);
+		jL_total.setText(""+importeTotal);
 	}
 	
+	
+	private void jB_PagarPropietarioActionPerformed(ActionEvent evt) {
+		ReciboinmuebleHome riHome = new ReciboinmuebleHome();
+
+		int row = (int) jT_RecibosPropietario.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else {
+			int id = (int) TRPropietario.getValueAt(row, 0);
+			Reciboinmueble ri = riHome.buscarReciboinmueblePorID(id);
+			
+			String fechapago = jTF_PagarPropietario.getText();
+			ri.setFechapago(fechapago);
+			riHome.updateRecibo(id, fechapago, ri.getInmueble(), ri.getNotainformativa(), ri.getCarta());
+			
+			
+			while (TRPropietario.getRowCount() > 0) {
+				TRPropietario.removeRow(0);
+			}
+			
+			
+			for(Reciboinmueble r : new ReciboinmuebleHome().buscarReciboinmuebles()) {
+				if(r.getFechapago().isEmpty())
+					r.setPagado("Pendiente");
+				else 
+					r.setPagado("Pagado");
+				
+				TRPropietario.addToTabla(r);
+			}
+		}
+		
+	}
+
 	/*************************************************************************************************/
 	/*									
 	 * 												COMUNIDADES 
@@ -1151,14 +1401,50 @@ public class mainGUI extends javax.swing.JFrame {
 	
 	private void jBBajaComunidadActionPerformed(ActionEvent evt) {
 		ComunidadHome cHome = new ComunidadHome();
+		boolean tieneInmuebles = false;
+		boolean tieneFacturas = false;
+		
 		int row = (int) jT_Comunidades.getSelectedRow(); 
 		if (row == -1){
 			// mostrar error
 		}
 		else{
 			int id = (int) TComunidades.getValueAt(row, 0);
-			cHome.borrarComunidad(id);
-			TComunidades.removeRow(row);
+			Comunidad c = cHome.buscarComunidadPorID(id);
+			
+			
+
+			for(Factura f : new FacturaHome().buscarFacturas()) {
+				if(f.getComunidad().getIdComunidad() == id &&
+						f.getFechafactura().isEmpty()) {
+					tieneFacturas = true;
+					break;
+				}
+			}
+			
+			if(!tieneFacturas)
+				for(Inmueble i : new InmuebleHome().buscarInmuebles()) {
+					if (i.getComunidad().getIdComunidad() == id) {
+						tieneInmuebles = true;
+						break;
+					}
+				}
+			
+			
+			if(tieneFacturas) {
+				c.setEstado("Moroso");
+				cHome.updateComunidad(id, c.getCalle(), c.getMaxrecibospendientes(), c.getEstado(), c.getIdInmueblePresidente());
+			}
+			else if(tieneInmuebles) {
+				c.setEstado("Baja");
+				cHome.updateComunidad(id, c.getCalle(), c.getMaxrecibospendientes(), c.getEstado(), c.getIdInmueblePresidente());
+			} else {
+				cHome.borrarComunidad(id);
+				TComunidades.removeRow(row);
+			}
+			
+			actualizarComunidad();
+			
 		}
 	}
 	
@@ -1183,6 +1469,41 @@ public class mainGUI extends javax.swing.JFrame {
 	}
 
 	
+	private void jB_ActualizarComunidadActionPerformed(ActionEvent evt) {
+		actualizarComunidad();
+	}
+	
+	
+	private void jB_GenerarReciboActionPerformed(ActionEvent evt) {
+		
+		int row = (int) jT_Comunidades.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else {
+			int id = (int) TComunidades.getValueAt(row, 0);
+			
+			for(Factura f : new FacturaHome().buscarFacturas()) {
+				
+				if(f.getComunidad().getIdComunidad() == id && f.getFechafactura().isEmpty()) {
+					
+					for(Inmueble i : new InmuebleHome().buscarInmuebles()) {
+						
+						if(i.getComunidad().getIdComunidad() == id)	{
+							Reciboinmueble ri = new Reciboinmueble();
+							ri.setInmueble(i);
+							ri.setNotainformativa(f.getNotainformativa());
+							ri.setImporte(f.getNotainformativa().getImportenota());
+							TRecibo.addReciboinmueble(ri);
+						}
+					}
+				}
+			}
+		}
+		
+	}
+
+	
 	
 	/*************************************************************************************************/
 	/*									
@@ -1196,18 +1517,42 @@ public class mainGUI extends javax.swing.JFrame {
 	private void jBBajaInmuebleActionPerformed(ActionEvent evt) {
 		InmuebleHome iHome = new InmuebleHome();
 		DatosbancariosHome dbHome = new DatosbancariosHome();
+		boolean tieneRecibosPendientes = false;
+		
 		int row = (int) jT_Inmuebles.getSelectedRow(); 
 		if (row == -1){
 			// mostrar error
 		}
 		else{
-			int idInmueble = (int) TInmuebles.getValueAt(row, 0);
-			iHome.borrarInmueble(idInmueble);
+			int id = (int) TInmuebles.getValueAt(row, 0);
+
+			
+			for(Reciboinmueble r : new ReciboinmuebleHome().buscarReciboinmuebles()) {
+				if (r.getInmueble().getIdInmueble() == id && r.getFechapago().isEmpty()) {
+					tieneRecibosPendientes = true;
+					break;
+				}
+			}
+			
+			if(!tieneRecibosPendientes) {
+				
+				for(Reciboinmueble r : new ReciboinmuebleHome().buscarReciboinmuebles()) {
+					if (r.getInmueble().getIdInmueble() == id) {
+						new ReciboinmuebleHome().borrarReciboinmueble(r.getInmueble().getIdInmueble());
+					}
+				}
+				
+				actualizarRecibos();
+				
+				iHome.borrarInmueble(id);
+				TInmuebles.removeRow(row);
+
+			}
+			
 			
 //			int idDatos = (int) TInmuebles.getValueAt(row, 7);
 //			dbHome.borrarDatosbancarios(idDatos);
 			
-			TInmuebles.removeRow(row);
 		}
 	}
 	
@@ -1219,6 +1564,9 @@ public class mainGUI extends javax.swing.JFrame {
 		else {
 			InmuebleHome iHome = new InmuebleHome();
 			DatosbancariosHome dbHome = new DatosbancariosHome();
+			
+			Propietario p = new PropietarioHome().buscarPropietarioPorID(
+					Integer.parseInt(TInmuebles.getValueAt(row, 6).toString()));
 
 			Inmueble i = new Inmueble();
 			i.setIdInmueble(Integer.parseInt(TInmuebles.getValueAt(row, 0).toString()));
@@ -1226,7 +1574,7 @@ public class mainGUI extends javax.swing.JFrame {
 			i.setPiso(TInmuebles.getValueAt(row, 2).toString());
 			i.setPuerta(TInmuebles.getValueAt(row, 3).toString());
 			i.setPorcentaje(Double.parseDouble(TInmuebles.getValueAt(row, 4).toString()));
-	
+			i.setPropietario(p);
 			
 			
 			Datosbancarios db = new Datosbancarios();
@@ -1236,6 +1584,8 @@ public class mainGUI extends javax.swing.JFrame {
 			
 			GestionInmueblesGUI gi_mod = new GestionInmueblesGUI(TInmuebles, row, iHome, i, dbHome, db);
 			gi_mod.setVisible(true);
+			
+			
 		}
 		
 	}
@@ -1296,7 +1646,7 @@ public class mainGUI extends javax.swing.JFrame {
 		if (row == -1){
 			// mostrar error
 		}
-		else if(new NotainformativaHome().buscarNotainformativaPorID(id_restriccion).getReciboinmuebles() != null) {
+		else if(!new NotainformativaHome().buscarNotainformativaPorID(id_restriccion).getReciboinmuebles().isEmpty()) {
 			/*
 			 * No se puede modificar una factura incluida en un recibo
 			 */
@@ -1439,8 +1789,44 @@ public class mainGUI extends javax.swing.JFrame {
 	
 	private void jB_AltaReciboActionPerformed(ActionEvent evt) {
 		gr.setVisible(true);
+		actualizarRecibos();
 	}
 	
+	private void jB_PagarRecibosActionPerformed(ActionEvent evt) {
+		ReciboinmuebleHome riHome = new ReciboinmuebleHome();
+
+		int row = (int) jT_Recibos.getSelectedRow(); 
+		if (row == -1){
+			// mostrar error
+		}
+		else {
+			int id = (int) TRecibo.getValueAt(row, 0);
+			Reciboinmueble ri = riHome.buscarReciboinmueblePorID(id);
+			
+			String fechapago = jTF_Pagar.getText();
+			ri.setFechapago(fechapago);
+			riHome.updateRecibo(id, fechapago, ri.getInmueble(), ri.getNotainformativa(), ri.getCarta());
+			
+			
+			while (TRecibo.getRowCount() > 0)
+				TRecibo.removeRow(0);
+			
+			
+			for(Reciboinmueble r : new ReciboinmuebleHome().buscarReciboinmuebles()) {
+				if(r.getFechapago().isEmpty())
+					r.setPagado("Pendiente");
+				else 
+					r.setPagado("Pagado");
+				
+				TRecibo.addToTabla(r);
+			}
+		}
+	}
+	
+
+	private void jB_ActualizarReciboActionPerformed(ActionEvent evt) {
+		actualizarRecibos();
+	}
 	
 	/*************************************************************************************************/
 	/*									
@@ -1542,42 +1928,17 @@ public class mainGUI extends javax.swing.JFrame {
 
 
 	
-	private void jB_InformeComunidadesActionPerformed(ActionEvent evt) {
-		
-//		String[][] values;
-//		String fichero = "facturas_Comunidad.csv";
-//		
-//		try {
-//			CSVPrinter printer = new CSVPrinter();
-//		} catch (IOException i) {
-//			
-//		}
-//		
-		
-		
-		
-		
-		
-		
-		
-//		JasperPrint informe = null;
-//		Session sesion= UtilidadHibernate.getSessionFactory().openSession();
-//		HashMap parametros = new HashMap();
-//		parametros.put(JRHibernateQueryExecuterFactory.PARAMETER_HIBERNATE_SESSION,sesion);
-//		//parametros.put("genero","Comedia");
-//		try {
-//		String fileName= "report1.jasper";
-//		informe= JasperFillManager.fillReport(fileName, parametros);
-//		}
-//		catch (JRException e){e.printStackTrace();}
-//		JasperViewer.viewReport(informe,false);
-	}
-	
+
 	private void jB_InformeNotaActionPerformed(ActionEvent evt) {
 	}
 	
-	private void jB_InformeReciboActionPerformed(ActionEvent evt) {
+	private void jB_ActualizarInmueblesActionPerformed(ActionEvent evt) {
+		actualizarInmuebles();
+		actualizarComunidad();
 	}
 	
+	private void jButton1ActionPerformed(ActionEvent evt) {
+		actualizarFacturas();
+	}
 
 }

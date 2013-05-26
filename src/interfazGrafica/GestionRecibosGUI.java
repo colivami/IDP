@@ -236,6 +236,7 @@ public class GestionRecibosGUI extends javax.swing.JFrame {
 			r.setImporte(importe);
 			TRecibo.addReciboinmueble(r);
 		}
+		
 		this.dispose();
 	}
 

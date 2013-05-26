@@ -13,6 +13,7 @@ public class Reciboinmueble implements java.io.Serializable {
 	private Carta carta;
 	private String fechapago;
 	private Double importe;
+	private String pagado;
 
 	public Reciboinmueble() {
 	}
@@ -32,6 +33,14 @@ public class Reciboinmueble implements java.io.Serializable {
 
 	public void setIdReciboinmueble(Integer idReciboinmueble) {
 		this.idReciboinmueble = idReciboinmueble;
+	}
+
+	public String getPagado() {
+		return pagado;
+	}
+
+	public void setPagado(String pagado) {
+		this.pagado = pagado;
 	}
 
 	public Notainformativa getNotainformativa() {

@@ -8,6 +8,7 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
@@ -16,10 +17,12 @@ import negocio.Comunidad;
 import negocio.Datosbancarios;
 import negocio.Inmueble;
 import negocio.Propietario;
+import negocio.Reciboinmueble;
 import dao.ComunidadHome;
 import dao.DatosbancariosHome;
 import dao.InmuebleHome;
 import dao.PropietarioHome;
+import dao.ReciboinmuebleHome;
 
 
 /**
@@ -68,6 +71,7 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 	
 	boolean modificar = false;
 	int idInmueble_mod;
+	int idPropietario_mod;
 	int row;
 	
 	public GestionInmueblesGUI(TablaInmueble ti) {
@@ -88,13 +92,16 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 		jTF_EscaleraInmuebles.setText(i.getEscalera());
 		jTF_PorcentajeInmuebles.setText(i.getPorcentaje().toString());
 		jTF_PisoInmuebles.setText(i.getPiso());
+		jTF_IDPropietarioInmueble.setText(""+i.getPropietario().getIdPropietario());
 		
 		jTF_IDDatosBancarios.setText(""+db.getIdDatosbancarios());
 		jTF_NumeroCuenta.setText(db.getNumerocuenta());
 		jTF_Entidad.setText(db.getEntidad());
 		
+		
 		this.row = row;
-		idInmueble_mod = i.getIdInmueble();
+		this.idInmueble_mod = i.getIdInmueble();
+		this.idPropietario_mod = i.getPropietario().getIdPropietario();
 		modificar = true;
 	}
 	
@@ -311,6 +318,7 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 	
 	private void jB_GuardarInmueblesActionPerformed(ActionEvent evt) {
 		
+		boolean tieneRecibos = false;
 		
 		String escalera = jTF_EscaleraInmuebles.getText();
 		String puerta = jTF_PuertaInmuebles.getText();
@@ -332,6 +340,27 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 			String entidad =""; //datosbancarios.getEntidad();
 			String numerocuenta =""; // datosbancarios.getNumerocuenta();
 			
+			
+			if(idPropietario != idPropietario_mod) {
+					
+				for(Reciboinmueble r : new ReciboinmuebleHome().buscarReciboinmuebles()) {
+					if(r.getInmueble().getPropietario().getIdPropietario() == idPropietario_mod &&
+							r.getFechapago().isEmpty()) {
+						tieneRecibos = true;
+						break;
+					}
+				}
+				
+				
+				if(tieneRecibos) {
+					JOptionPane.showMessageDialog(null, 
+							"El antiguo propietario tiene recibos sin pagar", 
+							"Atención!", 
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+			
+			
 			iHome.updateInmueble(idInmueble_mod,escalera,piso,puerta,porcentaje,idComunidad, idPropietario, idDatosbancarios, entidad, numerocuenta);
 			tInmueble.setValueAt(escalera, row, 1);
 			tInmueble.setValueAt(piso, row, 2);
@@ -342,7 +371,9 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 //			tInmueble.setValueAt(idDatosbancarios, row, 7);
 //			tInmueble.setValueAt(entidad, row, 8);
 //			tInmueble.setValueAt(numerocuenta, row, 9);
-		
+			
+			
+			
 		} else if(comunidad.getEstado().toLowerCase() != "baja") {
 			
 //			Datosbancarios db = new Datosbancarios();
@@ -352,6 +383,7 @@ public class GestionInmueblesGUI extends javax.swing.JFrame {
 //			
 //			dbHome.anyadirDatosbancarios(db);
 
+		
 			
 			Inmueble i = new Inmueble();
 			i.setComunidad(comunidad);
